@@ -1,0 +1,20 @@
+@media only screen and (max-width: 500px) {
+    body {
+        text-align: center;
+    }
+}
+
+.App {
+  margin-top: 10px;
+}
+
+.App-intro {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 10px;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
