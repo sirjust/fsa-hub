@@ -10,3 +10,11 @@ The Hub for Full-Stack Apprentices worldwide to connect with each other, mentors
 - Messaging System
 
 # Invite People to AWS Account
+
+# Wishlist
+
+# Back-end Repository
+
+# Sequelize FSA Boilerplate
+- Precursor to setting up the Users, Teams, Projects.
+- Branding colors, etc.

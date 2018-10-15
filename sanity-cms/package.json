@@ -1,0 +1,32 @@
+{
+  "name": "fullstackapprentice",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Content Management System for Full-Stack Apprentice",
+  "main": "package.json",
+  "author": "Michael Litchev <fullstackapprentice@gmail.com>",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "sanity start",
+    "test": "sanity check"
+  },
+  "keywords": [
+    "sanity"
+  ],
+  "dependencies": {
+    "@sanity/base": "^0.123.0",
+    "@sanity/components": "^0.123.0",
+    "@sanity/core": "^0.123.0",
+    "@sanity/default-layout": "^0.123.0",
+    "@sanity/default-login": "^0.121.1",
+    "@sanity/desk-tool": "^0.123.0",
+    "@sanity/google-maps-input": "^0.123.0",
+    "react": "^15.6",
+    "react-dom": "^15.6"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikhaelbendavid/fsa-hub.git"
+  }
+}
