@@ -36,3 +36,35 @@ You will learn how to set up your development environment, and the basics of how
 After you & your mentor believe you are ready, you will set out to build a full-stack application purely for yourself - to demonstrate your emerging competence in the field. It can be entrepreneurial or activist in nature, but above all it must be useful.
 
 After completion, you may search for a job or freelance. You will have finished your apprenticeship, & continue your journey.
+
+JSApprentice Sanity API
+
+Importing Data into Sanity is easy
+Download the CLI
+Sanity dataset import
+
+Documents should follow the structure of your data model, most importantly the requirement of a type attribute
+
+Localization tools in Sanity are pretty powerful, will be good for internationalization
+
+Spanish is the first really big market I can see taking off.
+
+Your hosted studio service url will be https://<my-studio>.sanity.studio/
+
+Check out the vision plug in to be able to run queries directly from the studio
+
+Blog Posts
+
+Resources
+
+Tools
+
+‘Latest Trends’ page
+
+Figure out a HN.premii style of text fetching. Take a look at their source code.
+
+Have a card system for each ‘technology’ with a ‘picture’, and then the frame below it as a ‘GitHub Icon’ which opens a new tab with that information, etc.
+
+‘Testing’ section
+
+‘Hosting’ section
