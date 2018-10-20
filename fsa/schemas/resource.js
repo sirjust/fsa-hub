@@ -12,12 +12,17 @@ export default {
       type: 'string'
     },
     {
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
+      name: 'type',
+      title: 'Type',
+      type: 'string',
       options: {
-        source: 'title',
-        maxLength: 100
+        list: [
+          {title: 'Tutorial', value: 'Tutorial'},
+          {title: 'Employment', value: 'Employment'},
+          {title: 'Article', value: 'Article'},
+          {title: 'Video', value: 'Video'},
+        ],
+        layout: 'dropdown'
       }
     },
     {
@@ -30,16 +35,20 @@ export default {
       title: 'URL',
       type: 'string'
     },
-    // {
-    //   name: 'externalId',
-    //   title: 'External ID',
-    //   type: 'number'
-    // },
-    // {
-    //   name: 'popularity',
-    //   title: 'Popularity',
-    //   type: 'number'
-    // },
+    {
+      name: 'website',
+      title: 'Website',
+      type: 'string'
+    },
+    {
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 100
+      }
+    },
     {
       name: 'logo',
       title: 'Logo',
@@ -52,8 +61,9 @@ export default {
   preview: {
     select: {
       title: 'title',
-      // date: 'releaseDate',
+      type: 'type',
       media: 'logo',
+
     },
     prepare(selection) {
       const year = selection.date && selection.date.split('-')[0]
@@ -61,7 +71,7 @@ export default {
       return {
         title: `${selection.title} ${year ? `(${year})` : ''}`,
         date: selection.date,
-        subtitle: 'Subtitle',
+        subtitle: selection.type,
         media: selection.media
       }
     }
