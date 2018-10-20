@@ -1,13 +1,16 @@
+import icon from 'react-icons/lib/md/person'
+
 export default {
-  name: 'technology',
-  title: 'Technology',
+  name: 'tool',
+  title: 'Tool',
   type: 'document',
+  icon,
   fields: [
     {
       name: 'name',
       title: 'Name',
       type: 'string',
-      description: 'Please use proper formatting.'
+      description: 'Name of Tool'
     },
     {
       name: 'slug',
@@ -15,8 +18,7 @@ export default {
       type: 'slug',
       options: {
         source: 'name',
-        maxLength: 96,
-        auto: true
+        maxLength: 100
       }
     },
     {
@@ -29,6 +31,6 @@ export default {
     }
   ],
   preview: {
-    select: {title: 'name', imageUrl: 'image.asset.url'}
+    select: {title: 'name', media: 'image'}
   }
 }
