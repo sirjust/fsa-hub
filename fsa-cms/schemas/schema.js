@@ -7,6 +7,19 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import blockContent from './blockContent'
 import resource from './resource'
 import tool from './tool'
+import backendTools from './backEndSchema'
+
+// Schemes
+import frontendSchema from './frontEndSchema'
+import backendSchema from './backEndSchema'
+import awsSchema from './awsSchema'
+import freelanceSchema from './freelanceSchema'
+import fulltimeSchema from './fulltimeSchema'
+import commandLineSchem from './commandLineSchema'
+import javascriptSchema from './javascriptSchema'
+import gitSchema from './gitSchema'
+import mentoshipSchema from './mentorshipSchema'
+import algorithmsSchema from './algorithmsSchema'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -17,8 +30,16 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    resource,
-    tool,
+    frontendSchema,
+    backendSchema,
+    awsSchema,
+    freelanceSchema,
+    fulltimeSchema,
+    commandLineSchem,
+    javascriptSchema,
+    gitSchema,
+    mentoshipSchema,
+    algorithmsSchema,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
