@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import { Auth } from 'aws-amplify';
+
+import RegistrationForm from '../components/RegistrationForm';
+import ConfirmationForm from '../components/ConfirmationForm';
 
 export default class Signup extends Component {
 
   state = {
     username: '',
-    email: '',
-    password: ''
+    confirmationCode: '',
+    confirmationRequired: false,
+    errors: []
   }
 
   render() {
@@ -16,37 +21,22 @@ export default class Signup extends Component {
           <h1>Join Full-Stack Apprentice</h1>
           <p className='light'>Learn to create modern & secure digital products</p><br /><br />
 
-          <h3>Create your personal account</h3>
-          <form className='signupForm' onSubmit={this.handleOnSubmit}>
-            <div className='formElement'>
-              <label>Username</label><br/>
-              <input type='text' id='username'
-                    value={this.state.username}
-                    onChange={this.handleOnChange} />
-              <p className='light small'>This will be your public username.</p>
-            </div>
+          {/* This allows us to display any error messages to the user */}
+          <div id='formErrors'>{this.renderErrors()}</div>
 
-            <div className='formElement'>
-              <label>Email</label><br />
-              <input type='email' id='email'
-                    value={this.state.email}
-                    onChange={this.handleOnChange} />
-              <p className='light small'>You'll need to confirm your account using this address. We'll never share your email address with anyone.</p>
-            </div>
+          {/* This loads a registration form, and upon successful registration
+          changes to load a form to submit a confirmation code.  */}
+          {this.state.confirmationRequired ? <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} /> : <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit}/>}
 
-            <div className='formElement'>
-              <label>Password</label><br />
-              <input type='password' id='password'
-                    value={this.state.password}
-                    onChange={this.handleOnChange} />
-              <p className='light small'>Make sure this is at least 8 characters, including a number, an uppercase character, and a symbol.</p>
-            </div>
-
-            <input type='submit' value='Register'/>
-          </form>
         </div>
       </React.Fragment>
     )
+  }
+
+  renderErrors = () => {
+    if (this.state.errors) {
+      return this.state.errors.join(', ');
+    }
   }
 
   handleOnChange = event => {
@@ -55,14 +45,68 @@ export default class Signup extends Component {
     });
   }
 
-  handleOnSubmit = event => {
-    event.preventDefault();
-    const data = JSON.stringify(this.state);
-    console.log(data);
-    this.setState({
-      username: '',
-      email: '',
-      password: ''
+  handleOnRegistrationSubmit = (data) => {
+    const username = data.username;
+    const email = data.email;
+    const password = data.password;
+
+    // Register user with Auth aws-amplify
+    Auth.signUp({
+      username,
+      password,
+      attributes: {
+        email
+      }
     })
+      .then(data => {
+        console.log(data);
+        this.setState({
+          username: data.user.username,
+          confirmationRequired: true,
+          errors: []
+        });
+        // This returns a user object in the form of: 
+        /* user: Object { username: "queer_coder", pool: {…}
+        *             authenticationFlowType: "USER_SRP_AUTH", … }
+
+        *   userConfirmed: false
+
+        *   userSub: "3d144a73-0337-4472-a6b3-39f05ac5af8b" 
+        */
+
+        // Users must be confirmed with an emailed verification code 
+        // Flow: set state for user/error, change form component 
+      })
+      .catch(err => {
+        console.log(err);
+        const errorMessages = err.message ? err.message : err
+        this.setState(state => {
+          return {errors: state.errors.concat(errorMessages)}
+        });
+      });
+  }
+
+  handleOnConfirmationSubmit = data => {
+    const code = data.confirmationCode;
+    const username = this.state.username;
+    this.setState({
+      errors: []
+    });
+
+    Auth.confirmSignUp(username, code, {
+      // Optional. Force user confirmation irrespective of existing alias. By default set to True.
+      forceAliasCreation: true
+    }).then(data => {
+      console.log(data);
+      // Returns "SUCCESS" on successful confirmation.
+      //TODO: do something with newly authenticated user
+    })
+      .catch(err => {
+        console.log(err);
+        const errorMessages = err.message ? err.message : err
+        this.setState(state => {
+          return { errors: state.errors.concat(errorMessages) }
+        });
+      });
   }
 }
