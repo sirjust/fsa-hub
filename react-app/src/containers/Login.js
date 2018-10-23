@@ -17,7 +17,7 @@ export default class Login extends Component {
           <h1>Login to Full-Stack Apprentice</h1>
           <p className='light'>Learn to create modern & secure digital products</p><br />
           {this.state.forgotPassword
-            ? <ForgotPassword />
+            ? <ForgotPassword resetForgotPassword={this.resetForgotPassword}/>
             : <LoginForm handleOnSubmit={this.handleOnLoginSubmit}
               forgotPassword={this.forgotPassword}
               errors={this.state.errors} />
@@ -30,8 +30,7 @@ export default class Login extends Component {
   handleOnLoginSubmit = data => {
     Auth.signIn(data.username, data.password)
       .then(user => {
-        console.log(user);
-        const token = user.signInUserSession.idToken.jwtToken;
+        const token = user.signInUserSession.idToken;
         this.props.loginUser(token);
         this.props.history.push('/');
       })
@@ -43,6 +42,12 @@ export default class Login extends Component {
   forgotPassword = () => {
     this.setState({
       forgotPassword: true
+    });
+  }
+
+  resetForgotPassword = () => {
+    this.setState({
+      forgotPassword: false
     });
   }
 

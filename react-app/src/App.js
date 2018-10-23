@@ -23,7 +23,7 @@ class App extends Component {
   componentDidMount(){
     Auth.currentAuthenticatedUser()
       .then(user => {
-        const token = user.signInUserSession.idToken.jwtToken;
+        const token = user.signInUserSession.idToken;
         this.loginUser(token);
       })
       .catch(err => console.log(err));

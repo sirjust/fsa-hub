@@ -64,10 +64,11 @@ export default class ForgotPassword extends Component {
     Auth.forgotPasswordSubmit(username, code, newPassword)
       .then(data => {
         console.log(data);
-        alert("Password changed successfully.");
         this.setState({
           confirmationPending: false
         });
+        this.props.resetForgotPassword();
+        alert("Password changed successfully.");
       })
       .catch(err => {
         err.message ? this.addErrors(err.message) : this.addErrors(err)
