@@ -18,3 +18,16 @@ ul {
   padding: 0;
   list-style-type: none;
 }
+
+.light {
+  color: #aaa;
+}
+
+.small {
+  font-size: .8em;
+  padding-left: 10px;
+}
+
+.formElement {
+  width: 250px;
+}
