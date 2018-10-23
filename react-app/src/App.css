@@ -31,3 +31,9 @@ ul {
 .formElement {
   width: 250px;
 }
+
+#formErrors {
+  color: #C51162;
+  font-size: 100%;
+  padding-left: 5px;
+}

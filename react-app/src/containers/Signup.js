@@ -22,7 +22,7 @@ export default class Signup extends Component {
           <p className='light'>Learn to create modern & secure digital products</p><br /><br />
 
           {/* This allows us to display any error messages to the user */}
-          <div id='formErrors'>{this.renderErrors()}</div>
+          <p id='formErrors'>{this.renderErrors()}</p>
 
           {/* This loads a registration form, and upon successful registration
           changes to load a form to submit a confirmation code.  */}
@@ -49,6 +49,9 @@ export default class Signup extends Component {
     const username = data.username;
     const email = data.email;
     const password = data.password;
+    this.setState({
+      errors: []
+    });
 
     // Register user with Auth aws-amplify
     Auth.signUp({
@@ -62,8 +65,7 @@ export default class Signup extends Component {
         console.log(data);
         this.setState({
           username: data.user.username,
-          confirmationRequired: true,
-          errors: []
+          confirmationRequired: true
         });
         // This returns a user object in the form of: 
         /* user: Object { username: "queer_coder", pool: {…}
