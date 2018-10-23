@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Amplify from 'aws-amplify';
+import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 
 import Routes from "./Routes";
@@ -15,13 +15,24 @@ class App extends Component {
     super(props);
 
     this.state = {
-      userToken: {},
+      userToken: null,
       object: {},
     }
   }
+
+  componentDidMount(){
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        const token = user.signInUserSession.idToken.jwtToken;
+        this.loginUser(token);
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     const childProps = {
       object: this.state.object,
+      loginUser: this.loginUser.bind(this),
     }
 
     return (
@@ -37,7 +48,7 @@ class App extends Component {
 
             <Navbar.Collapse>
               <Nav pullRight>
-                {!this.state.userToken
+                {this.state.userToken
                   ? [
                     <NavItem key={1} onClick={this.handleLogout}>Logout</NavItem>,
                   ]
@@ -52,6 +63,23 @@ class App extends Component {
           <Routes childProps={childProps} />
       </div>
     );
+  }
+
+  loginUser = userToken => {
+    this.setState({
+      userToken: userToken
+    });
+  }
+
+  handleLogout = () => {
+    Auth.signOut()
+      .then(() => {
+        this.setState({
+          userToken: null
+        });
+        alert("Logged out!");
+      })
+      .catch(err => console.log(err));
   }
 }
 
