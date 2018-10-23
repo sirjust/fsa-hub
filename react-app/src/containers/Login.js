@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Auth } from 'aws-amplify';
+import LoginForm from '../components/LoginForm';
+import ForgotPassword from './ForgotPassword';
 
 export default class Login extends Component {
 
   state = {
-    username: '',
-    password: ''
+    forgotPassword: false,
+    errors: []
   }
 
   render() {
@@ -13,41 +15,19 @@ export default class Login extends Component {
       <React.Fragment>
         <div className='App-intro'>
           <h1>Login to Full-Stack Apprentice</h1>
-          <p className='light'>Learn to create modern & secure digital products</p><br /><br />
-
-          <form className='loginForm' onSubmit={this.handleOnSubmit}>
-            <div className='formElement'>
-              <label>Username</label><br />
-              <input type='text' id='username'
-                     value={this.state.username}
-                     onChange={this.handleOnChange} />
-            </div><br />
-
-            <div className='formElement'>
-              <label>Password</label><br />
-              <input type='password' id='password'
-                     value={this.state.password}
-                     onChange={this.handleOnChange} />
-            </div><br />
-
-            <input type='submit' value='Login' />
-          </form>
+          <p className='light'>Learn to create modern & secure digital products</p><br />
+          {this.state.forgotPassword
+            ? <ForgotPassword />
+            : <LoginForm handleOnSubmit={this.handleOnLoginSubmit}
+              forgotPassword={this.forgotPassword}
+              errors={this.state.errors} />
+          } 
         </div>
       </React.Fragment>
     )
   }
 
-  handleOnChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  }
-
-  handleOnSubmit = event => {
-    event.preventDefault();
-    const data = this.state;
-    console.log(data);
-
+  handleOnLoginSubmit = data => {
     Auth.signIn(data.username, data.password)
       .then(user => {
         console.log(user);
@@ -55,6 +35,28 @@ export default class Login extends Component {
         this.props.loginUser(token);
         this.props.history.push('/');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        err.message ? this.addErrors(err.message) : this.addErrors(err);
+      });
+  }
+
+  forgotPassword = () => {
+    this.setState({
+      forgotPassword: true
+    });
+  }
+
+  addErrors = errors => {
+    this.setState(state => {
+      return {
+        errors: state.errors.concat(errors)
+      }
+    });
+  }
+
+  clearErrors = () => {
+    this.setState({
+      errors: []
+    });
   }
 }

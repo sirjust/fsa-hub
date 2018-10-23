@@ -17,10 +17,8 @@ export default class ConfirmationForm extends Component {
             <input type='text' id='confirmationCode'
                   value={this.state.confirmationCode}
                   onChange={this.handleOnChange} />
-            <p className='light small'>Message</p>
-
+          </div> <br/>
             <input type='submit' value='Submit' />
-          </div>
         </form>
       </React.Fragment>
     )
