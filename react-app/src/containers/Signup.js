@@ -21,22 +21,15 @@ export default class Signup extends Component {
           <h1>Join Full-Stack Apprentice</h1>
           <p className='light'>Learn to create modern & secure digital products</p><br /><br />
 
-          {/* This allows us to display any error messages to the user */}
-          <p id='formErrors'>{this.renderErrors()}</p>
-
           {/* This loads a registration form, and upon successful registration
           changes to load a form to submit a confirmation code.  */}
-          {this.state.confirmationRequired ? <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} /> : <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit}/>}
+          {this.state.confirmationRequired ? 
+          <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} errors={this.state.errors} /> : 
+          <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit} errors={this.state.errors} />}
 
         </div>
       </React.Fragment>
     )
-  }
-
-  renderErrors = () => {
-    if (this.state.errors) {
-      return this.state.errors.join(', ');
-    }
   }
 
   handleOnChange = event => {

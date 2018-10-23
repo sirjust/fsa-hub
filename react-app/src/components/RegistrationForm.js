@@ -13,6 +13,7 @@ export default class RegistrationForm extends Component {
       <React.Fragment>
         <h3>Create your personal account</h3>
         <form className='signupForm' onSubmit={this.handleOnSubmit}>
+          <p id='formErrors'>{this.renderErrors()}</p>
           <div className='formElement'>
             <label>Username</label><br />
             <input type='text' id='username'
@@ -41,6 +42,12 @@ export default class RegistrationForm extends Component {
         </form>
       </React.Fragment>
     )
+  }
+
+  renderErrors = () => {
+    if (this.props.errors) {
+      return this.props.errors.join(', ')
+    }
   }
 
   handleOnChange = event => {
