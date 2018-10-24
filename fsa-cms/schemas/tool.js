@@ -2,7 +2,7 @@ import icon from 'react-icons/lib/md/person'
 
 export default {
   name: 'tool',
-  title: 'Tool',
+  title: 'Meta Tools',
   type: 'document',
   icon,
   fields: [
@@ -21,6 +21,11 @@ export default {
         maxLength: 100
       }
     },
+      {
+          name: 'overview',
+          title: 'Overview',
+          type: 'blockContent'
+      },
     {
       name: 'image',
       title: 'Image',
