@@ -28,7 +28,7 @@ export default class LoginForm extends Component {
             <label>Password</label><br />
             <input type='password' id='password'
               value={this.state.password}
-              onChange={this.handleOnChange} />
+              onChange={this.handleOnChange} /><br />
             <a className='light small' onClick={this.props.forgotPassword}>Forgot password?</a>
           </div>
 

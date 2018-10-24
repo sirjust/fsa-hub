@@ -95,6 +95,8 @@ export default class Signup extends Component {
       console.log(data);
       // Returns "SUCCESS" on successful confirmation.
       //TODO: do something with newly authenticated user
+      alert('Account confirmed! Please log in.');
+      this.props.history.push('/login');
     })
       .catch(err => {
         console.log(err);
