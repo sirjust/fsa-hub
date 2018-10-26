@@ -2,6 +2,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 
 import Signup from './Signup';
+import RegistrationForm from '../components/RegistrationForm';
+import ConfirmationForm from '../components/ConfirmationForm';
 
 describe("Signup", () => {
   let props;
@@ -22,7 +24,8 @@ describe("Signup", () => {
   // each test for a clean slate.
   beforeEach(() => {
     props = {
-      //default props go here
+      userToken: null,
+      object: {}
     };
     mountedSignup = undefined;
   });
@@ -46,5 +49,19 @@ describe("Signup", () => {
       // contains everything else our component renders.
       expect(wrappingDiv.children()).toEqual(signup().children());
     });
-  })
+
+    it("always renders a header", () => {
+      expect(signup().find('h1').length).toBe(1);
+    });
+
+    it("renders a <RegistrationForm/> component when state 'confirmationRequired' is false", () => {
+      expect(signup().find(RegistrationForm).length).toBe(1);
+    });
+
+    it("renders a <ConfirmationForm/> component when state 'confirmationRequired' is true", () => {
+      let mountedSignup = signup();
+      mountedSignup.setState({confirmationRequired: true});
+      expect(mountedSignup.find(ConfirmationForm).length).toBe(1);
+    });
+  });
 });
