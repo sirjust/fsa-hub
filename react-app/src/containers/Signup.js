@@ -7,8 +7,6 @@ import ConfirmationForm from '../components/ConfirmationForm';
 export default class Signup extends Component {
 
   state = {
-    username: '',
-    confirmationCode: '',
     confirmationRequired: false,
     errors: []
   }
@@ -16,19 +14,17 @@ export default class Signup extends Component {
   render() {
 
     return(
-      <React.Fragment>
-        <div className='App-intro'>
-          <h1>Join Full-Stack Apprentice</h1>
-          <p className='light'>Learn to create modern & secure digital products</p><br /><br />
+      <div className='App-intro'>
+        <h1>Join Full-Stack Apprentice</h1>
+        <p className='light'>Learn to create modern & secure digital products</p><br /><br />
 
-          {/* This loads a registration form, and upon successful registration
-          changes to load a form to submit a confirmation code.  */}
-          {this.state.confirmationRequired ? 
-          <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} errors={this.state.errors} /> : 
-          <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit} errors={this.state.errors} />}
+        {/* This loads a registration form, and upon successful registration
+        changes to load a form to submit a confirmation code.  */}
+        {this.state.confirmationRequired ? 
+        <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} errors={this.state.errors} /> : 
+        <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit} errors={this.state.errors} />}
 
-        </div>
-      </React.Fragment>
+      </div>
     )
   }
 
