@@ -14,3 +14,4 @@ We're following the git-flow model:
 feature/TICKET_OR_ISSUE_NUMBER (feature/#43)
 bug/TICKET_OR_ISSUE_NUMBER (bug/#102)
 release/VERSION_NUMBER (release/0.1.2)
+
