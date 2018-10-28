@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Signup from './Signup';
 import RegistrationForm from '../components/RegistrationForm';
@@ -13,7 +13,7 @@ describe("Signup", () => {
   // If no, mount our component and return it. 
   const signup = () => {
     if (!mountedSignup) {
-      mountedSignup = mount(
+      mountedSignup = shallow(
         <Signup {...props} />
       );
     }
