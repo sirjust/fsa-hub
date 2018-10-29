@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import Signup from './Signup';
-import RegistrationForm from '../components/RegistrationForm';
-import ConfirmationForm from '../components/ConfirmationForm';
+import Signup from '../Signup';
+import RegistrationForm from '../../components/RegistrationForm';
+import ConfirmationForm from '../../components/ConfirmationForm';
 
 describe("Signup", () => {
   let props;
