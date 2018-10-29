@@ -19,14 +19,10 @@ export default class ForgotPassword extends Component {
         {this.state.confirmationPending
           ? <ResetPasswordForm data={this.state} 
               handleOnChange={this.handleOnChange} 
-              handleOnSubmit={this.handleOnResetSubmit}
-              addErrors={this.addErrors}
-              clearErrors={this.clearErrors} />
+              handleOnSubmit={this.handleOnResetSubmit} />
           : <ForgotPasswordForm data={this.state} 
               handleOnChange={this.handleOnChange} 
-              handleOnSubmit={this.handleOnUsernameSubmit}
-              addErrors={this.addErrors}
-              clearErrors={this.clearErrors} />}
+              handleOnSubmit={this.handleOnUsernameSubmit} />}
       </React.Fragment>
     )
   }
