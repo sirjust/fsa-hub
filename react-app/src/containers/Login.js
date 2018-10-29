@@ -12,18 +12,16 @@ export default class Login extends Component {
 
   render() {
     return(
-      <React.Fragment>
-        <div className='App-intro'>
-          <h1>Login to Full-Stack Apprentice</h1>
-          <p className='light'>Learn to create modern & secure digital products</p><br />
-          {this.state.forgotPassword
-            ? <ForgotPassword resetForgotPassword={this.resetForgotPassword}/>
-            : <LoginForm handleOnSubmit={this.handleOnLoginSubmit}
-              forgotPassword={this.forgotPassword}
-              errors={this.state.errors} />
-          } 
-        </div>
-      </React.Fragment>
+      <div className='App-intro'>
+        <h1>Login to Full-Stack Apprentice</h1>
+        <p className='light'>Learn to create modern & secure digital products</p><br />
+        {this.state.forgotPassword
+          ? <ForgotPassword resetForgotPassword={this.resetForgotPassword}/>
+          : <LoginForm handleOnSubmit={this.handleOnLoginSubmit}
+            forgotPassword={this.forgotPassword}
+            errors={this.state.errors} />
+        } 
+      </div>
     )
   }
 
