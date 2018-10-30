@@ -4,8 +4,7 @@ export default class LoginForm extends Component {
 
   state = {
     username: '',
-    password: '',
-    errors: []
+    password: ''
   }
 
   render() {
