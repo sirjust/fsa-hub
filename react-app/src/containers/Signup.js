@@ -21,7 +21,8 @@ export default class Signup extends Component {
         {/* This loads a registration form, and upon successful registration
         changes to load a form to submit a confirmation code.  */}
         {this.state.confirmationRequired ? 
-        <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} errors={this.state.errors} /> : 
+        <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} errors={this.state.errors}
+        addError={this.addError} /> : 
         <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit} errors={this.state.errors}
         addError={this.addError} />}
 
