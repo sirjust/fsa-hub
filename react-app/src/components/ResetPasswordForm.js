@@ -9,7 +9,7 @@ export default class ResetPasswordForm extends Component {
             ? this.props.data.errors.join(', ')
             : null}
         </p>
-        <form className='resetPasswordForm' onSubmit={this.props.handleOnSubmit}>
+        <form className='resetPasswordForm' onSubmit={this.handleOnSubmit}>
           <div className='formElement'>
             <label>Confirmation Code</label><br />
             <input type='text' id='code'
@@ -30,5 +30,30 @@ export default class ResetPasswordForm extends Component {
         </form>
       </React.Fragment>
     )
+  }
+
+  handleOnSubmit = event => {
+    event.preventDefault();
+    if (!this.validateCode(this.props.data.code)) {
+      this.props.addError("Code is required");
+      return;
+    }
+    
+    if (!this.validatePassword(this.props.data.newPassword)) {
+      this.props.addError("Password is invalid");
+      return;
+    }
+
+    this.props.handleOnSubmit();
+  }
+
+  validateCode = code => {
+    const validCode = /[0-9]{6}/
+    return validCode.test(code);
+  }
+
+  validatePassword = password => {
+    const validPassword = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/
+    return validPassword.test(password);
   }
 }

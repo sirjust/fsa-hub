@@ -10,7 +10,7 @@ export default class ForgotPasswordForm extends Component {
             ? this.props.data.errors.join(', ')
             : null}
         </p>
-        <form className='forgotPasswordForm' onSubmit={this.props.handleOnSubmit}>
+        <form className='forgotPasswordForm' onSubmit={this.handleOnSubmit}>
           <div className='formElement'>
             <label>Username</label><br />
             <input type='text' id='username'
@@ -22,5 +22,18 @@ export default class ForgotPasswordForm extends Component {
         </form>
       </React.Fragment>
     )
+  }
+
+  handleOnSubmit = event => {
+    event.preventDefault();
+    if (!this.validateUsername(this.props.data.username)) {
+      this.props.addError("Username is required");
+      return;
+    }
+    this.props.handleOnSubmit();
+  }
+
+  validateUsername = username => {
+    return username.length > 0;
   }
 }

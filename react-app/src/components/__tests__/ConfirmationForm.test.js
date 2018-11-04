@@ -27,13 +27,10 @@ describe("ConfirmationForm", () => {
       userToken: null,
       object: {},
       errors: [],
-      handleOnSubmit: jest.fn()
+      handleOnSubmit: jest.fn(),
+      addError: jest.fn()
     };
     mountedConfirmationForm = undefined;
-  });
-
-  it("always renders an h3", () => {
-    expect(confirmationForm().find('h3').length).toBe(1);
   });
 
   it("always renders a form", () => {
@@ -83,11 +80,28 @@ describe("ConfirmationForm", () => {
     });
 
     describe("submitting the form", () => {
-      it("calls the handleOnSubmit prop function", () => {
+      it("does not call handleOnSubmit withouot proper data", () => {
         const submitSpy = sinon.spy(props, 'handleOnSubmit');
-        let form = confirmationForm().find('form').first();
+        const errorSpy = sinon.spy(props, 'addError');
+        let wrapper = confirmationForm();
+        let form = wrapper.find('form').first();
+        form.simulate('submit', { preventDefault: () => { } });
+        expect(submitSpy.calledOnce).toBe(false);
+        expect(errorSpy.calledOnce).toBe(true)
+      });
+
+      it("calls the handleOnSubmit prop function with proper data", () => {
+        const submitSpy = sinon.spy(props, 'handleOnSubmit');
+        const errorSpy = sinon.spy(props, 'addError');
+        let wrapper = confirmationForm();
+        // Confirmation code sent is six digits long
+        wrapper.setState({
+          confirmationCode: "123456"
+        });
+        let form = wrapper.find('form').first();
         form.simulate('submit', { preventDefault: () => {} });
         expect(submitSpy.calledOnce).toBe(true);
+        expect(errorSpy.called).toBe(false);
       });
     });
   });

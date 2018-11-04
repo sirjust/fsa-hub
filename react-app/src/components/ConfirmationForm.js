@@ -38,6 +38,15 @@ export default class ConfirmationForm extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
+    if (!this.validateCode(this.state.confirmationCode)) {
+      this.props.addError("Confirmation code required");
+      return;
+    }
     this.props.handleOnSubmit(this.state);
+  }
+
+  validateCode = code => {
+    const validCode = /[0-9]{6}/
+    return validCode.test(code);
   }
 }
