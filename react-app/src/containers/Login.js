@@ -19,7 +19,8 @@ export default class Login extends Component {
           ? <ForgotPassword resetForgotPassword={this.resetForgotPassword}/>
           : <LoginForm handleOnSubmit={this.handleOnLoginSubmit}
             forgotPassword={this.forgotPassword}
-            errors={this.state.errors} />
+            errors={this.state.errors}
+            addErrors={this.addErrors} />
         } 
       </div>
     )

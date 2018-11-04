@@ -45,6 +45,16 @@ export default class LoginForm extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
+
+    if (!this.validateUsername(this.state.username)) {
+      this.props.addErrors("Username is required");
+      return;
+    }
+
     this.props.handleOnSubmit(this.state);
+  }
+
+  validateUsername = username => {
+    return username.length > 0;
   }
 }

@@ -29,7 +29,8 @@ describe("LoginForm", () => {
       object: {},
       errors: [],
       handleOnSubmit: jest.fn(),
-      forgotPassword: jest.fn()
+      forgotPassword: jest.fn(),
+      addErrors: jest.fn()
     };
     mountedLoginForm = undefined
   });
@@ -82,11 +83,30 @@ describe("LoginForm", () => {
     });
 
     describe("when the form is submitted", () => {
-      it("calls the onSubmit function", () => {
+      it("does not call the handleOnSubmit without a username", () => {
         const submitSpy = sinon.spy(props, 'handleOnSubmit');
+        const errorSpy = sinon.spy(props, 'addErrors');
         const form = loginForm();
+        form.setState({
+          username: '',
+          password: 'P@ssw0rd!'
+        });
+        form.find('form').first().simulate('submit', { preventDefault: () => {} });
+        expect(submitSpy.calledOnce).toBe(false);
+        expect(errorSpy.called).toBe(true);
+      });
+
+      it("calls the onSubmit function with valid data", () => {
+        const submitSpy = sinon.spy(props, 'handleOnSubmit');
+        const errorSpy = sinon.spy(props, 'addErrors');
+        const form = loginForm();
+        form.setState({
+          username: 'aspen.james',
+          password: 'P@ssw0rd!'
+        });
         form.find('form').first().simulate('submit', { preventDefault: () => {} });
         expect(submitSpy.calledOnce).toBe(true);
+        expect(errorSpy.called).toBe(false);
       });
     });
 
