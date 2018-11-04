@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      foreignKey: 'CityId',
      onDelete: 'CASCADE'
     });
-    City.hasMany(models.Projects, {
+    City.hasMany(models.Project, {
      foreignKey: 'CityId',
      onDelete: 'CASCADE'
     });
