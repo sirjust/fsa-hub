@@ -58,15 +58,22 @@ export default class RegistrationForm extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    if (this.validateEmail(this.state.email)) {
-      if (this.validatePassword(this.state.password)) {
-        this.props.handleOnSubmit(this.state);
-      } else {
-        this.props.addError("Password is invalid");
-      }
-    } else {
-      this.props.addError("Email is invalid");
+    if (!this.validateUsername(this.state.username)) {
+      this.props.addError("Username is required");
+      return;
     }
+    
+    if (!this.validateEmail(this.state.email)) {
+      this.props.addError("Email is invalid");
+      return;
+    };
+
+    if (!this.validatePassword(this.state.password)) {
+      this.props.addError("Password is invalid");
+      return;
+    };
+
+    this.props.handleOnSubmit(this.state);
   }
 
   validateEmail = email => {
@@ -78,5 +85,10 @@ export default class RegistrationForm extends Component {
   validatePassword = password => {
     const validPassword = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/
     return validPassword.test(password);
+  }
+
+  validateUsername = username => {
+    // TODO: Create better validation rules here
+    return username.length > 0;
   }
 }

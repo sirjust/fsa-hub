@@ -33,13 +33,10 @@ describe("RegistrationForm", () => {
       userToken: null,
       object: {},
       handleOnSubmit: jest.fn(),
+      addError: jest.fn(),
       errors: []
     };
     mountedRegistrationForm = undefined;
-  });
-
-  it("always renders an <h3>", () => {
-    expect(registrationForm().find('h3').length).toBe(1);
   });
 
   it("always renders a form", () => {
@@ -101,13 +98,63 @@ describe("RegistrationForm", () => {
     });
 
     describe("When the form is submitted", () => {
-      it('calls the onSubmit function', () => {
+
+      it("does not call the onSubmit function without a username", () => {
         const submitSpy = sinon.spy(props, 'handleOnSubmit');
-        const wrap = mount(<RegistrationForm {...props} />);
-        wrap.find('form').first().simulate('submit', { preventDefault () {} });
-        expect(submitSpy.calledOnce).toBe(true);
+        const errorSpy = sinon.spy(props, 'addError');
+        const wrap = registrationForm();
+        wrap.setState({
+          username: "",
+          email: "aspen.james@email.com",
+          password: "P@ssw0rd!"
+        });
+        wrap.find('form').first().simulate("submit", { preventDefault() { } });
+        expect(submitSpy.called).toBe(false);
+        expect(errorSpy.called).toBe(true);
       });
-    });
+      
+      it("does not call the onSubmit function without a valid email", () => {
+        const submitSpy = sinon.spy(props, 'handleOnSubmit');
+        const errorSpy = sinon.spy(props, 'addError');
+        const wrap = registrationForm();
+        wrap.setState({
+          username: "aspen.james",
+          email: "aspen.james@",
+          password: "P@ssw0rd!"
+        });
+        wrap.find('form').first().simulate("submit", { preventDefault () {} });
+        expect(submitSpy.called).toBe(false);
+        expect(errorSpy.called).toBe(true);
+        });
+
+        it("does not call the onSubmit function without a valid password", () => {
+          const submitSpy = sinon.spy(props, 'handleOnSubmit');
+          const errorSpy = sinon.spy(props, 'addError');
+          const wrap = registrationForm();
+          wrap.setState({
+            username: "aspen.james",
+            email: "aspen.james@email.com",
+            password: "weakpassword"
+          });
+          wrap.find('form').first().simulate("submit", { preventDefault() { } });
+          expect(submitSpy.called).toBe(false);
+          expect(errorSpy.called).toBe(true);
+        });
+
+        it("calls the onSubmit function with valid data", () => {
+          const submitSpy = sinon.spy(props, 'handleOnSubmit');
+          const errorSpy = sinon.spy(props, 'addError');
+          const wrap = registrationForm();
+          wrap.setState({
+            username: "aspen.james",
+            email: "aspen.james@email.com",
+            password: "P@ssw0rd!"
+          });
+          wrap.find('form').first().simulate("submit", { preventDefault() { } });
+          expect(submitSpy.called).toBe(true);
+          expect(errorSpy.called).toBe(false);
+        });
+      });
 
   });
 
