@@ -58,6 +58,25 @@ export default class RegistrationForm extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
-    this.props.handleOnSubmit(this.state);
+    if (this.validateEmail(this.state.email)) {
+      if (this.validatePassword(this.state.password)) {
+        this.props.handleOnSubmit(this.state);
+      } else {
+        this.props.addError("Password is invalid");
+      }
+    } else {
+      this.props.addError("Email is invalid");
+    }
+  }
+
+  validateEmail = email => {
+    // eslint-disable-next-line
+    const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    return validEmail.test(email);
+  }
+      
+  validatePassword = password => {
+    const validPassword = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!#$%&?"]).*$/
+    return validPassword.test(password);
   }
 }

@@ -22,7 +22,8 @@ export default class Signup extends Component {
         changes to load a form to submit a confirmation code.  */}
         {this.state.confirmationRequired ? 
         <ConfirmationForm handleOnSubmit={this.handleOnConfirmationSubmit} errors={this.state.errors} /> : 
-        <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit} errors={this.state.errors} />}
+        <RegistrationForm handleOnSubmit={this.handleOnRegistrationSubmit} errors={this.state.errors}
+        addError={this.addError} />}
 
       </div>
     )
@@ -101,5 +102,11 @@ export default class Signup extends Component {
           return { errors: state.errors.concat(errorMessages) }
         });
       });
+  }
+
+  addError = error => {
+    this.setState(state => {
+      return { errors: state.errors.concat(error) }
+    });
   }
 }
