@@ -19,10 +19,12 @@ export default class ForgotPassword extends Component {
         {this.state.confirmationPending
           ? <ResetPasswordForm data={this.state} 
               handleOnChange={this.handleOnChange} 
-              handleOnSubmit={this.handleOnResetSubmit} />
+              handleOnSubmit={this.handleOnResetSubmit}
+              addError={this.addErrors} />
           : <ForgotPasswordForm data={this.state} 
               handleOnChange={this.handleOnChange} 
-              handleOnSubmit={this.handleOnUsernameSubmit} />}
+              handleOnSubmit={this.handleOnUsernameSubmit}
+              addError={this.addErrors} />}
       </React.Fragment>
     )
   }
@@ -33,8 +35,7 @@ export default class ForgotPassword extends Component {
     });
   }
 
-  handleOnUsernameSubmit = event => {
-    event.preventDefault();
+  handleOnUsernameSubmit = () => {
     this.clearErrors();
     const username = this.state.username;
 
@@ -50,8 +51,7 @@ export default class ForgotPassword extends Component {
       });
   }
 
-  handleOnResetSubmit = event => {
-    event.preventDefault();
+  handleOnResetSubmit = () => {
     this.clearErrors();
     const username = this.state.username;
     const code = this.state.code;

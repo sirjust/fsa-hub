@@ -28,7 +28,8 @@ describe("ForgotPasswordForm", () => {
         errors: []
       },
       handleOnChange: jest.fn(),
-      handleOnSubmit: jest.fn()
+      handleOnSubmit: jest.fn(),
+      addError: jest.fn()
     };
     mountedFPF = undefined;
   });
@@ -77,11 +78,23 @@ describe("ForgotPasswordForm", () => {
   });
 
   describe("submitting the form", () => {
-    it("calls the handleOnSubmit prop function", () => {
+    it("does not call the handleOnSubmit without valid data", () => {
       const submitSpy = sinon.spy(props, 'handleOnSubmit');
+      const errorSpy = sinon.spy(props, 'addError');
+      const form = forgotPassword();
+      form.find('form').first().simulate('submit', { preventDefault: () => {} })
+      expect(submitSpy.calledOnce).toBe(false);
+      expect(errorSpy.called).toBe(true);
+    })
+
+    it("calls the handleOnSubmit prop function with valid data", () => {
+      const submitSpy = sinon.spy(props, 'handleOnSubmit');
+      const errorSpy = sinon.spy(props, 'addError');
+      props.data.username = 'Username';
       const form = forgotPassword();
       form.find('form').first().simulate('submit', { preventDefault: () => {} })
       expect(submitSpy.calledOnce).toBe(true);
+      expect(errorSpy.called).toBe(false);
     });
   });
 });

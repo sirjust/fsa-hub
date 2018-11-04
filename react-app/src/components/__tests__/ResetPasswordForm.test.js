@@ -30,7 +30,8 @@ describe("ResetPasswordForm", () => {
         errors: []
       },
       handleOnChange: jest.fn(),
-      handleOnSubmit: jest.fn()
+      handleOnSubmit: jest.fn(),
+      addError: jest.fn()
     };
     mountedRPF = undefined;
   });
@@ -91,10 +92,52 @@ describe("ResetPasswordForm", () => {
     });
 
     describe("submitting the form", () => {
-      it("calls the handleOnSubmit prop function", () => {
+      it("does not call the handleOnSubmit without a valid code", () => {
         const submitSpy = sinon.spy(props, 'handleOnSubmit');
-        resetPassword().find('form').simulate('submit', { preventDefault: () => {} });
+        const errorSpy = sinon.spy(props, 'addError');
+        props.data = {
+          username: '',
+          code: '1256',
+          newPassword: 'P@ssw0rd!',
+          confirmationPending: true,
+          errors: []
+        }
+        const wrapper = resetPassword();
+        wrapper.find('form').simulate('submit', { preventDefault: () => { } });
+        expect(submitSpy.calledOnce).toBe(false);
+        expect(errorSpy.called).toBe(true);
+      });
+
+      it("does not call the handleOnSubmit without a valid password", () => {
+        const submitSpy = sinon.spy(props, 'handleOnSubmit');
+        const errorSpy = sinon.spy(props, 'addError');
+        props.data = {
+          username: '',
+          code: '123456',
+          newPassword: 'weakpass',
+          confirmationPending: true,
+          errors: []
+        }
+        const wrapper = resetPassword();
+        wrapper.find('form').simulate('submit', { preventDefault: () => { } });
+        expect(submitSpy.calledOnce).toBe(false);
+        expect(errorSpy.called).toBe(true);
+      })
+
+      it("calls the handleOnSubmit prop function with valid data", () => {
+        const submitSpy = sinon.spy(props, 'handleOnSubmit');
+        const errorSpy = sinon.spy(props, 'addError');
+        props.data = {
+          username: '',
+          code: '123456',
+          newPassword: 'P@ssw0rd!',
+          confirmationPending: true,
+          errors: []
+        }
+        const wrapper = resetPassword();
+        wrapper.find('form').simulate('submit', { preventDefault: () => {} });
         expect(submitSpy.calledOnce).toBe(true);
+        expect(errorSpy.called).toBe(false);
       });
     });
   });
