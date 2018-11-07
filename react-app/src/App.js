@@ -50,7 +50,9 @@ class App extends Component {
               <Nav pullRight>
                 {this.state.userToken
                   ? [
-                    <NavItem key={1} onClick={this.handleLogout}>Logout</NavItem>,
+                    <RouteNavItem key={1}
+                    href='/tools'>Tools</RouteNavItem>,
+                    <NavItem key={2} onClick={this.handleLogout}>Logout</NavItem>,
                   ]
                   : [
                     <RouteNavItem key={1} href="/signup">Register</RouteNavItem>,
