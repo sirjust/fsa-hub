@@ -18,10 +18,11 @@ import fulltimeSchema from './fulltimeSchema'
 import commandLineSchem from './commandLineSchema'
 import javascriptSchema from './javascriptSchema'
 import gitSchema from './gitSchema'
-import mentoshipSchema from './mentorshipSchema'
+import mentorshipSchema from './mentorshipSchema'
 import algorithmsSchema from './algorithmsSchema'
 
 // Then we give our schema to the builder and provide the result to Sanity
+
 export default createSchema({
   // We name our schema
   name: 'default',
@@ -38,7 +39,7 @@ export default createSchema({
     commandLineSchem,
     javascriptSchema,
     gitSchema,
-    mentoshipSchema,
+    mentorshipSchema,
     algorithmsSchema,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
