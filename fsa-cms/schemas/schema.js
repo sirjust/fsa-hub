@@ -20,6 +20,12 @@ import javascriptSchema from './javascriptSchema'
 import gitSchema from './gitSchema'
 import mentorshipSchema from './mentorshipSchema'
 import algorithmsSchema from './algorithmsSchema'
+import dataScienceSchema from "./dataScienceSchema";
+import startupSchema from "./startupSchema";
+import securitySchema from "./securitySchema";
+import seattleSchema from "./seattleSchema";
+import communitySchema from "./communitySchema";
+
 
 // Then we give our schema to the builder and provide the result to Sanity
 
@@ -41,6 +47,11 @@ export default createSchema({
     gitSchema,
     mentorshipSchema,
     algorithmsSchema,
+    dataScienceSchema,
+    startupSchema,
+    securitySchema,
+    seattleSchema,
+    communitySchema,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,

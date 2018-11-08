@@ -36,15 +36,6 @@ export default () =>
                                         .params({ type: 'backEndSchema' })
                                 ),
                             S.listItem()
-                                .title("AWS")
-                                .child(
-                                    S.documentList()
-                                        .title('AWA')
-                                        .menuItems(S.documentTypeList('awsSchema').getMenuItems())
-                                        .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'awsSchema' })
-                                ),
-                            S.listItem()
                                 .title("Freelance")
                                 .child(
                                     S.documentList()
@@ -63,7 +54,7 @@ export default () =>
                                         .params({ type: 'fulltimeSchema' })
                                 ),
                             S.listItem()
-                                .title("Algorithms")
+                                .title("Algorithms & Interviews")
                                 .child(
                                     S.documentList()
                                         .title('Algorithms')
@@ -107,11 +98,73 @@ export default () =>
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'mentorshipSchema' })
                                 ),
+                            S.listItem()
+                                .title("Data Science")
+                                .child(
+                                    S.documentList()
+                                        .title('Data Science')
+                                        .menuItems(S.documentTypeList('dataScienceSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'dataScienceSchema' })
+                                ),
+                            S.listItem()
+                                .title("Startup Resources")
+                                .child(
+                                    S.documentList()
+                                        .title('Startup')
+                                        .menuItems(S.documentTypeList('startupSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'startupSchema' })
+                                ),
+                            S.listItem()
+                                .title("Security")
+                                .child(
+                                    S.documentList()
+                                        .title('Security')
+                                        .menuItems(S.documentTypeList('securitySchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'startupSchema' })
+                                ),
+                            
 
 
                         ])
                 ),
-            // ...S.documentTypeListItems()
+                S.listItem()
+                .title("Seattle")
+                .child(
+                    S.list()
+                        .title("Tools")
+                        .items([
+                            S.listItem()
+                                .title("Seattle")
+                                .child(
+                                    S.documentList()
+                                        .title('Seattle')
+                                        .menuItems(S.documentTypeList('seattleSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'seattleSchema' })
+                                ),
+                            S.listItem()
+                                .title("AWS")
+                                .child(
+                                    S.documentList()
+                                        .title('AWS')
+                                        .menuItems(S.documentTypeList('awsSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'awsSchema' })
+                                ),
+                            S.listItem()
+                                .title("Community")
+                                .child(
+                                    S.documentList()
+                                        .title('Community')
+                                        .menuItems(S.documentTypeList('communitySchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'communitySchema' })
+                                ),
+                        ])
+                ),
 
         ]);
 

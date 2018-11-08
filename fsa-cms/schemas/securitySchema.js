@@ -1,8 +1,8 @@
 import icon from 'react-icons/lib/md/local-movies'
 
 export default {
-    name: 'freelanceSchema',
-    title: 'Freelance',
+    name: 'securitySchema',
+    title: 'Security',
     type: 'document',
     icon,
     fields: [
