@@ -1,8 +1,8 @@
 import icon from 'react-icons/lib/md/local-movies'
 
 export default {
-    name: 'freelanceSchema',
-    title: 'Freelance',
+    name: 'seattleSchema',
+    title: 'Seattle Tech',
     type: 'document',
     icon,
     fields: [
@@ -23,7 +23,6 @@ export default {
                     {title: 'Video', value: 'Video'},
                     {title: 'Resource', value: 'Resource'},
                     {title: 'Website', value: 'Website'}
-
 
                 ],
                 layout: 'dropdown'

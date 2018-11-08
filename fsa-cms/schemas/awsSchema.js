@@ -12,6 +12,21 @@ export default {
             type: 'string'
         },
         {
+            name: 'tool',
+            title: 'AWS Resource',
+            type: 'string',
+            options: {
+                list: [
+                    {title: 'S3', value: 'S3'},
+                    {title: 'EC2', value: 'EC2'},
+                    {title: 'Lambda', value: 'Lambda'},
+                    {title: 'Amplify', value: 'Amplify'},
+
+                ],
+                layout: 'dropdown'
+            }
+        },
+        {
             name: 'type',
             title: 'Type',
             type: 'string',
@@ -20,6 +35,8 @@ export default {
                     {title: 'Tutorial', value: 'Tutorial'},
                     {title: 'Article', value: 'Article'},
                     {title: 'Video', value: 'Video'},
+                    {title: 'Resource', value: 'Resource'}
+
                 ],
                 layout: 'dropdown'
             }

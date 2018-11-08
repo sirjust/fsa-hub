@@ -1,8 +1,8 @@
 import icon from 'react-icons/lib/md/local-movies'
 
 export default {
-    name: 'freelanceSchema',
-    title: 'Freelance',
+    name: 'dataScienceSchema',
+    title: 'Data Science',
     type: 'document',
     icon,
     fields: [
@@ -17,7 +17,6 @@ export default {
             type: 'string',
             options: {
                 list: [
-                    {title: 'Employment', value: 'Employment'},
                     {title: 'Tutorial', value: 'Tutorial'},
                     {title: 'Article', value: 'Article'},
                     {title: 'Video', value: 'Video'},
