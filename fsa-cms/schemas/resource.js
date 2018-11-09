@@ -21,6 +21,8 @@ export default {
           {title: 'Employment', value: 'Employment'},
           {title: 'Article', value: 'Article'},
           {title: 'Video', value: 'Video'},
+          {title: 'Website', value: 'Website'}
+
         ],
         layout: 'dropdown'
       }

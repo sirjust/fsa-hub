@@ -1,8 +1,8 @@
 import icon from 'react-icons/lib/md/local-movies'
 
 export default {
-    name: 'freelanceSchema',
-    title: 'Freelance',
+    name: 'communitySchema',
+    title: 'Online Community',
     type: 'document',
     icon,
     fields: [
@@ -22,8 +22,8 @@ export default {
                     {title: 'Article', value: 'Article'},
                     {title: 'Video', value: 'Video'},
                     {title: 'Resource', value: 'Resource'},
-                    {title: 'Website', value: 'Website'}
-
+                    {title: 'Website', value: 'Website'},
+                    {title: 'Community', value: 'Community'}
 
                 ],
                 layout: 'dropdown'

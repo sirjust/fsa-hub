@@ -21,6 +21,10 @@ export default {
                     {title: 'Tutorial', value: 'Tutorial'},
                     {title: 'Article', value: 'Article'},
                     {title: 'Video', value: 'Video'},
+                    {title: 'Resource', value: 'Resource'},
+                    {title: 'Website', value: 'Website'}
+
+
                 ],
                 layout: 'dropdown'
             }
