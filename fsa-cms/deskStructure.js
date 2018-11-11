@@ -11,50 +11,40 @@ export default () =>
         .title("Content")
         .items([
             S.listItem()
-                .title("Knowledge Base")
+                .title("Full-Stack Apprenticeship")
                 .child(
                     S.list()
                         .title("Tools")
                         .items([
                             S.listItem()
-                                .title("Frontend")
+                                .title("React Native")
                                 .child(
                                     S.documentList()
-                                        .title('Frontend')
-                                        .menuItems(S.documentTypeList('frontEndSchema').getMenuItems())
+                                        .title('React Web')
+                                        .menuItems(S.documentTypeList('nativeSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'frontEndSchema' })
+                                        .params({ type: 'nativeSchema' })
                                 ),
-
                             S.listItem()
-                                .title("Backend")
+                                .title("React Web")
                                 .child(
                                     S.documentList()
-                                        .title('Backend')
+                                        .title('React Web')
+                                        .menuItems(S.documentTypeList('webSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'webSchema' })
+                                ),
+                            S.listItem()
+                                .title("Node.js")
+                                .child(
+                                    S.documentList()
+                                        .title('Node.js')
                                         .menuItems(S.documentTypeList('backEndSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'backEndSchema' })
                                 ),
                             S.listItem()
-                                .title("Freelance")
-                                .child(
-                                    S.documentList()
-                                        .title('Freelance')
-                                        .menuItems(S.documentTypeList('freelanceSchema').getMenuItems())
-                                        .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'freelanceSchema' })
-                                ),
-                            S.listItem()
-                                .title("Fulltime Jobs")
-                                .child(
-                                    S.documentList()
-                                        .title('Fulltime Jobs')
-                                        .menuItems(S.documentTypeList('fulltimeSchema').getMenuItems())
-                                        .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'fulltimeSchema' })
-                                ),
-                            S.listItem()
-                                .title("Algorithms & Interviews")
+                                .title("Applied Computer Science")
                                 .child(
                                     S.documentList()
                                         .title('Algorithms')
@@ -63,16 +53,16 @@ export default () =>
                                         .params({ type: 'algorithmsSchema' })
                                 ),
                             S.listItem()
-                                .title("Command Line")
+                                .title("Command Line Interface (CLI) Tools")
                                 .child(
                                     S.documentList()
-                                        .title('Command Line')
+                                        .title('Command Line (CLI)')
                                         .menuItems(S.documentTypeList('commandLineSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'commandLineSchema' })
                                 ),
                             S.listItem()
-                                .title("Javascript")
+                                .title("Javascript - ES17 & Beyond")
                                 .child(
                                     S.documentList()
                                         .title('Javascript')
@@ -81,7 +71,7 @@ export default () =>
                                         .params({ type: 'javascriptSchema' })
                                 ),
                             S.listItem()
-                                .title("Git")
+                                .title("Git ")
                                 .child(
                                     S.documentList()
                                         .title('Git')
@@ -90,31 +80,13 @@ export default () =>
                                         .params({ type: 'gitSchema' })
                                 ),
                             S.listItem()
-                                .title("Mentorship")
+                                .title("Amazon Web Services")
                                 .child(
                                     S.documentList()
-                                        .title('Mentorship')
-                                        .menuItems(S.documentTypeList('mentorshipSchema').getMenuItems())
+                                        .title('Amazon Web Services')
+                                        .menuItems(S.documentTypeList('awsSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'mentorshipSchema' })
-                                ),
-                            S.listItem()
-                                .title("Data Science")
-                                .child(
-                                    S.documentList()
-                                        .title('Data Science')
-                                        .menuItems(S.documentTypeList('dataScienceSchema').getMenuItems())
-                                        .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'dataScienceSchema' })
-                                ),
-                            S.listItem()
-                                .title("Startup Resources")
-                                .child(
-                                    S.documentList()
-                                        .title('Startup')
-                                        .menuItems(S.documentTypeList('startupSchema').getMenuItems())
-                                        .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'startupSchema' })
+                                        .params({ type: 'awsSchema' })
                                 ),
                             S.listItem()
                                 .title("Security")
@@ -125,16 +97,13 @@ export default () =>
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'startupSchema' })
                                 ),
-                            
-
-
                         ])
                 ),
                 S.listItem()
-                .title("Seattle")
+                .title("City by City")
                 .child(
                     S.list()
-                        .title("Tools")
+                        .title("Cities Around")
                         .items([
                             S.listItem()
                                 .title("Seattle")
@@ -146,13 +115,48 @@ export default () =>
                                         .params({ type: 'seattleSchema' })
                                 ),
                             S.listItem()
-                                .title("AWS")
+                                .title("Bellevue - East Side")
                                 .child(
                                     S.documentList()
-                                        .title('AWS')
-                                        .menuItems(S.documentTypeList('awsSchema').getMenuItems())
+                                        .title('East Side')
+                                        .menuItems(S.documentTypeList('seattleSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'awsSchema' })
+                                        .params({ type: 'seattleSchema' })
+                                ),
+                        ])
+                ),
+                S.listItem()
+                .title("Finding Work & Opportunity")
+                .child(
+                    S.list()
+                        .title("Tools")
+                        .items([
+                            S.listItem()
+                                .title("Job Boards")
+                                .child(
+                                    S.documentList()
+                                        .title('Job Boards')
+                                        .menuItems(S.documentTypeList('jobBoardSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'jobBoardSchema' })
+                                ),
+                            S.listItem()
+                                .title("Freelance")
+                                .child(
+                                    S.documentList()
+                                        .title('Freelance')
+                                        .menuItems(S.documentTypeList('freelanceSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'freelanceSchema' })
+                                ),
+                            S.listItem()
+                                .title("Full Time Work")
+                                .child(
+                                    S.documentList()
+                                        .title('Fulltime Jobs')
+                                        .menuItems(S.documentTypeList('fulltimeSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'fulltimeSchema' })
                                 ),
                             S.listItem()
                                 .title("Community")
@@ -163,23 +167,34 @@ export default () =>
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'communitySchema' })
                                 ),
+                            S.listItem()
+                                .title("Startup Resources")
+                                .child(
+                                    S.documentList()
+                                        .title('Startup')
+                                        .menuItems(S.documentTypeList('startupSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'startupSchema' })
+                                ),
+                            S.listItem()
+                                .title("Mentorship")
+                                .child(
+                                    S.documentList()
+                                        .title('Mentorship')
+                                        .menuItems(S.documentTypeList('mentorshipSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'mentorshipSchema' })
+                                ),
+                            S.listItem()
+                                .title("Digital Nomadism")
+                                .child(
+                                    S.documentList()
+                                        .title('Digital Nomadism')
+                                        .menuItems(S.documentTypeList('nomadSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'nomadSchema' })
+                                ),
                         ])
                 ),
 
         ]);
-
-// export default () =>
-//     S.list()
-//         .title("Content")
-//         .items([
-//             S.listItem()
-//                 .title('Products by categories')
-//                 .child(
-//                     S.documentList()
-//                         .title('Parent categories')
-//                         .menuItems(S.documentTypeList('tool').getMenuItems())
-//                         .filter('_type == $type && !defined(parents)')
-//                         .params({ type: 'tool' })
-//                 )
-//             // The rest of the structure
-//         ]);
