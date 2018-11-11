@@ -1,8 +1,8 @@
 import icon from 'react-icons/lib/md/local-movies'
 
 export default {
-    name: 'frontEndSchema',
-    title: 'Frontend',
+    name: 'nativeSchema',
+    title: 'React Native',
     type: 'document',
     icon,
     fields: [

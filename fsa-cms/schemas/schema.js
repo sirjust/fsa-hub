@@ -10,7 +10,8 @@ import tool from './tool'
 import backendTools from './backEndSchema'
 
 // Schemes
-import frontendSchema from './frontEndSchema'
+import webSchema from './webSchema'
+import nativeSchema from "./nativeSchema"
 import backendSchema from './backEndSchema'
 import awsSchema from './awsSchema'
 import freelanceSchema from './freelanceSchema'
@@ -25,6 +26,9 @@ import startupSchema from "./startupSchema";
 import securitySchema from "./securitySchema";
 import seattleSchema from "./seattleSchema";
 import communitySchema from "./communitySchema";
+import nomadSchema from "./nomadSchema";
+import jobBoardSchema from "./jobBoardSchema";
+
 
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -37,7 +41,7 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    frontendSchema,
+    webSchema,
     backendSchema,
     awsSchema,
     freelanceSchema,
@@ -52,6 +56,9 @@ export default createSchema({
     securitySchema,
     seattleSchema,
     communitySchema,
+    nativeSchema,
+    nomadSchema,
+    jobBoardSchema,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
