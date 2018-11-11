@@ -95,7 +95,7 @@ export default () =>
                                         .title('Security')
                                         .menuItems(S.documentTypeList('securitySchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'startupSchema' })
+                                        .params({ type: 'securitySchema' })
                                 ),
                         ])
                 ),
