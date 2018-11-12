@@ -49,23 +49,28 @@ class App extends Component {
       object: this.state.object,
       loginUser: this.loginUser.bind(this),
     }
-    const location = window.location.href;
     return (
       <div className={styles.root}>
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" color="inherit" className={styles.grow}>
-              <Button color='inherit' href={location}>FullStack Apprentice</Button>
+              <Button color='inherit' href="http://localhost:3000">FullStack Apprentice</Button>
             </Typography>
             {this.state.userToken
               ? [
-                <Button key={0} color='inherit' onClick={this.handleLogout}>Logout</Button>,
-                <Button key={1} color='inherit' href={location + 'knowledge'}>Knowledge</Button>
+                <Button key={0} component={Link} to='/knowledge' color='inherit' >
+                  Knowledge
+                </Button>,
+                <Button key={1} color='inherit' onClick={this.handleLogout}>Logout</Button>
               ]
               : [
-                
-                <Button key={0} color='inherit' href={location + 'signup'}>Register</Button>,
-                <Button key={1} color='inherit' href={location + 'login'}>Login</Button>
+
+                <Button key={0} color='inherit' component={Link} to='/signup' >
+                  Register
+                </Button>,
+                <Button key={1} color='inherit' component={Link} to='/login' >
+                  Login
+                </Button>
               ]}
           </Toolbar>
         </AppBar>
