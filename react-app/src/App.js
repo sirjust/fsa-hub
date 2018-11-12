@@ -3,12 +3,27 @@ import { Link } from "react-router-dom";
 import Amplify, { Auth } from 'aws-amplify';
 import aws_exports from './aws-exports';
 
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import Routes from "./Routes";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
-import RouteNavItem from "./components/RouteNavItem";
 import './App.css';
 
 Amplify.configure(aws_exports);
+
+const styles = {
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+};
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +35,7 @@ class App extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     Auth.currentAuthenticatedUser()
       .then(user => {
         const token = user.signInUserSession.idToken;
@@ -34,33 +49,33 @@ class App extends Component {
       object: this.state.object,
       loginUser: this.loginUser.bind(this),
     }
-
     return (
-      <div className="App">
-        <div className="nav-menu" >
-          <Navbar fluid collapseOnSelect >
-            <Navbar.Header>
-              <Navbar.Brand>
-                <Link to="/">FullStack Apprentice</Link>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
+      <div className={styles.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" color="inherit" className={styles.grow}>
+              <Button color='inherit' href="http://localhost:3000">FullStack Apprentice</Button>
+            </Typography>
+            {this.state.userToken
+              ? [
+                <Button key={0} component={Link} to='/knowledge' color='inherit' >
+                  Knowledge
+                </Button>,
+                <Button key={1} color='inherit' onClick={this.handleLogout}>Logout</Button>
+              ]
+              : [
 
-            <Navbar.Collapse>
-              <Nav pullRight>
-                {this.state.userToken
-                  ? [
-                    <NavItem key={1} onClick={this.handleLogout}>Logout</NavItem>,
-                  ]
-                  : [
-                    <RouteNavItem key={1} href="/signup">Register</RouteNavItem>,
-                    <RouteNavItem key={2} href="/login">Login</RouteNavItem>
-                  ]}
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </div>
-          <Routes childProps={childProps} />
+                <Button key={0} color='inherit' component={Link} to='/signup' >
+                  Register
+                </Button>,
+                <Button key={1} color='inherit' component={Link} to='/login' >
+                  Login
+                </Button>
+              ]}
+          </Toolbar>
+        </AppBar>
+
+        <Routes childProps={childProps} />
       </div>
     );
   }
