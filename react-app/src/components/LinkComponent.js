@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import sanity from '../lib/sanity'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 const styles = theme => ({
     root: {
@@ -13,8 +14,6 @@ const styles = theme => ({
     },
 });
 
-const query = `*[_type == 'algorithmsSchema' || _type == 'gitSchema'][0]
-`
 
 function TabContainer(props) {
     return (
@@ -28,37 +27,47 @@ export default class LinkComponent extends Component {
     constructor() {
         super()
         this.state = {
-            movie: {}
-        }
-    }
-
-    static async getInitialProps(req) {
-        return {
-            movie: await sanity.fetch(query, { id: req.query.id })
+            title: '',
+            type: '',
+            url: '',
+            fetching: true
         }
     }
 
     async componentDidMount() {
-        const queryId = window.location.href.split('/');
-        const test = await sanity.fetch(query);
-        console.log('test',test)
-        await fetch(`https://zp7mbokg.api.sanity.io/v1/data/query/production?query=*[_id == '${queryId[queryId.length - 1]}']`)
-            .then(info => info.json())
-            .then(info => this.setState({ movie: info.result[0] }, ()=>console.log(this.state)))
+        const contentId = this.props.match.params.id;
+        const query = `*[_id == '${contentId}']{type, _type, text, title, url}[0]`
+        const data = await sanity.fetch(query);
+        this.setState({
+            title : data.title,
+            type : data.type,
+            url : data.url,
+            fetching: false
+        })
+        console.log(data)
+    }
 
+    renderData() {
+        return (
+            <Paper className={styles.root} elevation={1}>
+                <Typography variant="h5" component="h2">
+                    {this.state.title}
+                </Typography>
+                <Button href={this.state.url} target='_blank' size="small">
+                    View {this.state.type}
+                </Button>
+            </Paper>
+        )
     }
 
     render() {
         return (
             <TabContainer>
-                <Paper className={styles.root} elevation={1}>
-                    <Typography variant="h5" component="h2">
-                        This will dispay the information for each link
-                    </Typography>
-                    <Typography component="p">
-                        Paper can be used to build surface or other elements for your application.
-                    </Typography>
-                </Paper>
+                {
+                    !this.state.fetching
+                        ? this.renderData()
+                        : "Loading"
+                }
             </TabContainer>
 
         );
