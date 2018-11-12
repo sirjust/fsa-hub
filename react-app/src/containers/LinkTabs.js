@@ -6,7 +6,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import FolderContainers from "../components/FolderContainers";
-import { fullStackApprenticeship } from '../directories'
+import { fullStackApprenticeship, cityByCity, findingWork  } from '../directories'
 
 function TabContainer(props) {
     
@@ -57,8 +57,8 @@ class LinkTabs extends Component {
                     </Tabs>
                 </AppBar>
                 {value === 0 && <FolderContainers folders={fullStackApprenticeship.reduce((acc, next) => acc.concat({ name :next.name, type:next.type}), [])}/>}
-                {value === 1 && <TabContainer>Item Two</TabContainer>}
-                {value === 2 && <TabContainer>Item Three</TabContainer>}
+                {value === 1 && <FolderContainers folders={cityByCity.reduce((acc, next) => acc.concat({ name :next.name, type:next.type}), [])}/>}
+                {value === 2 && <FolderContainers folders={findingWork.reduce((acc, next) => acc.concat({ name :next.name, type:next.type}), [])}/>}
             </div>
         );
     }
