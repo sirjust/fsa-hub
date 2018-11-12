@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import sanity from '../lib/sanity'
+// import sanity from '../lib/sanity'
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -38,14 +38,10 @@ class LinkTabs extends Component {
         this.setState({ value });
     };
 
-    async componentDidMount() {
-
-    const fsaFolders = fullStackApprenticeship.reduce((acc, next) => acc.concat(next.name), [])
-    // console.log(fsaFolders)
-    this.setState({ fsaFolders })
-    const test = await sanity.fetch(query);
-    console.log('test',test)
-}
+//     async componentDidMount() {
+        
+//     const test = await sanity.fetch(query);
+// }
 
     render() {
         const { classes } = this.props;
