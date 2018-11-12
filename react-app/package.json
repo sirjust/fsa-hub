@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.4.0",
+    "@sanity/client": "^0.135.3",
     "aws-amplify": "^1.1.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
