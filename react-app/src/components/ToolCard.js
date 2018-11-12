@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom'
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -36,7 +37,7 @@ export default ({ links }) => {
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button href={val.url} target='_blank' size="small">
+                        <Button component={Link} to={`/link/${val._id}`} size="small">
                             View {val.type}
                         </Button>
                     </CardActions>
