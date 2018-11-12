@@ -15,6 +15,6 @@ export default ({ childProps }) =>
     <AppliedRoute path='/signup' exact component={Signup} props={childProps} />
     <AppliedRoute path='/login' exact component={Login} props={childProps} />
     <AppliedRoute path='/knowledge' exact component={LinkTabs} props={childProps} />
-    <AppliedRoute path='/link/' component={LinkComponent} props={childProps} />
+    <AppliedRoute path='/link/:id' component={LinkComponent} props={childProps} />
     <Route path='/tool/:schema' component={ToolsContainer} props={childProps} />
   </Switch>
