@@ -36,3 +36,42 @@ export const fullStackApprenticeship = [
         name: 'Security'
     },
 ]
+
+// missing bellevue schema
+export const cityByCity = [
+    {
+        type: 'seattleSchema',
+        name: 'Seattle'
+    }
+]
+
+export const findingWork = [
+    {
+        type: 'communitySchema',
+        name: 'Community'
+    },
+    {
+        type: 'fullTimeSchema',
+        name: 'Full Time Work'
+    },
+    {
+        type: 'freeLanceSchema',
+        name: 'Freelance'
+    },
+    {
+        type: 'jobBoardSchema',
+        name: 'Job Boards'
+    },
+    {
+        type: 'startupSchema',
+        name: 'Startup Resources'
+    },
+    {
+        type: 'mentorshipSchema',
+        name: 'mentorship'
+    },
+    {
+        type: 'nomadSchema',
+        name: 'Digital Nomadism'
+    }
+]
