@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-
+import sanity from '../lib/sanity'
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -12,6 +12,9 @@ const styles = theme => ({
         paddingBottom: theme.spacing.unit * 2,
     },
 });
+
+const query = `*[_type == 'algorithmsSchema' || _type == 'gitSchema'][0]
+`
 
 function TabContainer(props) {
     return (
@@ -29,12 +32,20 @@ export default class LinkComponent extends Component {
         }
     }
 
+    static async getInitialProps(req) {
+        return {
+            movie: await sanity.fetch(query, { id: req.query.id })
+        }
+    }
+
     async componentDidMount() {
         const queryId = window.location.href.split('/');
+        const test = await sanity.fetch(query);
+        console.log('test',test)
         await fetch(`https://zp7mbokg.api.sanity.io/v1/data/query/production?query=*[_id == '${queryId[queryId.length - 1]}']`)
-        .then(info => info.json())
-        .then(info => this.setState({ movie: info.result[0] }))
-        
+            .then(info => info.json())
+            .then(info => this.setState({ movie: info.result[0] }, ()=>console.log(this.state)))
+
     }
 
     render() {
