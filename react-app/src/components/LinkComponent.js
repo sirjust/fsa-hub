@@ -33,7 +33,7 @@ export default class LinkComponent extends Component {
         const queryId = window.location.href.split('/');
         await fetch(`https://zp7mbokg.api.sanity.io/v1/data/query/production?query=*[_id == '${queryId[queryId.length - 1]}']`)
         .then(info => info.json())
-        .then(info => this.setState({ movie: info.result[0] }, ()=> console.log(this.state)))
+        .then(info => this.setState({ movie: info.result[0] }))
         
     }
 
