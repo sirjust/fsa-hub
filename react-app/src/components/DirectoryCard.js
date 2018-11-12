@@ -34,12 +34,12 @@ export default ({ folders }) => {
                 <Card className={styles.card}>
                     <CardContent>
                         <Typography className={styles.title} color="textSecondary" gutterBottom>
-                            {val.title}
+                            {val.name}
                         </Typography>
                     </CardContent>
                     <CardActions>
-                        <Button component={Link} to={`link/${val._id}`} size="small">
-                            View Link
+                        <Button component={Link} to={`/tool/${val.type}`} size="small">
+                            View Content
                         </Button>
                     </CardActions>
                 </Card>
