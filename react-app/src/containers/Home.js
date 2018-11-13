@@ -13,14 +13,13 @@ const styles = theme => ({
         padding: theme.spacing.unit,
         maxWidth: "600px",
         marginLeft: "auto",
-        marginRight: "auto"
+        marginRight: "auto",
+        textAlign: "center"
     },
     mb2: {
         marginBottom: theme.spacing.unit * 2
     },
-    joinButton: {
-        marginLeft: "15vw"
-    },
+    joinButton: {},
     slackIcon: {
         width: "40px",
         height: "40px"
@@ -40,12 +39,12 @@ class Home extends React.PureComponent {
                 >
                     Public Service Announcement
                 </Typography>
-                <Typography component="p" className={classes.mb2}>
+                <Typography component="p" align="left" className={classes.mb2}>
                     As a Full-Stack Apprentice (FSA), you will learn to create
                     modern & secure digital products while learning how to run a
                     business.
                 </Typography>
-                <Typography component="p" className={classes.mb2}>
+                <Typography component="p" align="left" className={classes.mb2}>
                     You will work with a mentor who will pass their skills on to
                     you. In exchange for their knowledge & direction, you will
                     work on their entrepreneurial ventures for them with the
@@ -97,7 +96,7 @@ class Home extends React.PureComponent {
                         </ListItemText>
                     </ListItem>
                 </List>
-                <Typography component="p" className={classes.mb2}>
+                <Typography component="p" align="left" className={classes.mb2}>
                     At first, you will work for your mentor for free. Their time
                     is valuable, and you must prove your dedication. After a
                     sufficient period of time, the mentor should make every
@@ -105,12 +104,12 @@ class Home extends React.PureComponent {
                     business standpoint, as well as offering equity in a
                     business venture.{" "}
                 </Typography>
-                <Typography component="p" className={classes.mb2}>
+                <Typography component="p" align="left" className={classes.mb2}>
                     This process can take anywhere from six to twelve months,
                     depending on how much time the apprentice has to dedicate to
                     immersive training & what point you are starting from.{" "}
                 </Typography>{" "}
-                <Typography component="p" className={classes.mb2}>
+                <Typography component="p" align="left" className={classes.mb2}>
                     Join our Slack group below to join our community in Seattle
                     - a place where you can connect with potential mentors &
                     apprentices. We are looking to expand organically - if you
