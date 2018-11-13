@@ -5,13 +5,25 @@ import PropTypes from "prop-types";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Button from "@material-ui/core/Button";
+import classNames from "classnames";
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing.unit
+        padding: theme.spacing.unit,
+        maxWidth: "600px",
+        marginLeft: "auto",
+        marginRight: "auto"
     },
     mb2: {
         marginBottom: theme.spacing.unit * 2
+    },
+    joinButton: {
+        marginLeft: "15vw"
+    },
+    slackIcon: {
+        width: "40px",
+        height: "40px"
     }
 });
 
@@ -20,7 +32,12 @@ class Home extends React.PureComponent {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <Typography component="h1" variant="title">
+                <Typography
+                    component="h1"
+                    variant="h5"
+                    align="center"
+                    className={classes.mb2}
+                >
                     Public Service Announcement
                 </Typography>
                 <Typography component="p" className={classes.mb2}>
@@ -100,12 +117,18 @@ class Home extends React.PureComponent {
                     would like to partner with us, send us a message in the
                     channel and let's talk.{" "}
                 </Typography>
-                <button>
-                    <a href="https://join.slack.com/t/fullstackapprentice/shared_invite/enQtMzk4NTUzMjkyNDA0LTg1NGM2ZGU0YzI2NTU4N2NjZDViNjBjYTdiODQ3MmJiMmM3NGE3OTY2OGI5M2EyYmQ4OGUxYjU0MTZkZjYyZWE">
-                        Join FSA Slack Channel
-                    </a>
-                </button>
-                <br />
+                <Button
+                    className={classes.joinButton}
+                    variant="contained"
+                    target="_blank"
+                    href="https://join.slack.com/t/fullstackapprentice/shared_invite/enQtMzk4NTUzMjkyNDA0LTg1NGM2ZGU0YzI2NTU4N2NjZDViNjBjYTdiODQ3MmJiMmM3NGE3OTY2OGI5M2EyYmQ4OGUxYjU0MTZkZjYyZWE"
+                >
+                    <img
+                        src="https://cdn.brandfolder.io/5H442O3W/as/vwqoqir7/Slack%20Mark%20%E2%80%94%20Web.svg"
+                        className={classes.slackIcon}
+                    />
+                    Join the FSA Slack Channel
+                </Button>
             </div>
         );
     }
