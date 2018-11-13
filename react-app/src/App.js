@@ -15,18 +15,7 @@ const theme = createMuiTheme({
     }
 });
 
-const styles = {
-    root: {
-        flexGrow: 1
-    },
-    grow: {
-        flexGrow: 1
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20
-    }
-};
+const styles = {};
 
 class App extends React.Component {
     constructor(props) {
