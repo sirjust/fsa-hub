@@ -1,11 +1,16 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import React, { Component } from "react";
+// import sanity from '../lib/sanity'
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
 import FolderContainers from "../components/FolderContainers";
-import { fullStackApprenticeship, cityByCity, findingWork } from '../directories'
+import {
+    fullStackApprenticeship,
+    cityByCity,
+    findingWork
+} from "../directories";
 
 function TabContainer(props) {
 
@@ -19,9 +24,11 @@ function TabContainer(props) {
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-    },
+        backgroundColor: theme.palette.background.paper
+    }
 });
+
+const query = `*[_type == 'algorithmsSchema' || _type == 'gitSchema' || _type == 'nativeSchema' || _type == 'webSchema' || _type == 'backEndSchema' || _type == 'commandLineSchema' || _type == 'javascriptSchema' || _type == 'gitSchema' || _type == 'awsSchema' || _type == 'securitySchema'  ]{_type, text, title, url}`;
 
 
 class LinkTabs extends Component {
@@ -41,19 +48,51 @@ class LinkTabs extends Component {
 render() {
     const { classes } = this.props;
     const { value } = this.state;
-
-    return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs value={value} onChange={this.handleChange}>
-                    <Tab label="Full-Stack Apprenticeship" />
-                    <Tab label="City by City" />
-                    <Tab label="Finding Work & Opportunity" />
-                </Tabs>
-            </AppBar>
-            {value === 0 && <FolderContainers folders={this.reduceFolder(fullStackApprenticeship)}/>}
-                {value === 1 && <FolderContainers folders={ this.reduceFolder(cityByCity) } />}
-                {value === 2 && <FolderContainers folders={ this.reduceFolder(findingWork) } />}
+        return (
+            <div className={classes.root}>
+                <AppBar position="static">
+                    <Tabs value={value} onChange={this.handleChange}>
+                        <Tab label="Full-Stack Apprenticeship" />
+                        <Tab label="City by City" />
+                        <Tab label="Finding Work & Opportunity" />
+                    </Tabs>
+                </AppBar>
+                {value === 0 && (
+                    <FolderContainers
+                        folders={fullStackApprenticeship.reduce(
+                            (acc, next) =>
+                                acc.concat({
+                                    name: next.name,
+                                    type: next.type
+                                }),
+                            []
+                        )}
+                    />
+                )}
+                {value === 1 && (
+                    <FolderContainers
+                        folders={cityByCity.reduce(
+                            (acc, next) =>
+                                acc.concat({
+                                    name: next.name,
+                                    type: next.type
+                                }),
+                            []
+                        )}
+                    />
+                )}
+                {value === 2 && (
+                    <FolderContainers
+                        folders={findingWork.reduce(
+                            (acc, next) =>
+                                acc.concat({
+                                    name: next.name,
+                                    type: next.type
+                                }),
+                            []
+                        )}
+                    />
+                )}
             </div>
         );
     }
