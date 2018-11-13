@@ -6,16 +6,17 @@ import Routes from "./Routes";
 import "./App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
+require("typeface-quicksand");
 
 Amplify.configure(aws_exports);
 
 const theme = createMuiTheme({
     typography: {
-        useNextVariants: true
+        useNextVariants: true,
+        fontSize: 16,
+        fontFamily: "'Quicksand', sans-serif;"
     }
 });
-
-const styles = {};
 
 class App extends React.Component {
     constructor(props) {
