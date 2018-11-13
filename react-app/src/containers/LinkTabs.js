@@ -12,14 +12,14 @@ import {
     findingWork
 } from "../directories";
 
-// function TabContainer(props) {
+function TabContainer(props) {
 
-//     return (
-//         <Typography component="div" style={{ padding: 8 * 3 }}>
-//             {props.children}
-//         </Typography>
-//     );
-// }
+    return (
+        <Typography component="div" style={{ padding: 8 * 3 }}>
+            {props.children}
+        </Typography>
+    );
+}
 
 const styles = theme => ({
     root: {
@@ -29,6 +29,7 @@ const styles = theme => ({
 });
 
 const query = `*[_type == 'algorithmsSchema' || _type == 'gitSchema' || _type == 'nativeSchema' || _type == 'webSchema' || _type == 'backEndSchema' || _type == 'commandLineSchema' || _type == 'javascriptSchema' || _type == 'gitSchema' || _type == 'awsSchema' || _type == 'securitySchema'  ]{_type, text, title, url}`;
+
 
 class LinkTabs extends Component {
     state = {
@@ -42,15 +43,11 @@ class LinkTabs extends Component {
         this.setState({ value });
     };
 
-    //     async componentDidMount() {
+    reduceFolder = (folder) => folder.reduce((acc, next) => acc.concat({ name: next.name, type: next.type }), []) 
 
-    //     const test = await sanity.fetch(query);
-    // }
-
-    render() {
-        const { classes } = this.props;
-        const { value } = this.state;
-
+render() {
+    const { classes } = this.props;
+    const { value } = this.state;
         return (
             <div className={classes.root}>
                 <AppBar position="static">
