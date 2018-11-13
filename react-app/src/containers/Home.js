@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Button from "@material-ui/core/Button";
 import BackgroundImage from "./assets/img--Home-background.jpg";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import Paper from "@material-ui/core/Paper";
 
 const theme = createMuiTheme({
     palette: {
@@ -23,11 +24,12 @@ const theme = createMuiTheme({
 const styles = theme => ({
     background: {
         backgroundImage: `url(${BackgroundImage})`,
-        backgroundSize: "cover"
+        backgroundSize: "cover",
+        padding: theme.spacing.unit * 3
     },
     root: {
-        padding: theme.spacing.unit,
-        background: "transparent",
+        padding: theme.spacing.unit * 2,
+        background: "rgba(0,0,0, .5)",
         maxWidth: "600px",
         marginLeft: "auto",
         marginRight: "auto",
@@ -49,7 +51,7 @@ class Home extends React.PureComponent {
         return (
             <MuiThemeProvider theme={theme}>
                 <div className={classes.background}>
-                    <div className={classes.root}>
+                    <Paper className={classes.root} elevation={10}>
                         <Typography
                             component="h1"
                             variant="h5"
@@ -174,7 +176,7 @@ class Home extends React.PureComponent {
                             />
                             Join the FSA Slack Channel
                         </Button>
-                    </div>
+                    </Paper>
                 </div>
             </MuiThemeProvider>
         );
