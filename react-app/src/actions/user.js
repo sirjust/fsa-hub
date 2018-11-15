@@ -9,6 +9,11 @@ export const setPassword = (password = "") => ({
     password
 });
 
+export const setConfirmPassword = (password = "") => ({
+    type: "SET_CONFIRM_PASSWORD",
+    password
+});
+
 export const setEmail = (email = "") => ({
     type: "SET_EMAIL",
     email

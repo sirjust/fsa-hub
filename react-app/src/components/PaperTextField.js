@@ -23,7 +23,7 @@ class PaperTextField extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
-        this.renderTextInput = this.renderTextInput.bind(this);
+        // this.renderTextInput = this.renderTextInput.bind(this);
         this.renderTextArea = this.renderTextArea.bind(this);
         this.renderPasswordField = this.renderPasswordField.bind(this);
 

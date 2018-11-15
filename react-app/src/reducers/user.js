@@ -1,7 +1,7 @@
 const userReducerDefaultState = {
-    username: "Topher",
-    password: "P@ssw0rd",
-    email: "topher.sikorra@gmail.com"
+    username: "",
+    password: "",
+    email: "topher@b"
 };
 
 export default (state = userReducerDefaultState, action) => {
@@ -15,6 +15,11 @@ export default (state = userReducerDefaultState, action) => {
             return {
                 ...state,
                 password: action.password
+            };
+        case "SET_CONFIRM_PASSWORD":
+            return {
+                ...state,
+                confirmPassword: action.password
             };
         case "SET_EMAIL":
             return {

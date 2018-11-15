@@ -54,14 +54,14 @@ class App extends React.Component {
             loginUser: this.loginUser.bind(this)
         };
         return (
-            <MuiThemeProvider theme={theme}>
-                <CssBaseline>
-                    <Provider store={store}>
+            <Provider store={store}>
+                <MuiThemeProvider theme={theme}>
+                    <CssBaseline>
                         <TopNavbar childProps={childProps} />
                         <Routes childProps={childProps} />
-                    </Provider>
-                </CssBaseline>
-            </MuiThemeProvider>
+                    </CssBaseline>
+                </MuiThemeProvider>
+            </Provider>
         );
     }
 
