@@ -8,6 +8,8 @@ import Slide from "@material-ui/core/Slide";
 import Button from "@material-ui/core/Button";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
+
+import RootRef from "@material-ui/core/RootRef";
 import { connect } from "react-redux";
 import { signInForm, signUpForm } from "../actions/authForm";
 

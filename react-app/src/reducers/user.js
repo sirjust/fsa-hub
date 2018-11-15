@@ -1,7 +1,7 @@
 const userReducerDefaultState = {
     username: "",
     password: "",
-    email: "topher@b"
+    email: ""
 };
 
 export default (state = userReducerDefaultState, action) => {

@@ -10,9 +10,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 //Redux
 import { Provider } from "react-redux";
 import configureStore from "./store/configureStore";
-import { setUsername, setEmail, setPassword } from "./actions/user";
 
 const store = configureStore();
+
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState());
 });
