@@ -19,8 +19,8 @@ class TopNavbar extends React.Component {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" color="inherit">
-                        <Button color="inherit" href="http://localhost:3000">
-                            FullStack Apprentice
+                        <Button color="inherit" component={Link} to='/' >
+                            FullStack Apprenticeship
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
@@ -45,20 +45,28 @@ class TopNavbar extends React.Component {
                         : [
                               <Button
                                   key={0}
-                                  color="inherit"
                                   component={Link}
-                                  to="/signup"
+                                  to="/knowledge"
+                                  color="inherit"
                               >
-                                  Register
+                                  Knowledge Base
                               </Button>,
-                              <Button
-                                  key={1}
-                                  color="inherit"
-                                  component={Link}
-                                  to="/login"
-                              >
-                                  Login
-                              </Button>
+                            //   <Button
+                            //       key={1}
+                            //       color="inherit"
+                            //       component={Link}
+                            //       to="/signup"
+                            //   >
+                            //       Register
+                            //   </Button>,
+                            //   <Button
+                            //       key={2}
+                            //       color="inherit"
+                            //       component={Link}
+                            //       to="/login"
+                            //   >
+                            //       Login
+                            //   </Button>
                           ]}
                 </Toolbar>
             </AppBar>
