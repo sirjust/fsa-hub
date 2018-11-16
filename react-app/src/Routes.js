@@ -1,11 +1,48 @@
 import React from "react";
-import { Switch } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import AppliedRoute from "./components/AppliedRoute";
 import Home from "./containers/Home";
-import Signup from './containers/Signup';
-import Login from './containers/Login';
-import Tools from "./containers/Tools";
+// import Signup from "./containers/Signup";
+// import Login from "./containers/Login";
+import LinkTabs from "./containers/LinkTabs";
+import LinkComponent from "./components/LinkComponent";
+import ToolsContainer from "./components/ToolsContainer";
+
+// import AccountContainer from "./containers/AccountContainer";
+
+export default ({ childProps }) => (
+    <Switch>
+        <AppliedRoute path="/" exact component={Home} props={childProps} />
+        {/* <AppliedRoute
+            path="/signup"
+            exact
+            component={AccountContainer}
+            props={childProps}
+        />
+        <AppliedRoute
+            path="/login"
+            exact
+            component={AccountContainer}
+            props={childProps}
+        /> */}
+        <AppliedRoute
+            path="/knowledge"
+            exact
+            component={LinkTabs}
+            props={childProps}
+        />
+        <AppliedRoute
+            path="/link/:id"
+            component={LinkComponent}
+            props={childProps}
+        />
+        <Route
+            path="/tool/:schema"
+            component={ToolsContainer}
+            props={childProps}
+        />
+    </Switch>
 
 export default ({ childProps }) =>
   <Switch>
@@ -14,3 +51,46 @@ export default ({ childProps }) =>
     <AppliedRoute path='/login' exact component={Login} props={childProps} />
     <AppliedRoute path='/tools' exact component={Tools} props={childProps} />
   </Switch>
+=======
+// import Signup from "./containers/Signup";
+// import Login from "./containers/Login";
+import LinkTabs from "./containers/LinkTabs";
+import LinkComponent from "./components/LinkComponent";
+import ToolsContainer from "./components/ToolsContainer";
+
+// import AccountContainer from "./containers/AccountContainer";
+
+export default ({ childProps }) => (
+    <Switch>
+        <AppliedRoute path="/" exact component={Home} props={childProps} />
+        {/* <AppliedRoute
+            path="/signup"
+            exact
+            component={AccountContainer}
+            props={childProps}
+        />
+        <AppliedRoute
+            path="/login"
+            exact
+            component={AccountContainer}
+            props={childProps}
+        /> */}
+        <AppliedRoute
+            path="/knowledge"
+            exact
+            component={LinkTabs}
+            props={childProps}
+        />
+        <AppliedRoute
+            path="/link/:id"
+            component={LinkComponent}
+            props={childProps}
+        />
+        <Route
+            path="/tool/:schema"
+            component={ToolsContainer}
+            props={childProps}
+        />
+    </Switch>
+);
+>>>>>>> 9f5b8165635843c552153389b0030268d7a8683d

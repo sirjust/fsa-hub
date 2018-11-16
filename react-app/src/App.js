@@ -1,88 +1,92 @@
-import React, { Component } from 'react';
-import { Link } from "react-router-dom";
-import Amplify, { Auth } from 'aws-amplify';
-import aws_exports from './aws-exports';
-
+import React from "react";
+import Amplify, { Auth } from "aws-amplify";
+import aws_exports from "./aws-exports";
+import TopNavbar from "./components/TopNavbar";
 import Routes from "./Routes";
-import { Navbar, Nav, NavItem } from "react-bootstrap";
-import RouteNavItem from "./components/RouteNavItem";
-import './App.css';
+import "./App.css";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
+import CssBaseline from "@material-ui/core/CssBaseline";
+require("typeface-quicksand");
 
 Amplify.configure(aws_exports);
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      userToken: null,
-      object: {},
+const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+        fontSize: 16,
+        fontFamily: "'Quicksand', sans-serif;"
     }
-  }
+});
 
-  componentDidMount(){
-    Auth.currentAuthenticatedUser()
-      .then(user => {
-        const token = user.signInUserSession.idToken;
-        this.loginUser(token);
-      })
-      .catch(err => console.log(err));
-  }
+class App extends React.Component {
+    constructor(props) {
+        super(props);
 
-  render() {
-    const childProps = {
-      object: this.state.object,
-      loginUser: this.loginUser.bind(this),
+        this.state = {
+            userToken: null,
+            object: {}
+        };
+    }
+});
+
+    componentDidMount() {
+        Auth.currentAuthenticatedUser()
+            .then(user => {
+                const token = user.signInUserSession.idToken;
+                this.loginUser(token);
+            })
+            .catch(err => console.log(err));
     }
 
-    return (
-      <div className="App">
-        <div className="nav-menu" >
-          <Navbar fluid collapseOnSelect >
-            <Navbar.Header>
-              <Navbar.Brand>
-                <Link to="/">FullStack Apprentice</Link>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
+    render() {
+        const childProps = {
+            object: this.state.object,
+            loginUser: this.loginUser.bind(this)
+        };
+        return (
+            <MuiThemeProvider theme={theme}>
+                <CssBaseline>
+                    <TopNavbar childProps={childProps} />
+                    <Routes childProps={childProps} />
+                </CssBaseline>
+            </MuiThemeProvider>
+        );
+    }
 
-            <Navbar.Collapse>
-              <Nav pullRight>
-                {this.state.userToken
-                  ? [
-                    <RouteNavItem key={1}
-                    href='/tools'>Tools</RouteNavItem>,
-                    <NavItem key={2} onClick={this.handleLogout}>Logout</NavItem>,
-                  ]
-                  : [
-                    <RouteNavItem key={1} href="/signup">Register</RouteNavItem>,
-                    <RouteNavItem key={2} href="/login">Login</RouteNavItem>
-                  ]}
-              </Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </div>
-          <Routes childProps={childProps} />
-      </div>
-    );
-  }
-
-  loginUser = userToken => {
-    this.setState({
-      userToken: userToken
-    });
-  }
-
-  handleLogout = () => {
-    Auth.signOut()
-      .then(() => {
+    loginUser = userToken => {
         this.setState({
-          userToken: null
+            userToken: userToken
         });
-        alert("Logged out!");
-      })
-      .catch(err => console.log(err));
-  }
+    };
+
+    handleLogout = () => {
+        Auth.signOut()
+            .then(() => {
+                this.setState({
+                    userToken: null
+                });
+                alert("Logged out!");
+            })
+            .catch(err => console.log(err));
+    };
+}
+
+export default App;
+        this.setState({
+            userToken: userToken
+        });
+    };
+
+    handleLogout = () => {
+        Auth.signOut()
+            .then(() => {
+                this.setState({
+                    userToken: null
+                });
+                alert("Logged out!");
+            })
+            .catch(err => console.log(err));
+    };
 }
 
 export default App;
