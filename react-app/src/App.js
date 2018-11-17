@@ -27,7 +27,6 @@ class App extends React.Component {
             object: {}
         };
     }
-});
 
     componentDidMount() {
         Auth.currentAuthenticatedUser()
@@ -54,24 +53,6 @@ class App extends React.Component {
     }
 
     loginUser = userToken => {
-        this.setState({
-            userToken: userToken
-        });
-    };
-
-    handleLogout = () => {
-        Auth.signOut()
-            .then(() => {
-                this.setState({
-                    userToken: null
-                });
-                alert("Logged out!");
-            })
-            .catch(err => console.log(err));
-    };
-}
-
-export default App;
         this.setState({
             userToken: userToken
         });
