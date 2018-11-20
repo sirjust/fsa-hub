@@ -5,6 +5,9 @@ const authReducerDefaultState = {
 export default (state = authReducerDefaultState, action) => {
     switch (action.type) {
         case "SIGN_IN":
+            return {
+                ...state
+            };
         default:
             return state;
     }
