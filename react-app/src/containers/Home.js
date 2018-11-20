@@ -58,16 +58,15 @@ class Home extends React.PureComponent {
                             align="center"
                             className={classes.mb2}
                         >
-                            Public Service Announcement
+                            The Adventure Begins
                         </Typography>
                         <Typography
                             component="p"
                             align="left"
                             className={classes.mb2}
                         >
-                            As a Full-Stack Apprentice (FSA), you will learn to
-                            create modern & secure digital products while
-                            learning how to run a business.
+                            Through a Full-Stack Apprenticeship (FSA), you will refresh your life by learning to
+                            create modern & secure digital products. You will learn to think & reason critically about large systems, while working to improve yourself in all aspects of life.
                         </Typography>
                         <Typography
                             component="p"
@@ -75,8 +74,7 @@ class Home extends React.PureComponent {
                             className={classes.mb2}
                         >
                             You will work with a mentor who will pass their
-                            skills on to you. In exchange for their knowledge &
-                            direction, you will work on their entrepreneurial
+                            skills & knowledge onto you. In exchange for their time & energy, you will work on their entrepreneurial
                             ventures for them with the goal of creating a
                             profitable business together. You will aquire
                             competence in these areas:
@@ -97,35 +95,33 @@ class Home extends React.PureComponent {
                             <ListItem>
                                 <ListItemText>
                                     Setting up a server, REST API's, and
-                                    securing them
+                                    securing them using Node.js & serverless deployments.
                                 </ListItemText>
                             </ListItem>
                             <ListItem>
                                 <ListItemText>
-                                    Working with relational & NoSQL databases
+                                    Working with relational & NoSQL databases to store
                                 </ListItemText>
                             </ListItem>
                             <ListItem>
                                 <ListItemText>
-                                    Application & network security principles
+                                    Application & network security principles, including XSS (Cross-Site Scripting) & SQL Injection.
                                 </ListItemText>
                             </ListItem>
                             <ListItem>
                                 <ListItemText>
-                                    Developing component-driven web applications
-                                    and/or mobile applications
+                                    Developing component-driven web & native applications
+                                    using React Web & Native.
                                 </ListItemText>
                             </ListItem>
                             <ListItem>
                                 <ListItemText>
-                                    Provisioning application infrastructure, so
-                                    that your product can grow from one user to
-                                    10,000
+                                    Provisioning & deploying scalable architecture using Amazon Web Services.
                                 </ListItemText>
                             </ListItem>
                             <ListItem>
                                 <ListItemText>
-                                    Automated testing to stabilize your code
+                                    Automated testing practices to stabilize your front-end code with Enzyme & Jest, back-end code with Mocha, Chai, Sinon & headless browser testing with Selenium & the like.
                                 </ListItemText>
                             </ListItem>
                         </List>
@@ -136,7 +132,8 @@ class Home extends React.PureComponent {
                         >
                             At first, you will work for your mentor for free.
                             Their time is valuable, and you must prove your
-                            dedication. After a sufficient period of time, the
+                            dedication. The first step is to create a GitHub account and repository to walk through the Serverless-Stack tutorial. By the end, you will have created an AWS account, built a CRUD (Create Read Update Delete) API, built & deployed to the web a simple but elegantly written React application. From there, you will move onto contributing to open-source initiatives, finding freelance work, building your portfolio & industry presence until you achieve your goals. 
+                            After a sufficient period of time, the
                             mentor should make every effort to pay the
                             apprentice a rate that makes sense from a business
                             standpoint, as well as offering equity in a business
@@ -147,8 +144,7 @@ class Home extends React.PureComponent {
                             align="left"
                             className={classes.mb2}
                         >
-                            This process can take anywhere from six to twelve
-                            months, depending on how much time the apprentice
+                            This process can take anywhere from 30 to 60 weeks, depending on how much time the apprentice
                             has to dedicate to immersive training & what point
                             you are starting from.{" "}
                         </Typography>{" "}
@@ -160,8 +156,7 @@ class Home extends React.PureComponent {
                             Join our Slack group below to join our community in
                             Seattle - a place where you can connect with
                             potential mentors & apprentices. We are looking to
-                            expand organically - if you would like to partner
-                            with us, send us a message in the channel and let's
+                            expand organically & clearly understand the challenges students & mentors alike face  - drop into the channel and let's
                             talk.{" "}
                         </Typography>
                         <Button
@@ -173,6 +168,7 @@ class Home extends React.PureComponent {
                             <img
                                 src="https://cdn.brandfolder.io/5H442O3W/as/vwqoqir7/Slack%20Mark%20%E2%80%94%20Web.svg"
                                 className={classes.slackIcon}
+                                alt="Slack"
                             />
                             Join the FSA Slack Channel
                         </Button>
