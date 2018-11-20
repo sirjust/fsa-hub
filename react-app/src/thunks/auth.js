@@ -4,7 +4,6 @@ import { Auth } from "aws-amplify";
 export const authSignIn = ({ username = "", password = "" }) => {
     return Auth.signIn(username, password);
 };
-
 export const signIn = ({ username = "", password = "" } = {}) => ({
     type: "SIGN_IN",
     username,
@@ -25,14 +24,15 @@ export const signInNotConfirmed = () => ({
 
 export const thunkSignIn = ({ username = "", password = "" } = {}) => {
     return function(dispatch, getState) {
-        dispatch(
-            authSignIn({ username, password })
-                .then(data => {
-                    console.log(data);
-                })
-                .error(err => {
-                    console.log(err);
-                })
+        dispatch(startSignIn());
+        return authSignIn({ username, password })
+            .then(data => {
+                console.log(data);
+                dispatch(signInSuccess());
+            })
+            .error(err => {
+                console.log(err);
+            })
         );
     };
 };
