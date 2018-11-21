@@ -17,6 +17,15 @@ export default () =>
                         .title("Tools")
                         .items([
                             S.listItem()
+                                .title("Getting Started")
+                                .child(
+                                    S.documentList()
+                                        .title('Getting Started')
+                                        .menuItems(S.documentTypeList('gettingStartedSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'gettingStartedSchema' })
+                                ),
+                            S.listItem()
                                 .title("React Native")
                                 .child(
                                     S.documentList()
@@ -87,6 +96,15 @@ export default () =>
                                         .menuItems(S.documentTypeList('testingSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'testingSchema' })
+                                ),
+                            S.listItem()
+                                .title("User Experience & Design")
+                                .child(
+                                    S.documentList()
+                                        .title('UX & UI Design')
+                                        .menuItems(S.documentTypeList('uxSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'uxSchema' })
                                 ),
                             S.listItem()
                                 .title("Meta-Learning")
@@ -193,6 +211,15 @@ export default () =>
                                         .menuItems(S.documentTypeList('freelanceSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'freelanceSchema' })
+                                ),
+                            S.listItem()
+                                .title("Apprenticeship")
+                                .child(
+                                    S.documentList()
+                                        .title('Apprenticeship')
+                                        .menuItems(S.documentTypeList('apprenticeshipSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'apprenticeshipSchema' })
                                 ),
                             S.listItem()
                                 .title("Full Time Work")
