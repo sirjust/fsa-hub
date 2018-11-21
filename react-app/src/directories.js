@@ -1,5 +1,9 @@
 export const fullStackApprenticeship = [
     {
+        type: 'gettingStartedSchema',
+        name: 'Getting Started'
+    },
+    {
         type: 'nativeSchema',
         name: 'React Native'
     },
@@ -54,6 +58,10 @@ export const fullStackApprenticeship = [
     {
         type: 'testingSchema',
         name: 'Testing'
+    },
+    {
+        type: 'uxSchema',
+        name: 'User Experience & Design'
     }
 ]
 
@@ -76,6 +84,10 @@ export const findingWork = [
     {
         type: 'fullTimeSchema',
         name: 'Full Time Work'
+    },
+    {
+        type: 'apprenticeshipSchema',
+        name: 'Apprenticeships'
     },
     {
         type: 'freeLanceSchema',
