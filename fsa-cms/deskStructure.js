@@ -53,6 +53,15 @@ export default () =>
                                         .params({ type: 'algorithmsSchema' })
                                 ),
                             S.listItem()
+                                .title("Serverless")
+                                .child(
+                                    S.documentList()
+                                        .title('Serverless')
+                                        .menuItems(S.documentTypeList('serverlessSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'serverlessSchema' })
+                                ),
+                            S.listItem()
                                 .title("Command Line Interface (CLI) Tools")
                                 .child(
                                     S.documentList()
@@ -62,7 +71,34 @@ export default () =>
                                         .params({ type: 'commandLineSchema' })
                                 ),
                             S.listItem()
-                                .title("Javascript - ES17 & Beyond")
+                                .title("Payments & Money")
+                                .child(
+                                    S.documentList()
+                                        .title('Payments')
+                                        .menuItems(S.documentTypeList('paymentsSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'paymentsSchema' })
+                                ),
+                            S.listItem()
+                                .title("Testing")
+                                .child(
+                                    S.documentList()
+                                        .title('Testing')
+                                        .menuItems(S.documentTypeList('testingSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'testingSchema' })
+                                ),
+                            S.listItem()
+                                .title("Meta-Learning")
+                                .child(
+                                    S.documentList()
+                                        .title('The Learning Process')
+                                        .menuItems(S.documentTypeList('learningSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'learningSchema' })
+                                ),
+                            S.listItem()
+                                .title("Javascript - ES6 & Beyond")
                                 .child(
                                     S.documentList()
                                         .title('Javascript')
@@ -71,7 +107,7 @@ export default () =>
                                         .params({ type: 'javascriptSchema' })
                                 ),
                             S.listItem()
-                                .title("Git ")
+                                .title("Git & Version Control")
                                 .child(
                                     S.documentList()
                                         .title('Git')
@@ -97,6 +133,15 @@ export default () =>
                                         .filter('_type == $type && !defined(parents)')
                                         .params({ type: 'securitySchema' })
                                 ),
+                            S.listItem()
+                                .title("DevOps")
+                                .child(
+                                    S.documentList()
+                                        .title('DevOps')
+                                        .menuItems(S.documentTypeList('devopsSchema').getMenuItems())
+                                        .filter('_type == $type && !defined(parents)')
+                                        .params({ type: 'devopsSchema' })
+                                ),
                         ])
                 ),
                 S.listItem()
@@ -119,9 +164,9 @@ export default () =>
                                 .child(
                                     S.documentList()
                                         .title('East Side')
-                                        .menuItems(S.documentTypeList('seattleSchema').getMenuItems())
+                                        .menuItems(S.documentTypeList('eastsideSchema').getMenuItems())
                                         .filter('_type == $type && !defined(parents)')
-                                        .params({ type: 'seattleSchema' })
+                                        .params({ type: 'eastsideSchema' })
                                 ),
                         ])
                 ),
