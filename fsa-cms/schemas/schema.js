@@ -28,7 +28,12 @@ import seattleSchema from "./seattleSchema";
 import communitySchema from "./communitySchema";
 import nomadSchema from "./nomadSchema";
 import jobBoardSchema from "./jobBoardSchema";
-
+import eastsideSchema from "./eastsideSchema";
+import devopsSchema from "./devopsSchema";
+import serverlessSchema from "./serverlessSchema";
+import learningSchema from "./learningSchema";
+import paymentsSchema from "./paymentsSchema";
+import testingSchema from "./testingSchema";
 
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -59,6 +64,12 @@ export default createSchema({
     nativeSchema,
     nomadSchema,
     jobBoardSchema,
+    eastsideSchema,
+    devopsSchema,
+    serverlessSchema,
+    paymentsSchema,
+    learningSchema,
+    testingSchema,
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
     blockContent,
