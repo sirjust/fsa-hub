@@ -35,13 +35,36 @@ export const fullStackApprenticeship = [
         type: 'securitySchema',
         name: 'Security'
     },
+    {
+        type: 'paymentsSchema',
+        name: 'Payments'
+    },
+    {
+        type: 'serverlessSchema',
+        name: 'Serverless'
+    },
+    {
+        type: 'learningSchema',
+        name: 'Meta-Learning'
+    },
+    {
+        type: 'devopsSchema',
+        name: 'DevOps'
+    },
+    {
+        type: 'testingSchema',
+        name: 'Testing'
+    }
 ]
 
-// missing bellevue schema
 export const cityByCity = [
     {
         type: 'seattleSchema',
         name: 'Seattle'
+    },
+    {
+        type: 'eastsideSchema',
+        name: 'East Side'
     }
 ]
 

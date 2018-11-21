@@ -3,18 +3,18 @@ import { Switch, Route } from "react-router-dom";
 
 import AppliedRoute from "./components/AppliedRoute";
 import Home from "./containers/Home";
-// import Signup from "./containers/Signup";
-// import Login from "./containers/Login";
+import Signup from "./containers/Signup";
+import Login from "./containers/Login";
 import LinkTabs from "./containers/LinkTabs";
 import LinkComponent from "./components/LinkComponent";
 import ToolsContainer from "./components/ToolsContainer";
 
-// import AccountContainer from "./containers/AccountContainer";
+import AccountContainer from "./containers/AccountContainer";
 
 export default ({ childProps }) => (
     <Switch>
         <AppliedRoute path="/" exact component={Home} props={childProps} />
-        {/* <AppliedRoute
+        <AppliedRoute
             path="/signup"
             exact
             component={AccountContainer}
@@ -25,7 +25,7 @@ export default ({ childProps }) => (
             exact
             component={AccountContainer}
             props={childProps}
-        /> */}
+        />
         <AppliedRoute
             path="/knowledge"
             exact
