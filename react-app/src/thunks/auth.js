@@ -1,30 +1,32 @@
 import { Auth } from "aws-amplify";
 
 //Sign In
-export const authSignIn = ({ username = "", password = "" }) => {
+const authSignIn = ({ username = "", password = "" }) => {
     return Auth.signIn(username, password);
 };
-export const signIn = ({ username = "", password = "" } = {}) => ({
-    type: "SIGN_IN",
-    username,
-    password
+const awaitSignIn = () => ({
+    type: "AWAIT_SIGN_IN"
 });
-export const signInSuccess = () => ({
-    type: "SIGN_IN_SUCCESS"
+export const signInSuccess = body => ({
+    type: "SIGN_IN_SUCCESS",
+    body
 });
-export const signInUserNotFound = () => ({
-    type: "SIGN_IN_USER_NOT_FOUND"
+export const signInUserNotFound = err => ({
+    type: "SIGN_IN_USER_NOT_FOUND",
+    err
 });
-export const signInWrongPassword = () => ({
-    type: "SIGN_IN_WRONG_PASSWORD"
+export const signInWrongPassword = err => ({
+    type: "SIGN_IN_WRONG_PASSWORD",
+    err
 });
-export const signInNotConfirmed = () => ({
-    type: "SIGN_IN_NOT_CONFIRMED"
+export const signInNotConfirmed = err => ({
+    type: "SIGN_IN_NOT_CONFIRMED",
+    err
 });
 
 export const thunkSignIn = ({ username = "", password = "" } = {}) => {
     return function(dispatch, getState) {
-        dispatch(startSignIn());
+        dispatch(awaitSignIn());
         return authSignIn({ username, password })
             .then(data => {
                 console.log(data);
@@ -32,8 +34,7 @@ export const thunkSignIn = ({ username = "", password = "" } = {}) => {
             })
             .error(err => {
                 console.log(err);
-            })
-        );
+            });
     };
 };
 
