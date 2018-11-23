@@ -1,5 +1,9 @@
 export const fullStackApprenticeship = [
     {
+        type: 'gettingStartedSchema',
+        name: 'Getting Started'
+    },
+    {
         type: 'nativeSchema',
         name: 'React Native'
     },
@@ -35,13 +39,40 @@ export const fullStackApprenticeship = [
         type: 'securitySchema',
         name: 'Security'
     },
+    {
+        type: 'paymentsSchema',
+        name: 'Payments'
+    },
+    {
+        type: 'serverlessSchema',
+        name: 'Serverless'
+    },
+    {
+        type: 'learningSchema',
+        name: 'Meta-Learning'
+    },
+    {
+        type: 'devopsSchema',
+        name: 'DevOps'
+    },
+    {
+        type: 'testingSchema',
+        name: 'Testing'
+    },
+    {
+        type: 'uxSchema',
+        name: 'User Experience & Design'
+    }
 ]
 
-// missing bellevue schema
 export const cityByCity = [
     {
         type: 'seattleSchema',
         name: 'Seattle'
+    },
+    {
+        type: 'eastsideSchema',
+        name: 'East Side'
     }
 ]
 
@@ -53,6 +84,10 @@ export const findingWork = [
     {
         type: 'fullTimeSchema',
         name: 'Full Time Work'
+    },
+    {
+        type: 'apprenticeshipSchema',
+        name: 'Apprenticeships'
     },
     {
         type: 'freeLanceSchema',
