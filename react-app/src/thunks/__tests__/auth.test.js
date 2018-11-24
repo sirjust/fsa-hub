@@ -1,3 +1,2 @@
 import { Auth } from "aws-amplify";
-import { thunkSignIn } from "../auth";
-it("");
+import { authSignIn, awaitSignIn, thunkSignIn } from "../auth";

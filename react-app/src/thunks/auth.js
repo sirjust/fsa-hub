@@ -30,7 +30,7 @@ export const thunkSignIn = ({ username = "", password = "" } = {}) => {
         return authSignIn({ username, password })
             .then(data => {
                 console.log(data);
-                dispatch(signInSuccess());
+                dispatch(signInSuccess(data));
             })
             .error(err => {
                 console.log(err);

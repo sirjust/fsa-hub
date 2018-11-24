@@ -17,13 +17,13 @@ export default ({ childProps }) => (
         <AppliedRoute
             path="/signup"
             exact
-            component={AccountContainer}
+            component={Signup}
             props={childProps}
         />
         <AppliedRoute
             path="/login"
             exact
-            component={AccountContainer}
+            component={Login}
             props={childProps}
         />
         <AppliedRoute

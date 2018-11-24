@@ -13,6 +13,10 @@ export default (state = authReducerDefaultState, action) => {
             return {
                 ...state
             };
+        case "SIGN_IN_SUCCESS":
+            return {
+                ...state
+            };
         default:
             return state;
     }

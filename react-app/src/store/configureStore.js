@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import userReducer from "../reducers/user";
 import authFormReducer from "../reducers/authForm";
 import authReducer from "../reducers/auth";
@@ -13,9 +13,11 @@ export default () => {
     });
     const store = createStore(
         combinedReducers,
-        applyMiddleware(thunk)
-        // window.__REDUX_DEVTOOLS_EXTENSION__ &&
-        //     window.__REDUX_DEVTOOLS_EXTENSION__()
+        compose(
+            applyMiddleware(thunk),
+            window.__REDUX_DEVTOOLS_EXTENSION__ &&
+                window.__REDUX_DEVTOOLS_EXTENSION__()
+        )
     );
 
     return store;
