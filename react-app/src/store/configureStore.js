@@ -5,7 +5,8 @@ import userReducer from "../reducers/user";
 import authFormReducer from "../reducers/authForm";
 import authReducer from "../reducers/auth";
 import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools";
+
+const initialState = {};
 
 export const history = createHistory();
 
@@ -25,15 +26,13 @@ const composedEnhancers = compose(
     ...enhancers
 );
 
-const combinedReducers = combineReducers({
+const rootReducer = combineReducers({
+    router: connectRouter(history),
     user: userReducer,
     auth: authReducer,
     authForm: authFormReducer
 });
 
-const store = createStore(
-    connectRouter(history)(combinedReducers),
-    composedEnhancers
-);
+const store = createStore(rootReducer, initialState, composedEnhancers);
 
 export default store;

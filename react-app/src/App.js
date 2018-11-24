@@ -7,14 +7,6 @@ import "./App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
-//Redux
-import { Provider } from "react-redux";
-import store from "./store/configureStore";
-
-const unsubscribe = store.subscribe(() => {
-    console.log(store.getState());
-});
-
 require("typeface-quicksand");
 
 Amplify.configure(aws_exports);
@@ -52,14 +44,12 @@ class App extends React.Component {
             loginUser: this.loginUser.bind(this)
         };
         return (
-            <Provider store={store}>
-                <MuiThemeProvider theme={theme}>
-                    <CssBaseline>
-                        <TopNavbar childProps={childProps} />
-                        <Routes childProps={childProps} />
-                    </CssBaseline>
-                </MuiThemeProvider>
-            </Provider>
+            <MuiThemeProvider theme={theme}>
+                <CssBaseline>
+                    <TopNavbar childProps={childProps} />
+                    <Routes childProps={childProps} />
+                </CssBaseline>
+            </MuiThemeProvider>
         );
     }
 

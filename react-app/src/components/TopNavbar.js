@@ -7,6 +7,10 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { bindActionCreators } from "redux";
+
 const styles = {
     grow: {
         flexGrow: 1
@@ -14,12 +18,12 @@ const styles = {
 };
 class TopNavbar extends React.Component {
     render() {
-        const { classes, childProps } = this.props;
+        const { classes, childProps, routeHome } = this.props;
         return (
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" color="inherit">
-                        <Button color="inherit" component={Link} to='/' >
+                        <Button color="inherit" onClick={() => routeHome()}>
                             FullStack Apprenticeship
                         </Button>
                     </Typography>
@@ -50,23 +54,23 @@ class TopNavbar extends React.Component {
                                   color="inherit"
                               >
                                   Knowledge Base
-                              </Button>,
-                            //   <Button
-                            //       key={1}
-                            //       color="inherit"
-                            //       component={Link}
-                            //       to="/signup"
-                            //   >
-                            //       Register
-                            //   </Button>,
-                            //   <Button
-                            //       key={2}
-                            //       color="inherit"
-                            //       component={Link}
-                            //       to="/login"
-                            //   >
-                            //       Login
-                            //   </Button>
+                              </Button>
+                              //   <Button
+                              //       key={1}
+                              //       color="inherit"
+                              //       component={Link}
+                              //       to="/signup"
+                              //   >
+                              //       Register
+                              //   </Button>,
+                              //   <Button
+                              //       key={2}
+                              //       color="inherit"
+                              //       component={Link}
+                              //       to="/login"
+                              //   >
+                              //       Login
+                              //   </Button>
                           ]}
                 </Toolbar>
             </AppBar>
@@ -78,4 +82,15 @@ TopNavbar.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(TopNavbar);
+const mapDispatchToProps = dispatch =>
+    bindActionCreators(
+        {
+            routeHome: () => push("/")
+        },
+        dispatch
+    );
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(withStyles(styles)(TopNavbar));
