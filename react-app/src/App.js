@@ -9,9 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 
 //Redux
 import { Provider } from "react-redux";
-import configureStore from "./store/configureStore";
-
-const store = configureStore();
+import store from "./store/configureStore";
 
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState());

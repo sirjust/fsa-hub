@@ -3,6 +3,11 @@ import { connect } from "react-redux";
 import { setUsername, setPassword } from "../actions/user";
 
 class LoginForm extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    }
     render() {
         return (
             <React.Fragment>
@@ -60,13 +65,11 @@ class LoginForm extends React.Component {
 
     handleOnSubmit = event => {
         event.preventDefault();
-
         if (!this.validateUsername(this.props.username)) {
             this.props.addErrors("Username is required");
             return;
         }
-
-        this.props.handleOnSubmit(this.state);
+        this.props.handleOnSubmit();
     };
 
     validateUsername = username => {

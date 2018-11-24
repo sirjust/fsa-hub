@@ -7,7 +7,7 @@ const authSignIn = ({ username = "", password = "" }) => {
 const awaitSignIn = () => ({
     type: "AWAIT_SIGN_IN"
 });
-export const signInSuccess = body => ({
+export const signInSuccess = (body = {}) => ({
     type: "SIGN_IN_SUCCESS",
     body
 });
@@ -25,14 +25,15 @@ export const signInNotConfirmed = err => ({
 });
 
 export const thunkSignIn = ({ username = "", password = "" } = {}) => {
+    console.log("thunking");
     return function(dispatch, getState) {
         dispatch(awaitSignIn());
         return authSignIn({ username, password })
             .then(data => {
-                console.log(data);
+                this.props.history.push("/");
                 dispatch(signInSuccess(data));
             })
-            .error(err => {
+            .catch(err => {
                 console.log(err);
             });
     };

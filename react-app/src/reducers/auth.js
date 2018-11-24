@@ -15,7 +15,8 @@ export default (state = authReducerDefaultState, action) => {
             };
         case "SIGN_IN_SUCCESS":
             return {
-                ...state
+                ...state,
+                userToken: action.body
             };
         default:
             return state;

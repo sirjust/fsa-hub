@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Auth } from "aws-amplify";
+import React from "react";
 import LoginForm from "../components/LoginForm";
 import ForgotPassword from "./ForgotPassword";
 
+import { connect } from "react-redux";
 import { thunkSignIn } from "../thunks/auth";
 
-export default class Login extends Component {
+class Login extends React.Component {
     state = {
         forgotPassword: false,
         errors: []
@@ -35,8 +35,13 @@ export default class Login extends Component {
         );
     }
 
-    handleOnLoginSubmit = data => {
-        this.props.dispatch(thunkSignIn(data.username, data.password));
+    handleOnLoginSubmit = () => {
+        this.props.dispatch(
+            thunkSignIn({
+                username: this.props.username,
+                password: this.props.password
+            })
+        );
         // Auth.signIn(data.username, data.password)
         //     .then(user => {
         //         const token = user.signInUserSession.idToken;
@@ -74,3 +79,10 @@ export default class Login extends Component {
         });
     };
 }
+
+const mapStateToProps = state => ({
+    username: state.user.username,
+    password: state.user.password
+});
+
+export default connect(mapStateToProps)(Login);
