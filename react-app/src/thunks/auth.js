@@ -35,6 +35,7 @@ export const thunkCurrentAuthenticatedUser = () => {
 export const authSignOut = () => ({
     type: "SIGN_OUT"
 });
+
 export const thunkSignOut = () => {
     return function(dispatch) {
         dispatch(waitASec());
@@ -44,7 +45,7 @@ export const thunkSignOut = () => {
             })
             .catch(err => {
                 console.log(err);
-                dispatch(userNotAuthenticated);
+                dispatch(userNotAuthenticated());
             });
     };
 };

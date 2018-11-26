@@ -5,11 +5,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { bindActionCreators } from "redux";
+import { thunkSignOut } from "../thunks/auth";
 
 const styles = {
     grow: {
@@ -17,13 +17,18 @@ const styles = {
     }
 };
 class TopNavbar extends React.Component {
+    componentDidMount() {
+        console.log(this.props);
+    }
     render() {
         const {
             classes,
             routeHome,
             routeknowledge,
             routeSignup,
-            routeLogin
+            routeLogin,
+            userToken,
+            handleSignOut
         } = this.props;
         return (
             <AppBar position="static">
@@ -34,7 +39,7 @@ class TopNavbar extends React.Component {
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
-                    {this.props.userToken
+                    {userToken
                         ? [
                               <Button
                                   key={0}
@@ -46,7 +51,7 @@ class TopNavbar extends React.Component {
                               <Button
                                   key={1}
                                   color="inherit"
-                                  onClick={this.handleLogout}
+                                  onClick={() => handleSignOut()}
                               >
                                   Logout
                               </Button>
@@ -84,18 +89,24 @@ TopNavbar.propTypes = {
     classes: PropTypes.object.isRequired
 };
 
-const mapDispatchToProps = dispatch =>
-    bindActionCreators(
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators(
         {
             routeHome: () => push("/"),
             routeSignup: () => push("/signup"),
             routeLogin: () => push("/login"),
-            routeknowledge: () => push("/knowledge")
+            routeknowledge: () => push("/knowledge"),
+            handleSignOut: () => thunkSignOut()
         },
         dispatch
     );
+};
+
+const mapStateToProps = state => ({
+    userToken: state.auth.userToken
+});
 
 export default connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(withStyles(styles)(TopNavbar));
