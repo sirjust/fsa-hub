@@ -1,6 +1,10 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { bindActionCreators } from "redux";
+
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -8,9 +12,6 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
-import { connect } from "react-redux";
-import { push } from "connected-react-router";
-import { bindActionCreators } from "redux";
 import { thunkSignOut } from "../thunks/auth";
 
 const styles = {
@@ -19,9 +20,6 @@ const styles = {
     }
 };
 class TopNavbar extends React.Component {
-    componentDidMount() {
-        console.log(this.props);
-    }
     render() {
         const {
             classes,
@@ -49,7 +47,7 @@ class TopNavbar extends React.Component {
                                   onClick={() => routeknowledge()}
                                   color="inherit"
                               >
-                                  Knowledge
+                                  Knowledge Base
                               </Button>,
                               <Button
                                   key={1}
@@ -65,7 +63,7 @@ class TopNavbar extends React.Component {
                                   onClick={() => routeknowledge()}
                                   color="inherit"
                               >
-                                  Knowledge Base
+                                  Knowledge
                               </Button>,
                               <Button
                                   key={1}

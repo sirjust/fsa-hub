@@ -21,26 +21,26 @@ export default (state = authReducerDefaultState, action) => {
                 ...state,
                 userToken: action.userToken,
                 isAuthenticated: true,
-                test: action.userToken
+                isLoading: false
             };
         case "USER_NOT_AUTHENTICATED":
             return {
                 ...state,
                 userToken: null,
-                isAuthenticated: false
-            };
-        case "CONFIRM_SIGN_UP":
-            return {
-                ...state
-            };
-        case "SIGN_IN":
-            return {
-                ...state
+                isAuthenticated: false,
+                isLoading: false
             };
         case "SIGN_IN_SUCCESS":
             return {
                 ...state,
-                userToken: action.body
+                userToken: action.body,
+                isLoading: false
+            };
+        case "SIGN_IN_PASSWORD_ERROR":
+            return {
+                ...state,
+                userToken: null,
+                isLoading: false
             };
         default:
             return { ...state };

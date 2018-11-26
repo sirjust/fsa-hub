@@ -1,5 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./store/configureStore";
 
 import AppliedRoute from "./components/AppliedRoute";
 import Home from "./containers/Home";
@@ -8,10 +10,6 @@ import Login from "./containers/Login";
 import LinkTabs from "./containers/LinkTabs";
 import LinkComponent from "./components/LinkComponent";
 import ToolsContainer from "./components/ToolsContainer";
-
-import { ConnectedRouter } from "connected-react-router";
-import { history } from "./store/configureStore";
-
 import AccountContainer from "./containers/AccountContainer";
 
 export default () => (

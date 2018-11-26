@@ -41,6 +41,7 @@ export const thunkSignOut = () => {
         dispatch(waitASec());
         return Auth.signOut()
             .then(() => {
+                dispatch(authSignOut());
                 dispatch(userNotAuthenticated());
             })
             .catch(err => {
@@ -61,12 +62,12 @@ export const signInSuccess = (body = {}) => ({
     type: "SIGN_IN_SUCCESS",
     body
 });
-export const signInUserNotFound = err => ({
-    type: "SIGN_IN_USER_NOT_FOUND",
+export const signInPasswordError = err => ({
+    type: "SIGN_IN_PASSWORD_ERROR",
     err
 });
-export const signInWrongPassword = err => ({
-    type: "SIGN_IN_WRONG_PASSWORD",
+export const signInUserNotFound = err => ({
+    type: "SIGN_IN_USER_NOT_FOUND",
     err
 });
 export const signInNotConfirmed = err => ({
@@ -87,14 +88,15 @@ export const thunkSignIn = ({ username = "", password = "" } = {}) => {
             .catch(err => {
                 console.log(err);
                 switch (err.code) {
-                    // case "NotAuthorizedException":
-                    //     this.setSignInPasswordErrorState(error.message);
-                    //     this.props.userHasAuthenticated(false);
-                    //     break;
-                    // case "UserNotFoundException":
-                    //     this.setUserNotFoundState(error.message);
-                    //     this.props.userHasAuthenticated(false);
-                    //     break;
+                    case "NotAuthorizedException":
+                        dispatch(signInPasswordError(err));
+                        // this.setSignInPasswordErrorState(err.message);
+                        // this.props.userHasAuthenticated(false);
+                        break;
+                    case "UserNotFoundException":
+                        // this.setUserNotFoundState(err.message);
+                        // this.props.userHasAuthenticated(false);
+                        break;
                     case "UserNotConfirmedException":
                         dispatch(confirmSignUp());
                         dispatch(push("/signup"));

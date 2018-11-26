@@ -1,15 +1,15 @@
 import React from "react";
 import Amplify from "aws-amplify";
-import aws_exports from "./aws-exports";
-import TopNavbar from "./components/TopNavbar";
-import Routes from "./Routes";
-import "./App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { connect } from "react-redux";
 
+import Routes from "./Routes";
+import aws_exports from "./aws-exports";
 import { thunkCurrentAuthenticatedUser } from "./thunks/auth";
+import TopNavbar from "./components/TopNavbar";
 
+import "./App.css";
 require("typeface-quicksand");
 
 Amplify.configure(aws_exports);

@@ -19,7 +19,7 @@ class PasswordInput extends React.Component {
                 id="password"
                 label="password"
                 type="password"
-                renderField={true}
+                renderField={this.props.showPasswordInput}
                 handleChange={this.handleChange}
                 value={this.props.password}
                 autoComplete="new-password"
@@ -28,12 +28,12 @@ class PasswordInput extends React.Component {
             <PaperTextField
                 autoComplete="new-password"
                 fullWidth
-                id="password"
+                id="confirmPassword"
                 label="confirm password"
                 type="password"
-                renderField={false}
+                renderField={this.props.showConfirmPassword}
                 handleChange={this.confirmPassword}
-                value={this.props.confirmPassword}
+                value={this.state.confirmPassword}
                 autoComplete="new-password"
             />
         );
@@ -42,7 +42,7 @@ class PasswordInput extends React.Component {
         this.props.dispatch(setPassword(event.target.value));
     };
     confirmPassword = event => {
-        this.props.dispatch(setConfirmPassword(event.target.value));
+        this.setState({ confirmPassword: event.target.value });
     };
 }
 
@@ -50,7 +50,9 @@ const mapStateToProps = state => {
     console.log(state);
     return {
         password: state.user.password,
-        confirmPassword: state.user.confirmPassword
+        confirmPassword: state.user.confirmPassword,
+        showConfirmPassword: state.authForm.showConfirmPassword,
+        showPasswordInput: state.authForm.showPasswordInput
     };
 };
 

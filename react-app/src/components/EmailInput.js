@@ -14,7 +14,7 @@ class EmailInput extends React.Component {
                 handleChange={this.handleChange}
                 value={this.props.email}
                 autoComplete="new-password"
-                // disabled={this.state.disableEmailInput}
+                disabled={this.props.disableEmailInput}
                 fullWidth
             />
         );
@@ -27,7 +27,8 @@ class EmailInput extends React.Component {
 const mapStateToProps = state => {
     console.log(state);
     return {
-        email: state.user.email
+        email: state.user.email,
+        disableEmailInput: state.authForm.disableEmailInput
     };
 };
 

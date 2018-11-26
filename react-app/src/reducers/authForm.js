@@ -9,7 +9,7 @@ const authFormReducerDefaultState = {
     disableEmailInput: false,
     disableActionButton: false,
     showPasswordInput: true,
-    showMatchingPasswordInput: false,
+    showConfirmPassword: false,
     showConfirmationInput: false,
     buttonContent: "Log in",
     buttonLoadingContent: "Logging in...",
@@ -33,7 +33,7 @@ export default (state = authFormReducerDefaultState, action) => {
                 disableEmailInput: false,
                 disableActionButton: false,
                 showPasswordInput: true,
-                showMatchingPasswordInput: false,
+                showConfirmPassword: false,
                 showConfirmationInput: false,
                 buttonContent: "Log in",
                 buttonLoadingContent: "Logging in...",
@@ -48,7 +48,7 @@ export default (state = authFormReducerDefaultState, action) => {
                 disableEmailInput: false,
                 disableActionButton: true,
                 showPasswordInput: true,
-                showMatchingPasswordInput: true,
+                showConfirmPassword: true,
                 showConfirmationInput: false,
                 passwordLabel: "password",
                 buttonContent: "Create an account",
@@ -65,7 +65,7 @@ export default (state = authFormReducerDefaultState, action) => {
                 disableEmailInput: true,
                 disableActionButton: false,
                 showPasswordInput: true,
-                showMatchingPasswordInput: false,
+                showConfirmPassword: false,
                 showConfirmationInput: true
             };
         case "SIGN_IN_PASSWORD_ERROR":
@@ -77,10 +77,10 @@ export default (state = authFormReducerDefaultState, action) => {
                 formAction: "signInPasswordError",
                 disableEmailInput: false,
                 showPasswordInput: true,
-                showMatchingPasswordInput: false,
+                showConfirmPassword: false,
                 showConfirmationInput: false,
                 disableActionButton: true,
-                buttonContent: "",
+                buttonContent: action.err,
                 buttonLoadingContent: "Sending confirmation code..."
             };
         case "FORGOT_PASSWORD":
@@ -92,7 +92,7 @@ export default (state = authFormReducerDefaultState, action) => {
                 disableEmailInput: true,
                 disableActionButton: false,
                 showPasswordInput: true,
-                showMatchingPasswordInput: false,
+                showConfirmPassword: false,
                 showConfirmationInput: true,
                 buttonContent: "Change your password",
                 buttonLoadingText: "Bothering our engineers...",
@@ -107,7 +107,7 @@ export default (state = authFormReducerDefaultState, action) => {
                 disableEmailInput: false,
                 disableActionButton: true,
                 showPasswordInput: true,
-                showMatchingPasswordInput: false,
+                showConfirmPassword: false,
                 showConfirmationInput: false,
                 buttonContent: "User not found",
                 buttonLoadingText: "...",
