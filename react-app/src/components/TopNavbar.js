@@ -5,6 +5,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
@@ -28,7 +30,8 @@ class TopNavbar extends React.Component {
             routeSignup,
             routeLogin,
             userToken,
-            handleSignOut
+            handleSignOut,
+            fancyLogin
         } = this.props;
         return (
             <AppBar position="static">
@@ -77,7 +80,14 @@ class TopNavbar extends React.Component {
                                   onClick={() => routeLogin()}
                               >
                                   Login
-                              </Button>
+                              </Button>,
+                              <IconButton
+                                  key={3}
+                                  color="inherit"
+                                  onClick={() => fancyLogin()}
+                              >
+                                  <AccountCircleIcon />
+                              </IconButton>
                           ]}
                 </Toolbar>
             </AppBar>
@@ -96,7 +106,8 @@ const mapDispatchToProps = dispatch => {
             routeSignup: () => push("/signup"),
             routeLogin: () => push("/login"),
             routeknowledge: () => push("/knowledge"),
-            handleSignOut: () => thunkSignOut()
+            handleSignOut: () => thunkSignOut(),
+            fancyLogin: () => push("/fancyLogin")
         },
         dispatch
     );

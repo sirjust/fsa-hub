@@ -12,7 +12,7 @@ import ToolsContainer from "./components/ToolsContainer";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./store/configureStore";
 
-// import AccountContainer from "./containers/AccountContainer";
+import AccountContainer from "./containers/AccountContainer";
 
 export default () => (
     <ConnectedRouter history={history}>
@@ -20,6 +20,11 @@ export default () => (
             <AppliedRoute path="/" exact component={Home} />
             <AppliedRoute path="/signup" exact component={Signup} />
             <AppliedRoute path="/login" exact component={Login} />
+            <AppliedRoute
+                path="/fancyLogin"
+                exact
+                component={AccountContainer}
+            />
             <AppliedRoute path="/knowledge" exact component={LinkTabs} />
             <AppliedRoute path="/link/:id" component={LinkComponent} />
             <Route path="/tool/:schema" component={ToolsContainer} />
