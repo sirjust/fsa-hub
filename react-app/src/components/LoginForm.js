@@ -1,13 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setUsername, setPassword } from "../actions/user";
+import { thunkSignIn } from "../thunks/auth";
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.handleOnSubmit = this.handleOnSubmit.bind(this);
-    }
     render() {
         return (
             <React.Fragment>
@@ -39,6 +35,7 @@ class LoginForm extends React.Component {
                         <br />
                         <button
                             className="light small"
+                            type="button"
                             onClick={this.props.forgotPassword}
                         >
                             Forgot password?
@@ -63,13 +60,13 @@ class LoginForm extends React.Component {
         }
     };
 
-    handleOnSubmit = event => {
-        event.preventDefault();
-        if (!this.validateUsername(this.props.username)) {
-            this.props.addErrors("Username is required");
-            return;
-        }
-        this.props.handleOnSubmit();
+    handleOnLoginSubmit = () => {
+        this.props.dispatch(
+            thunkSignIn({
+                username: this.props.username,
+                password: this.props.password
+            })
+        );
     };
 
     validateUsername = username => {

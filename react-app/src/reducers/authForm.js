@@ -1,4 +1,7 @@
 const authFormReducerDefaultState = {
+    confirmationRequired: false,
+    confirmationCode: "",
+    errors: [],
     showSignUpButton: true,
     signUpButtonText: "Create an account",
     isLoading: false,
@@ -15,8 +18,14 @@ const authFormReducerDefaultState = {
 
 export default (state = authFormReducerDefaultState, action) => {
     switch (action.type) {
+        case "SET_CONFIRMATION_CODE":
+            return {
+                ...state,
+                confirmationCode: action.confirmationCode
+            };
         case "SIGN_IN":
             return {
+                ...state,
                 showSignUpButton: true,
                 signUpButtonText: "Create an account",
                 isLoading: false,
@@ -32,7 +41,7 @@ export default (state = authFormReducerDefaultState, action) => {
             };
         case "SIGN_UP":
             return {
-                showSignUpButton: true,
+                ...state,
                 signUpButtonText: "Cancel",
                 formAction: "signUp",
                 isLoading: false,
@@ -47,6 +56,8 @@ export default (state = authFormReducerDefaultState, action) => {
             };
         case "CONFIRM_SIGN_UP":
             return {
+                ...state,
+                confirmationRequired: true,
                 showSignUpButton: true,
                 signUpButtonText: "Cancel",
                 isLoading: false,
@@ -59,6 +70,7 @@ export default (state = authFormReducerDefaultState, action) => {
             };
         case "SIGN_IN_PASSWORD_ERROR":
             return {
+                ...state,
                 showSignUpButton: true,
                 signUpButtonText: "Create an account",
                 isLoading: false,
@@ -73,6 +85,7 @@ export default (state = authFormReducerDefaultState, action) => {
             };
         case "FORGOT_PASSWORD":
             return {
+                ...state,
                 showSignUpButton: false,
                 formAction: "forgotPassword",
                 isLoading: false,
@@ -87,6 +100,7 @@ export default (state = authFormReducerDefaultState, action) => {
             };
         case "USER_NOT_FOUND":
             return {
+                ...state,
                 showSignUpButton: true,
                 formAction: "userNotFound",
                 isLoading: false,

@@ -1,13 +1,37 @@
 const authReducerDefaultState = {
-    userToken: null
+    isLoading: false,
+    userToken: null,
+    isAuthenticated: false
 };
 
 export default (state = authReducerDefaultState, action) => {
     switch (action.type) {
-        case "AWAIT_SIGN_IN":
+        case "WAIT_A_SEC":
             return {
                 ...state,
                 isLoading: true
+            };
+        case "DONE_LOADING":
+            return {
+                ...state,
+                isLoading: false
+            };
+        case "CURRENT_AUTHENTICATED_USER":
+            return {
+                ...state,
+                userToken: action.userToken,
+                isAuthenticated: true,
+                test: action.userToken
+            };
+        case "USER_NOT_AUTHENTICATED":
+            return {
+                ...state,
+                userToken: null,
+                isAuthenticated: false
+            };
+        case "CONFIRM_SIGN_UP":
+            return {
+                ...state
             };
         case "SIGN_IN":
             return {
@@ -19,6 +43,6 @@ export default (state = authReducerDefaultState, action) => {
                 userToken: action.body
             };
         default:
-            return state;
+            return { ...state };
     }
 };

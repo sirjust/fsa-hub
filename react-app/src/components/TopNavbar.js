@@ -18,22 +18,27 @@ const styles = {
 };
 class TopNavbar extends React.Component {
     render() {
-        const { classes, childProps, routeHome } = this.props;
+        const {
+            classes,
+            routeHome,
+            routeknowledge,
+            routeSignup,
+            routeLogin
+        } = this.props;
         return (
             <AppBar position="static">
                 <Toolbar>
-                    <Typography variant="h6" color="inherit">
+                    <Typography component="h6" color="inherit">
                         <Button color="inherit" onClick={() => routeHome()}>
                             FullStack Apprenticeship
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
-                    {childProps.userToken
+                    {this.props.userToken
                         ? [
                               <Button
                                   key={0}
-                                  component={Link}
-                                  to="/knowledge"
+                                  onClick={() => routeknowledge()}
                                   color="inherit"
                               >
                                   Knowledge
@@ -49,28 +54,25 @@ class TopNavbar extends React.Component {
                         : [
                               <Button
                                   key={0}
-                                  component={Link}
-                                  to="/knowledge"
+                                  onClick={() => routeknowledge()}
                                   color="inherit"
                               >
                                   Knowledge Base
+                              </Button>,
+                              <Button
+                                  key={1}
+                                  color="inherit"
+                                  onClick={() => routeSignup()}
+                              >
+                                  Register
+                              </Button>,
+                              <Button
+                                  key={2}
+                                  color="inherit"
+                                  onClick={() => routeLogin()}
+                              >
+                                  Login
                               </Button>
-                              //   <Button
-                              //       key={1}
-                              //       color="inherit"
-                              //       component={Link}
-                              //       to="/signup"
-                              //   >
-                              //       Register
-                              //   </Button>,
-                              //   <Button
-                              //       key={2}
-                              //       color="inherit"
-                              //       component={Link}
-                              //       to="/login"
-                              //   >
-                              //       Login
-                              //   </Button>
                           ]}
                 </Toolbar>
             </AppBar>
@@ -85,7 +87,10 @@ TopNavbar.propTypes = {
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            routeHome: () => push("/")
+            routeHome: () => push("/"),
+            routeSignup: () => push("/signup"),
+            routeLogin: () => push("/login"),
+            routeknowledge: () => push("/knowledge")
         },
         dispatch
     );

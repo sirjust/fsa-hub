@@ -1,6 +1,13 @@
 export const signInForm = () => ({
     type: "SIGN_IN"
 });
+export const setConfirmationCode = (confirmationCode = "") => {
+    return {
+        type: "SET_CONFIRMATION_CODE",
+        confirmationCode
+    };
+};
+
 export const signUpForm = () => ({
     type: "SIGN_UP"
 });

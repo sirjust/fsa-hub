@@ -1,11 +1,14 @@
 import React from "react";
-import Amplify, { Auth } from "aws-amplify";
+import Amplify from "aws-amplify";
 import aws_exports from "./aws-exports";
 import TopNavbar from "./components/TopNavbar";
 import Routes from "./Routes";
 import "./App.css";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { connect } from "react-redux";
+
+import { thunkCurrentAuthenticatedUser } from "./thunks/auth";
 
 require("typeface-quicksand");
 
@@ -20,55 +23,24 @@ const theme = createMuiTheme({
 });
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            userToken: null,
-            object: {}
-        };
-    }
-
     componentDidMount() {
-        Auth.currentAuthenticatedUser()
-            .then(user => {
-                const token = user.signInUserSession.idToken;
-                this.loginUser(token);
-            })
-            .catch(err => console.log(err));
+        this.props.dispatch(thunkCurrentAuthenticatedUser());
     }
 
     render() {
-        const childProps = {
-            object: this.state.object,
-            loginUser: this.loginUser.bind(this)
-        };
         return (
             <MuiThemeProvider theme={theme}>
                 <CssBaseline>
-                    <TopNavbar childProps={childProps} />
-                    <Routes childProps={childProps} />
+                    <TopNavbar />
+                    <Routes />
                 </CssBaseline>
             </MuiThemeProvider>
         );
     }
 
-    loginUser = userToken => {
-        this.setState({
-            userToken: userToken
-        });
-    };
-
-    handleLogout = () => {
-        Auth.signOut()
-            .then(() => {
-                this.setState({
-                    userToken: null
-                });
-                alert("Logged out!");
-            })
-            .catch(err => console.log(err));
-    };
+    handleLogout = () => {};
 }
 
-export default App;
+const mapStateToProps = state => ({});
+
+export default connect(mapStateToProps)(App);

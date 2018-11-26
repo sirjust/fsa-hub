@@ -9,38 +9,20 @@ import LinkTabs from "./containers/LinkTabs";
 import LinkComponent from "./components/LinkComponent";
 import ToolsContainer from "./components/ToolsContainer";
 
-import AccountContainer from "./containers/AccountContainer";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "./store/configureStore";
 
-export default ({ childProps }) => (
-    <Switch>
-        <AppliedRoute path="/" exact component={Home} props={childProps} />
-        <AppliedRoute
-            path="/signup"
-            exact
-            component={Signup}
-            props={childProps}
-        />
-        <AppliedRoute
-            path="/login"
-            exact
-            component={Login}
-            props={childProps}
-        />
-        <AppliedRoute
-            path="/knowledge"
-            exact
-            component={LinkTabs}
-            props={childProps}
-        />
-        <AppliedRoute
-            path="/link/:id"
-            component={LinkComponent}
-            props={childProps}
-        />
-        <Route
-            path="/tool/:schema"
-            component={ToolsContainer}
-            props={childProps}
-        />
-    </Switch>
+// import AccountContainer from "./containers/AccountContainer";
+
+export default () => (
+    <ConnectedRouter history={history}>
+        <Switch>
+            <AppliedRoute path="/" exact component={Home} />
+            <AppliedRoute path="/signup" exact component={Signup} />
+            <AppliedRoute path="/login" exact component={Login} />
+            <AppliedRoute path="/knowledge" exact component={LinkTabs} />
+            <AppliedRoute path="/link/:id" component={LinkComponent} />
+            <Route path="/tool/:schema" component={ToolsContainer} />
+        </Switch>
+    </ConnectedRouter>
 );

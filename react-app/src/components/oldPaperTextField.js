@@ -42,17 +42,11 @@ class PaperTextField extends React.Component {
     };
 
     renderTextInput() {
-        const {
-            variant = "standard",
-            value = "",
-            id = "",
-            label = ""
-        } = this.props;
+        const { value = "", id = "", label = "" } = this.props;
         return (
             <TextField
                 id={id}
                 label={label}
-                variant={variant}
                 value={value}
                 onChange={this.handleChange}
                 fullWidth={this.props.fullWidth}
@@ -99,7 +93,6 @@ class PaperTextField extends React.Component {
     }
     renderTextArea() {
         const {
-            variant = "standard",
             value = "",
             required = "false",
             id = "",
@@ -111,7 +104,6 @@ class PaperTextField extends React.Component {
                 required={required}
                 id={id}
                 label={label}
-                variant={variant}
                 value={value}
                 onChange={this.handleChange}
                 fullWidth={this.props.fullWidth}
