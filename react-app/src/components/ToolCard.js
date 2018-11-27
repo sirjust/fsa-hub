@@ -1,30 +1,29 @@
-import React from 'react';
+import React from "react";
 
 // import { Link } from 'react-router-dom'
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const styles = {
     card: {
-        minWidth: 275,
+        minWidth: 275
     },
     bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
+        display: "inline-block",
+        margin: "0 2px",
+        transform: "scale(0.8)"
     },
     title: {
-        fontSize: 14,
+        fontSize: 14
     },
     pos: {
-        marginBottom: 12,
-    },
+        marginBottom: 12
+    }
 };
-
 
 export default ({ links }) => {
     const linksToDisplay = links.map((val, i) => {
@@ -32,7 +31,11 @@ export default ({ links }) => {
             <Grid key={i} item xs={6} sm={3}>
                 <Card className={styles.card}>
                     <CardContent>
-                        <Typography className={styles.title} color="textSecondary" gutterBottom>
+                        <Typography
+                            className={styles.title}
+                            color="textSecondary"
+                            gutterBottom
+                        >
                             {val.title}
                         </Typography>
                     </CardContent>
@@ -47,13 +50,6 @@ export default ({ links }) => {
                 </Card>
             </Grid>
         );
-    })
-    return (
-
-        !links
-            ? "Loading"
-            : linksToDisplay
-
-    );
-
-}
+    });
+    return !links ? "Loading" : linksToDisplay;
+};

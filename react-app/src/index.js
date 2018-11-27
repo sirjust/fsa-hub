@@ -1,14 +1,21 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
+import { render } from "react-dom";
+import { Provider } from "react-redux";
 
-ReactDOM.render(
-    <BrowserRouter>
+import store from "./store/configureStore";
+
+import App from "./App";
+import "./index.css";
+
+// const unsubscribe = store.subscribe(() => {
+//     console.log(store.getState());
+// });
+
+render(
+    <Provider store={store}>
         <App />
-    </BrowserRouter>,
+    </Provider>,
     document.getElementById("root")
 );
 registerServiceWorker();

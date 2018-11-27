@@ -128,8 +128,7 @@ class PaperTextField extends React.Component {
             classes,
             order = 0,
             renderField = true,
-            type = "",
-            disabled
+            type = ""
         } = this.props;
 
         return (
@@ -140,7 +139,7 @@ class PaperTextField extends React.Component {
                 unmountOnExit
                 style={{ transitionDelay: order ? order * 100 : 0 }}
             >
-                <Paper elevation={disabled ? 0 : 4} className={classes.paper}>
+                <Paper elevation={4} className={classes.paper}>
                     {this.renderSwitch(type)}
                 </Paper>
             </Slide>
