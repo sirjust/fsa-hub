@@ -2,25 +2,16 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import { Auth } from "aws-amplify";
-import { connect } from "react-redux";
-import Slide from "@material-ui/core/Slide";
-import Button from "@material-ui/core/Button";
-
 import PaperTextField from "../components/PaperTextField";
 import LoadingButton from "../components/LoadingButton";
+import Slide from "@material-ui/core/Slide";
+import Button from "@material-ui/core/Button";
 import EmailInput from "../components/EmailInput";
 import PasswordInput from "../components/PasswordInput";
-import ConfirmationCodeInput from "../components/ConfirmationCodeInput";
 
-import {
-    signInForm,
-    signUpForm,
-    confirmSignUpForm,
-    signInPasswordErrorForm,
-    forgotPasswordForm,
-    userNotFoundForm
-} from "../actions/authForm";
-import { thunkSignIn, signInPasswordError } from "../thunks/auth";
+import RootRef from "@material-ui/core/RootRef";
+import { connect } from "react-redux";
+import { signInForm, signUpForm } from "../actions/authForm";
 
 const styles = theme => ({
     login: {
@@ -37,54 +28,31 @@ const styles = theme => ({
 });
 
 class AccountContainer extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(signInForm());
-    }
-
-    render() {
-        const { classes } = this.props;
-        return (
-            <div className={classes.login}>
-                <form
-                    className={classes.loginForm}
-                    onSubmit={this.handleFormSubmit}
-                >
-                    <EmailInput />
-                    <PasswordInput variant="password" />
-                    <PasswordInput variant="confirmPassword" />
-                    {this.props.authForm.formAction === "signInPasswordError" &&
-                        this.renderFormActionButton({
-                            order: 0,
-                            buttonContent: "Reset Password",
-                            buttonLoadingContent: "Bothering our engineers...",
-                            color: "secondary",
-                            disabled: false,
-                            type: "submit"
-                        })}
-                    <ConfirmationCodeInput />
-                    {this.renderFormActionButton({
-                        color: "default",
-                        buttonContent: this.props.authForm.buttonContent,
-                        disabled: this.handleDisableActionButton(),
-                        variant: "contained"
-                    })}
-                    {this.props.authForm.showSignUpButton && (
-                        <Button
-                            color={
-                                !this.props.authForm.disabledActionButton
-                                    ? "primary"
-                                    : "secondary"
-                            }
-                            type="button"
-                            onClick={this.handleSignUpButton}
-                        >
-                            {this.props.authForm.signUpButtonText || "Error"}
-                        </Button>
-                    )}
-                </form>
-            </div>
-        );
-    }
+    confirmationCodeInput = (order = 0) => (
+        <React.Fragment>
+            <PaperTextField
+                id="confirmationCode"
+                label="confirmation code"
+                type="text"
+                order={order}
+                handleChange={this.handleChange}
+                renderField={this.props.authForm.showConfirmationInput}
+                value={this.props.confirmationCode}
+                fullWidth
+            />
+            {this.renderFormActionButton({
+                order: 0,
+                buttonContent: "Resend confirmation code",
+                buttonLoadingContent: "Resending confirmation code...",
+                disabled: this.props.disableActionButton,
+                type: "button",
+                renderField:
+                    this.props.showConfirmationInput &&
+                    this.props.confirmationCode.length === 0,
+                onClick: this.pickResendConfirmationType
+            })}
+        </React.Fragment>
+    );
 
     renderFormActionButton = ({
         order = 0,
@@ -315,17 +283,9 @@ class AccountContainer extends React.Component {
     };
 
     handleSignUpButton = () => {
-        console.log(this.props.authForm.formAction);
-        switch (this.props.authForm.formAction) {
+        switch (this.props.formAction) {
             case "signIn":
-                this.props.dispatch(signUpForm());
-                break;
-            case "signUp":
-                this.props.dispatch(signInForm());
-                break;
             case "signInPasswordError":
-                this.props.dispatch(signInPasswordErrorForm());
-                break;
             case "userNotFound":
                 this.props.dispatch(signUpForm());
                 break;
@@ -344,6 +304,56 @@ class AccountContainer extends React.Component {
             default:
                 return this.props.disableActionButton;
         }
+    }
+
+    componentDidMount() {
+        this.props.dispatch(signInForm());
+    }
+
+    render() {
+        const { classes } = this.props;
+        console.log(this.handleDisableActionButton());
+        return (
+            <div className={classes.login}>
+                <form
+                    className={classes.loginForm}
+                    onSubmit={this.handleFormSubmit}
+                >
+                    <EmailInput />
+                    <PasswordInput variant="password" />
+                    <PasswordInput variant="confirmPassword" />
+                    {this.props.formAction === "signInPasswordError" &&
+                        this.renderFormActionButton({
+                            order: 0,
+                            buttonContent: "Reset Password",
+                            buttonLoadingContent: "Bothering our engineers...",
+                            color: "secondary",
+                            disabled: false,
+                            type: "submit"
+                        })}
+                    {this.confirmationCodeInput()}
+                    {this.renderFormActionButton({
+                        color: "default",
+                        buttonContent: this.props.buttonContent,
+                        disabled: this.handleDisableActionButton(),
+                        variant: "contained"
+                    })}
+                    {this.props.showSignUpButton && (
+                        <Button
+                            color={
+                                !this.props.disabledActionButton
+                                    ? "primary"
+                                    : "secondary"
+                            }
+                            type="button"
+                            onClick={this.handleSignUpButton}
+                        >
+                            {this.props.signUpButtonText || "Error"}
+                        </Button>
+                    )}
+                </form>
+            </div>
+        );
     }
 }
 

@@ -30,24 +30,31 @@ const styles = theme => ({
 
 // const query = `*[_type == 'algorithmsSchema' || _type == 'gitSchema' || _type == 'nativeSchema' || _type == 'webSchema' || _type == 'backEndSchema' || _type == 'commandLineSchema' || _type == 'javascriptSchema' || _type == 'gitSchema' || _type == 'awsSchema' || _type == 'securitySchema'  ]{_type, text, title, url}`;
 
-
 class LinkTabs extends Component {
-    state = {
-        value: 0,
-        fsaFolders: [],
-        cityFolders: [],
-        workFolders: []
-    };
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            value: 0,
+            fsaFolders: [],
+            cityFolders: [],
+            workFolders: []
+        };
+    }
 
     handleChange = (event, value) => {
         this.setState({ value });
     };
 
-    reduceFolder = (folder) => folder.reduce((acc, next) => acc.concat({ name: next.name, type: next.type }), []) 
+    reduceFolder = folder =>
+        folder.reduce(
+            (acc, next) => acc.concat({ name: next.name, type: next.type }),
+            []
+        );
 
-render() {
-    const { classes } = this.props;
-    const { value } = this.state;
+    render() {
+        const { classes } = this.props;
+        const { value } = this.state;
         return (
             <div className={classes.root}>
                 <AppBar position="static">
