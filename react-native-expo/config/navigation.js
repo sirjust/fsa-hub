@@ -1,55 +1,72 @@
-import React from 'react'
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
+import React from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-// Screens
-import HomeScreen from '../screens/HomeScreen'
-import ChatScreen from '../screens/ChatScreen'
-import KnowledgeScreen from '../screens/KnowledgeScreen'
-import ProfileScreen from '../screens/ProfileScreen'
+import {
+    createSwitchNavigator,
+    createStackNavigator,
+    createAppContainer,
+    createDrawerNavigator,
+    createBottomTabNavigator,
+} from 'react-navigation';
 
-
-//Stack Navigators
-
-const HomeStack = createStackNavigator({
-    Home: {screen: HomeScreen}
-})
-
-const ChatStack = createStackNavigator({
-    Chat: {screen: ChatScreen}
-})
-
-const KnowledgeStack = createStackNavigator({
-    Knowledge: {screen: KnowledgeScreen}
-})
-
-const ProfileStack = createStackNavigator({
-    Profile: {screen: ProfileScreen}
-})
+import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
+import SignInScreen from '../screens/SignInScreen';
+import SignUpScreen from '../screens/SignUpScreen';
+import HomeScreen from '../screens/HomeScreen';
+import ChatScreen from '../screens/ChatScreen';
+import KnowledgeScreen from '../screens/KnowledgeScreen';
+import SettingsScreen from '../screens/SettingsScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
 
-// Tab Bar Navigator
-// const AppTabBarNavigator = createBottomTabNavigator({
-//     Home: HomeScreen,
-//     Chat: ChatScreen,
-//     Knowledge: KnowledgeScreen,
-//     Profile: ProfileScreen
-// })
-
-const TabNavigator = createBottomTabNavigator({
-    Home: HomeStack,
-    Chat: ChatScreen,
+const AuthStackNavigator = createStackNavigator({
+    Welcome: { screen: WelcomeScreen },
+    SignIn: { screen: SignInScreen },
+    SignUp: { screen: SignUpScreen },
 });
 
-// This is the base of the app navigation
-const AppNavigation = createStackNavigator({
-    TabBarScreen: {
-        screen: TabNavigator
+const AppTabNavigator = createBottomTabNavigator({
+    Home: { screen: HomeScreen },
+    Chat: { screen: ChatScreen },
+    Knowledge: { screen: KnowledgeScreen },
+    Profile: { screen: ProfileScreen },
+});
+
+const AppStackNavigator = createStackNavigator({
+    AppTabNavigator: {
+        screen: AppTabNavigator,
+        navigationOptions: ({ navigation }) => ({
+            title: 'FSA Hub',
+            headerLeft: (
+                <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                    <View style={{ paddingHorizontal: 10 }}>
+                        <Ionicons name="md-menu" size={32} />
+                    </View>
+                </TouchableOpacity>
+            ),
+        }),
     },
+});
 
-})
+const AppDrawerNavigator = createDrawerNavigator({
+    Home: AppStackNavigator,
+    Settings: { screen: SettingsScreen },
+});
 
-// export default createAppContainer(AppTabBarNavigator)
+const AppNavigator = createSwitchNavigator({
+    AuthLoading: AuthLoadingScreen,
+    Auth: AuthStackNavigator,
+    App: AppDrawerNavigator,
+});
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
 
-
-export default createAppContainer(AppNavigation);
+export default createAppContainer(AppNavigator);
