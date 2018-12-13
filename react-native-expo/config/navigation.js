@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
+
 
 import {
     createSwitchNavigator,
@@ -27,18 +28,55 @@ const AuthStackNavigator = createStackNavigator({
     SignUp: { screen: SignUpScreen },
 });
 
-const AppTabNavigator = createBottomTabNavigator({
-    Home: { screen: HomeScreen },
-    Chat: { screen: ChatScreen },
-    Knowledge: { screen: KnowledgeScreen },
-    Profile: { screen: ProfileScreen },
-});
+const AppTabNavigator = createBottomTabNavigator(
+    {
+      Home: {
+        screen: HomeScreen,
+        navigationOptions: {
+          tabBarLable: 'Home',
+          tabBarIcon: ({ tintColor }) => (
+            <Ionicons name="ios-home" size={28} color={tintColor} />
+          ),
+        },
+      },
+      // Chat: {
+      //   screen: ChatScreen,
+      //   navigationOptions: {
+      //     tabBarIcon: ({ tintColor }) => (
+      //       <Entypo name="chat" size={28} color={tintColor} />
+      //     ),
+      //   },
+      // },
+      Knowledge: {
+        screen: KnowledgeScreen,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => (
+            <MaterialIcons name="book" size={28} color={tintColor} />
+          ),
+        },
+      },
+      Profile: {
+        screen: ProfileScreen,
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => (
+            <Entypo name="user" size={28} color={tintColor} />
+          ),
+        },
+      },
+    },
+    {
+      tabBarOptions: {
+        activeTintColor: '#6200EE',
+        inactiveTintColor: '#D9D9D9',
+      },
+    },
+  );
 
 const AppStackNavigator = createStackNavigator({
     AppTabNavigator: {
         screen: AppTabNavigator,
         navigationOptions: ({ navigation }) => ({
-            title: 'FSA Hub',
+            title: '#thehub',
             headerLeft: (
                 <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
                     <View style={{ paddingHorizontal: 10 }}>
