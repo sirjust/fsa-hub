@@ -12,10 +12,10 @@ class KnowledgeScreen extends Component
                 <Card style={{flex: 0}}>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={require('../assets/fsa.jpeg')} />
+                        <Thumbnail source={require('../assets/knowledge.png')} />
                         <Body>
-                            <Text>FSA Knowledge Base</Text>
-                            <Text note>Key Resources for the FSA Technical Standard</Text>
+                            <Text>FSA Technical Standard</Text>
+                            <Text note>Key Tutorials, Articles & Websites</Text>
                         </Body>
                     </Left>
                 </CardItem>
