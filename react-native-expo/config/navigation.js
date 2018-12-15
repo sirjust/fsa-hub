@@ -20,6 +20,7 @@ import ChatScreen from '../screens/ChatScreen';
 import KnowledgeScreen from '../screens/KnowledgeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import SandboxScreen from '../screens/SandboxScreen';
 
 
 const AuthStackNavigator = createStackNavigator({
@@ -30,6 +31,15 @@ const AuthStackNavigator = createStackNavigator({
 
 const AppTabNavigator = createBottomTabNavigator(
     {
+      Sandbox: {
+        screen: SandboxScreen,
+        navigationOptions: {
+          tabBarLable: 'Sandbox',
+          tabBarIcon: ({ tintColor }) => (
+            <Ionicons name="ios-home" size={28} color={tintColor} />
+          ),
+        },
+      },
       Home: {
         screen: HomeScreen,
         navigationOptions: {
