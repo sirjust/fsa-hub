@@ -1,9 +1,31 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'; 
+import NavButton from "../components/NavButton";
 
 class KnowledgeScreen extends Component
 {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            ts: false,
+            work: false
+        }
+    }
+
+    // openTS = async () => {    
+    //     this.setState({
+    //         ts: true
+    //     })
+    //   };
+
+    // open = async () => {    
+    //     this.setState({
+    //         work: true
+    //     })
+    //   };
+
     render()
     {
         return (
@@ -21,15 +43,16 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        {/* <Image source={require('../assets/fsa.jpeg')} style={{height:100, width: 200, flex: 1}} /> */}
                         <Text>The Full-Stack Apprenticeship Technical Standard is our toolkit for building modern, scalable applications. They are chosen for their production readiness, available documentation, open-source libraries & tutorials available for the learning process.</Text>
                     </Body>
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <Button block textStyle={{color: `#87838B`}}>
+                        <NavButton route="Subcategories" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        schema="FSA"
+                        >
                             <Text>View Resources</Text>
-                        </Button>                      
+                        </NavButton>                      
                     </Body>
                 </CardItem>
                 </Card>
@@ -47,15 +70,15 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        {/* <Image source={{uri: 'somewhere'}} style={{height:100, width: 200, flex: 1}} /> */}
                         <Text>Our official directory for resources relating to finding freelance work, full-time roles, interviewing, start-up related inquiries & everything in between. </Text>
                     </Body>
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <Button block textStyle={{color: `#87838B`}}>
+                        <NavButton route="Subcategories" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        schema="job">
                             <Text>View Resources</Text>
-                        </Button>
+                        </NavButton>
                         </Body>
                 </CardItem>
                 </Card>
@@ -64,14 +87,5 @@ class KnowledgeScreen extends Component
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
-
 
 export default KnowledgeScreen;
