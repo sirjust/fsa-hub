@@ -1,7 +1,7 @@
 export const fullStackApprenticeship = [
     {
         type: 'gettingStartedSchema',
-        name: 'Getting Started'
+        name: 'Get Started'
     },
     {
         type: 'nativeSchema',
@@ -13,19 +13,19 @@ export const fullStackApprenticeship = [
     }, 
     {
         type: 'backEndSchema',
-        name: 'Node.js'
+        name: 'Node'
     }, 
     {
         type: 'algorithmsSchema',
-        name: 'Applied Computer Science'
+        name: 'Computer Science'
     }, 
     {
         type: 'commandLineSchema',
-        name: 'Command Line Interface'
+        name: 'Command Line'
     }, 
     {
         type: 'javascriptSchema',
-        name: 'JavaScript  - ES6 & Beyond'
+        name: 'JavaScript'
     }, 
     {
         type: 'gitSchema',
@@ -33,7 +33,7 @@ export const fullStackApprenticeship = [
     },
     {
         type: 'awsSchema',
-        name: 'Amazon Web Services'
+        name: 'AWS'
     },
     {
         type: 'securitySchema',
@@ -53,7 +53,7 @@ export const fullStackApprenticeship = [
     },
     {
         type: 'devopsSchema',
-        name: 'DevOps'
+        name: 'App Deployment'
     },
     {
         type: 'testingSchema',
@@ -61,7 +61,7 @@ export const fullStackApprenticeship = [
     },
     {
         type: 'uxSchema',
-        name: 'User Experience & Design'
+        name: 'UX Design'
     }
 ]
 

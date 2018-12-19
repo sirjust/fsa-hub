@@ -36,7 +36,7 @@ class TopNavbar extends React.Component {
                 <Toolbar>
                     <Typography component="h6" color="inherit">
                         <Button color="inherit" onClick={() => routeHome()}>
-                            The Full-Stack Apprenticeship Hub
+                            #thehub
                         </Button>
                     </Typography>
                     <div className={classes.grow} />
@@ -65,27 +65,27 @@ class TopNavbar extends React.Component {
                             //   >
                             //       Knowledge
                             //   </Button>,
-                              <Button
-                                  key={1}
-                                  color="inherit"
-                                  onClick={() => routeSignup()}
-                              >
-                                  Register
-                              </Button>,
-                              <Button
-                                  key={2}
-                                  color="inherit"
-                                  onClick={() => routeLogin()}
-                              >
-                                  Login
-                              </Button>,
-                              <IconButton
-                                  key={3}
-                                  color="inherit"
-                                  onClick={() => fancyLogin()}
-                              >
-                                  <AccountCircleIcon />
-                              </IconButton>
+                            //   <Button
+                            //       key={1}
+                            //       color="inherit"
+                            //       onClick={() => routeSignup()}
+                            //   >
+                            //       Register
+                            //   </Button>,
+                            //   <Button
+                            //       key={2}
+                            //       color="inherit"
+                            //       onClick={() => routeLogin()}
+                            //   >
+                            //       Login
+                            //   </Button>,
+                            //   <IconButton
+                            //       key={3}
+                            //       color="inherit"
+                            //       onClick={() => fancyLogin()}
+                            //   >
+                            //       <AccountCircleIcon />
+                            //   </IconButton>
                           ]}
                 </Toolbar>
             </AppBar>
