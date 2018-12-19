@@ -11,7 +11,6 @@ class HomeScreen extends Component
     {
         return (
         <Container>
-        {/* <Header /> */}
           <Grid>
             <Col style={{ backgroundColor: '#6200EE', height: 400 }}>
             <View>

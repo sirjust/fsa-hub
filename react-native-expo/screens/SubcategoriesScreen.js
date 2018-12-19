@@ -58,7 +58,6 @@ class SubcategoriesScreen extends Component {
     render(){
         return (
         <Container>
-        <Header />
             <Content>
                 { this.renderSubcategories()}
             </Content>

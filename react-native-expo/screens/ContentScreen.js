@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {WebView, StyleSheet, Button} from 'react-native';
 import {Container, Header, Content, Card, CardItem, Thumbnail, List, ListItem, Text, Icon, Left, Right, Body} from 'native-base';
-import NavButton from "../components/NavButton";
 import BackButton from "../components/BackButton";
 import sanity from "../sanity";
 
@@ -35,7 +34,7 @@ class ContentScreen extends Component {
                 <Text>{link.title}</Text>
             </Left>
             <Right>
-              <Button title="Open Link" onPress={() => this.setState({ showWebView: true, item: link.url })}
+              <Button title="View" onPress={() => this.setState({ showWebView: true, item: link.url })}
                   >
                 <Text>=></Text>
               </Button>
@@ -62,9 +61,6 @@ class ContentScreen extends Component {
     render(){
       return (
         <Container>
-          <Header>
-            <BackButton navigation={this.props.navigation}/>
-          </Header>
           { this.state.showWebView === null
               ? this.renderContentItems()
             : this.renderContent() }     

@@ -31,6 +31,12 @@ const AuthStackNavigator = createStackNavigator({
     SignUp: { screen: SignUpScreen },
 });
 
+const KnowledgeStackNavigator = createStackNavigator({
+  Knowledge: { screen: KnowledgeScreen },
+  Subcategories: { screen: SubcategoriesScreen },
+  Content: { screen: ContentScreen },
+});
+
 const AppTabNavigator = createBottomTabNavigator(
     {
       Sandbox: {
@@ -60,7 +66,8 @@ const AppTabNavigator = createBottomTabNavigator(
       //   },
       // },
       Knowledge: {
-        screen: KnowledgeScreen,
+        screen: KnowledgeStackNavigator,
+        tabBarLable: 'Knowledge',
         navigationOptions: {
           tabBarIcon: ({ tintColor }) => (
             <MaterialIcons name="book" size={28} color={tintColor} />
@@ -98,33 +105,20 @@ const AppStackNavigator = createStackNavigator({
             ),
         }),
     },
-    Content: {
-      screen: ContentScreen,
-      navigationOptions: ({ navigation }) => ({
-        title: '#Content',
-        headerLeft: (
-            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-                <View style={{ paddingHorizontal: 10 }}>
-                    <Ionicons name="md-menu" size={32} />
-                </View>
-            </TouchableOpacity>
-        ),
-    }),
-    }
 });
 
 const AppDrawerNavigator = createDrawerNavigator({
     Home: AppStackNavigator,
     Settings: { screen: SettingsScreen },
-
 });
 
 const AppNavigator = createSwitchNavigator({
     AuthLoading: AuthLoadingScreen,
     Auth: AuthStackNavigator,
     App: AppDrawerNavigator,
-    Subcategories: { screen: SubcategoriesScreen},
-    Content: { screen: ContentScreen}
+    Knowledge: KnowledgeStackNavigator,
+    // Subcategories: { screen: SubcategoriesScreen},
+    // Content: { screen: ContentScreen}
 });
 
 const styles = StyleSheet.create({
