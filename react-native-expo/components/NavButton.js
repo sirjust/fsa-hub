@@ -4,7 +4,7 @@ import { withNavigation } from 'react-navigation';
 
 class NavButton extends React.Component {
   render() {
-    return <Button title="Hello"  onPress={() => this.props.navigation.navigate(this.props.route, {
+    return <Button title="View" onPress={() => this.props.navigation.navigate(this.props.route, {
         schema: this.props.schema
     }) } />;
   }

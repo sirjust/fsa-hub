@@ -9,22 +9,9 @@ class KnowledgeScreen extends Component
         super(props);
 
         this.state = {
-            ts: false,
-            work: false
+            
         }
     }
-
-    // openTS = async () => {    
-    //     this.setState({
-    //         ts: true
-    //     })
-    //   };
-
-    // open = async () => {    
-    //     this.setState({
-    //         work: true
-    //     })
-    //   };
 
     render()
     {
@@ -48,8 +35,7 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <NavButton route="Subcategories" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
-                        schema="FSA"
+                        <NavButton route="Subcategories" schema="fullStackApprenticeship" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
                         >
                             <Text>View Resources</Text>
                         </NavButton>                      
@@ -75,8 +61,8 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <NavButton route="Subcategories" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
-                        schema="job">
+                        <NavButton route="Subcategories" schema="findingWork" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        >
                             <Text>View Resources</Text>
                         </NavButton>
                         </Body>
