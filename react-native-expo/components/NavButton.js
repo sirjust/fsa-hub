@@ -1,12 +1,12 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, Text } from 'native-base';
 import { withNavigation } from 'react-navigation';
 
 class NavButton extends React.Component {
   render() {
-    return <Button title="View" onPress={() => this.props.navigation.navigate(this.props.route, {
+    return <Button block onPress={() => this.props.navigation.navigate(this.props.route, {
         schema: this.props.schema
-    }) } />;
+    }) }><Text>View</Text></Button>;
   }
 }
 

@@ -5,20 +5,16 @@ import NavButton from "../components/NavButton";
 
 class KnowledgeScreen extends Component
 {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            
-        }
-    }
+    static navigationOptions = {
+        header: null,
+      };
 
     render()
     {
         return (
         <Container>
             <Content>
-                <Card style={{flex: 0}}>
+                <Card>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../assets/knowledge.png')} />
