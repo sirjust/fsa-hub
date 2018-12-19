@@ -12,61 +12,75 @@ class HomeScreen extends Component
         return (
         <Container>
           <Grid>
-            <Col style={{ backgroundColor: '#6200EE', height: 400 }}>
+            <Col style={{ backgroundColor: '#3f51b5', height: 1000 }}>
             <View>
-            <Text style={{ color: 'white', textAlign: 'left', fontSize: 26, marginTop: 10, marginLeft: 20}}>12/13/2018</Text>
+            <Text style={{ color: 'white', textAlign: 'left', fontSize: 26, marginTop: 10, marginLeft: 20}}>FSA Roadmap</Text>
             </View>
 
             <Content>
           <List>
             <ListItem avatar>
               <Left>
-                <Thumbnail source={require('../assets/arrow.png')} />
+                <Thumbnail source={require('../assets/knowledge.png')} />
               </Left>
               <Body>
-                <Text style={{ color: 'white'}}>Morning Workout</Text>
-                <Text note style={{ color: 'white'}}>Lifting, crunches, take a swim.</Text>
-                <Text note style={{ color: 'white'}}>Lifting, crunches, take a swim.</Text>
+                <Text style={{ color: 'white', fontSize: 18, fontStyle: "italic"}}>'Education Tier' Launch</Text>
+                <Text note style={{ color: 'white'}}>The FSA Blueprint & Knowledge Base provide the freemium foundation for the next generation of technical education.</Text>
+                <Text note style={{ color: 'white', paddingTop: 10}}>Date - 12/21/2018</Text>
               </Body>
-              <Right>
-                <Text note style={{ color: 'white'}}>7am - 8am</Text>
+              {/* <Right>
+                <Text note style={{ color: 'white'}}>12/21/2018</Text>
                 <Text note style={{ color: 'white'}}>15 Points</Text>
-              </Right>
+              </Right> */}
             </ListItem>
             <ListItem avatar>
               <Left>
-                <Thumbnail source={require('../assets/arrow.png')} />
+                <Thumbnail source={require('../assets/icon.png')} />
               </Left>
               <Body>
-                <Text style={{ color: 'white'}}>Focus Session #1</Text>
-                <Text note style={{ color: 'white'}}>Ticket Item: #38</Text>
-                <Text note style={{ color: 'white'}}>One 10 minute break.</Text>
+              <Text style={{ color: 'white', fontSize: 18, fontStyle: "italic"}}>'Hacker Keys' Launch</Text>
+                <Text note style={{ color: 'white'}}>Educational stickers to help students learn to use the terminal, Git, AWS & helpful Node.js package commands.</Text>
+                <Text note style={{ color: 'white', paddingTop: 10}}>Date - 01/03/2019</Text>
               </Body>
-              <Right>
+              {/* <Right>
                 <Text note style={{ color: 'white'}}>9am - 11am</Text>
                 <Text note style={{ color: 'white'}}>20 Points</Text>
-              </Right>
+              </Right> */}
             </ListItem>
             <ListItem avatar>
               <Left>
                 <Thumbnail source={require('../assets/arrow.png')} />
               </Left>
               <Body>
-                <Text style={{ color: 'white'}}>Focus Session #2</Text>
-                <Text note style={{ color: 'white'}}>Ticket Item: #38</Text>
-                <Text note style={{ color: 'white'}}>One 10 minute break.</Text>
+                <Text style={{ color: 'white', fontSize: 18, fontStyle: "italic"}}>'Community Tier' Launch</Text>
+                <Text note style={{ color: 'white'}}>Providing structure, accountability & process to the learning process for the Full-Stack Apprenticeship.</Text>
+                <Text note style={{ color: 'white', paddingTop: 10}}>Date - 01/23/2019</Text>
               </Body>
-              <Right>
+              {/* <Right>
                 <Text note style={{ color: 'white'}}>12pm - 2pm</Text>
                 <Text note style={{ color: 'white'}}>20 Points</Text>
-              </Right>
+              </Right> */}
+            </ListItem>
+            <ListItem avatar>
+              <Left>
+                <Thumbnail source={require('../assets/blueprint.jpg')} />
+              </Left>
+              <Body>
+                <Text style={{ color: 'white', fontSize: 18, fontStyle: "italic"}}>'Leadership Tier' Launch</Text>
+                <Text note style={{ color: 'white'}}>Providing leaders in communities across the United States (and around the world!) with a repeatable process & tools to train and mentor full-stack developers.</Text>
+                <Text note style={{ color: 'white', paddingTop: 10}}>Date - 02/15/2019</Text>
+              </Body>
+              {/* <Right>
+                <Text note style={{ color: 'white'}}>12pm - 2pm</Text>
+                <Text note style={{ color: 'white'}}>20 Points</Text>
+              </Right> */}
             </ListItem>
           </List>
         </Content>
-            <Text style={{ color: 'white', textAlign: 'center', fontSize: 20}}>Upcoming FSA Events</Text>
+            {/* <Text style={{ color: 'white', textAlign: 'center', fontSize: 20}}>Upcoming FSA Events</Text> */}
             </Col>
             </Grid>
-            <Grid>
+            {/* <Grid>
             <Col style={{ backgroundColor: '#3700B3', height: 300 }}>
             <Text style={{ color: 'white', textAlign: 'center', fontSize: 24, marginTop: 10}}>GitHub Stats</Text>
             <View></View>
@@ -82,7 +96,7 @@ class HomeScreen extends Component
             <Text style={{ color: 'white', textAlign: 'center', fontSize: 14}}>Weekly Points: 149</Text>
             <Text style={{ color: 'white', textAlign: 'center', fontSize: 14}}>Daily Points: 35</Text>
             </Col>
-          </Grid>
+          </Grid> */}
       </Container>
         );
     }

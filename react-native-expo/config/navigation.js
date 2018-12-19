@@ -20,9 +20,11 @@ import ChatScreen from '../screens/ChatScreen';
 import KnowledgeScreen from '../screens/KnowledgeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import ProfileScreen from '../screens/ProfileScreen';
+import PreviewScreen from "../screens/PreviewScreen";
 import SandboxScreen from '../screens/SandboxScreen';
 import SubcategoriesScreen from '../screens/SubcategoriesScreen';
 import ContentScreen from "../screens/ContentScreen";
+import BlueprintScreen from "../screens/BlueprintScreen";
 
 
 const AuthStackNavigator = createStackNavigator({
@@ -39,21 +41,30 @@ const KnowledgeStackNavigator = createStackNavigator({
 
 const AppTabNavigator = createBottomTabNavigator(
     {
-      Sandbox: {
-        screen: SandboxScreen,
-        navigationOptions: {
-          tabBarLable: 'Sandbox',
-          tabBarIcon: ({ tintColor }) => (
-            <Ionicons name="ios-home" size={28} color={tintColor} />
-          ),
-        },
-      },
+      // Sandbox: {
+      //   screen: SandboxScreen,
+      //   navigationOptions: {
+      //     tabBarLable: 'Sandbox',
+      //     tabBarIcon: ({ tintColor }) => (
+      //       <Ionicons name="ios-home" size={28} color={tintColor} />
+      //     ),
+      //   },
+      // },
       Home: {
         screen: HomeScreen,
         navigationOptions: {
           tabBarLable: 'Home',
           tabBarIcon: ({ tintColor }) => (
             <Ionicons name="ios-home" size={28} color={tintColor} />
+          ),
+        },
+      },
+      Blueprint: {
+        screen: BlueprintScreen,
+        tabBarLable: 'Blueprint',
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => (
+            <Ionicons name="md-book" size={28} color={tintColor} />
           ),
         },
       },
@@ -74,6 +85,15 @@ const AppTabNavigator = createBottomTabNavigator(
           ),
         },
       },
+      Preview: {
+        screen: PreviewScreen,
+        tabBarLable: 'Preview',
+        navigationOptions: {
+          tabBarIcon: ({ tintColor }) => (
+            <Entypo name="magnifying-glass" size={28} color={tintColor} />
+          ),
+        },
+      },
       Profile: {
         screen: ProfileScreen,
         navigationOptions: {
@@ -86,7 +106,7 @@ const AppTabNavigator = createBottomTabNavigator(
     {
       tabBarOptions: {
         activeTintColor: '#6200EE',
-        inactiveTintColor: '#D9D9D9',
+        inactiveTintColor: '#151515',
       },
     },
   );
@@ -117,8 +137,6 @@ const AppNavigator = createSwitchNavigator({
     Auth: AuthStackNavigator,
     App: AppDrawerNavigator,
     Knowledge: KnowledgeStackNavigator,
-    // Subcategories: { screen: SubcategoriesScreen},
-    // Content: { screen: ContentScreen}
 });
 
 const styles = StyleSheet.create({
