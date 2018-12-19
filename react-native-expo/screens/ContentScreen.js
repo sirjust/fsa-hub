@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {WebView, StyleSheet, Button} from 'react-native';
 import {Container, Header, Content, Card, CardItem, Thumbnail, List, ListItem, Text, Icon, Left, Right, Body} from 'native-base';
-import BackButton from "../components/BackButton";
 import sanity from "../sanity";
 
 class ContentScreen extends Component {
@@ -27,6 +26,7 @@ class ContentScreen extends Component {
 
     renderContentItems() {
       return(
+        <Content>
         <List>
         {this.state.links.map((link, i) => (
           <ListItem key={i}>
@@ -43,6 +43,7 @@ class ContentScreen extends Component {
         )
         )}
         </List>
+        </Content>
       )
     }
 
