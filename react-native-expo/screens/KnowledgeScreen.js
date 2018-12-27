@@ -31,7 +31,7 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <NavButton route="Subcategories" schema="fullStackApprenticeship" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        <NavButton route="Subcategories" schema="fullStackApprenticeship" block textStyle={{color: "#6200EE"}} onPress={() => this.props.navigation.navigate('Subcategories')}
                         >
                             <Text>View Resources</Text>
                         </NavButton>                      
@@ -57,7 +57,7 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <NavButton route="Subcategories" schema="findingWork" block textStyle={{color: `#87838B`}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        <NavButton route="Subcategories" schema="findingWork" block textStyle={{color: "#6200EE"}} onPress={() => this.props.navigation.navigate('Subcategories')}
                         >
                             <Text>View Resources</Text>
                         </NavButton>
