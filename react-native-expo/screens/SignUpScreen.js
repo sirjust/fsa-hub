@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, TextInput, AsyncStorage } from 'react-native';
 import { Auth } from "aws-amplify";
-import { Container, Header, Content, Form, Item, Input, Label, Button } from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Label, Button, DatePicker } from 'native-base';
 
 
 class SignUpScreen extends Component {
@@ -14,20 +14,23 @@ class SignUpScreen extends Component {
       confirmPassword: "",
       confirm: false,
       code: "",
-      user: {}
+      user: {},
+      fName: "",
+      lName: "",
+      chosenDate: []
     }
   }
 
   register = async () => {
     const attributes = {
       birthdate: "01/28/1994",
-      name: "Michael",
+      name: this.state.fName,
       email: this.state.email, 
-      family_name: "Litchev",
+      family_name: this.state.lName,
     }
 
     const user = await Auth.signUp({
-      password: "P@ssw0rd!",
+      password: this.state.password,
       username: this.state.email,
       attributes: attributes,
     });
@@ -47,7 +50,6 @@ class SignUpScreen extends Component {
 
     this.props.navigation.navigate('App');
   };
-
 
   renderConfirmation() {
     return(
@@ -76,8 +78,28 @@ class SignUpScreen extends Component {
     <Container>
     <Content>
           <Form>
+          <Item fixedLabel>
+              <Label>First Name</Label>
+              <Input 
+              placeholder="Elon"
+              returnKeyType="search"
+              value={this.state.fName}
+              onChangeText={(fName) => this.setState({fName})}
+              autoCapitalize="none"
+              />
+            </Item>
             <Item fixedLabel>
-              <Label>Username</Label>
+              <Label>Last Name</Label>
+              <Input 
+              placeholder="Musk"
+              returnKeyType="search"
+              value={this.state.lName}
+              onChangeText={(lName) => this.setState({lName})}
+              autoCapitalize="none"
+              />
+            </Item>
+            <Item fixedLabel>
+              <Label>Primary Email</Label>
               <Input
               placeholder="mikhael@mailinator.com"
               returnKeyType="search"

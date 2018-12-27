@@ -86,14 +86,14 @@ const AppTabNavigator = createBottomTabNavigator(
           ),
         },
       },
-      Chat: {
-        screen: ChatScreen,
-        navigationOptions: {
-          tabBarIcon: ({ tintColor }) => (
-            <Entypo name="chat" size={28} color={tintColor} />
-          ),
-        },
-      },
+      // Chat: {
+      //   screen: ChatScreen,
+      //   navigationOptions: {
+      //     tabBarIcon: ({ tintColor }) => (
+      //       <Entypo name="chat" size={28} color={tintColor} />
+      //     ),
+      //   },
+      // },
       Knowledge: {
         screen: KnowledgeStackNavigator,
         tabBarLable: 'Knowledge',
@@ -103,23 +103,23 @@ const AppTabNavigator = createBottomTabNavigator(
           ),
         },
       },
-      Preview: {
-        screen: PreviewScreen,
-        tabBarLable: 'Preview',
-        navigationOptions: {
-          tabBarIcon: ({ tintColor }) => (
-            <Entypo name="magnifying-glass" size={28} color={tintColor} />
-          ),
-        },
-      },
-      Profile: {
-        screen: ProfileScreen,
-        navigationOptions: {
-          tabBarIcon: ({ tintColor }) => (
-            <Entypo name="user" size={28} color={tintColor} />
-          ),
-        },
-      },
+      // Preview: {
+      //   screen: PreviewScreen,
+      //   tabBarLable: 'Preview',
+      //   navigationOptions: {
+      //     tabBarIcon: ({ tintColor }) => (
+      //       <Entypo name="magnifying-glass" size={28} color={tintColor} />
+      //     ),
+      //   },
+      // },
+      // Profile: {
+      //   screen: ProfileScreen,
+      //   navigationOptions: {
+      //     tabBarIcon: ({ tintColor }) => (
+      //       <Entypo name="user" size={28} color={tintColor} />
+      //     ),
+      //   },
+      // },
     },
     {
       tabBarOptions: {
