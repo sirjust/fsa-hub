@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Text} from 'react-native';
-import { Container, Header, List, ListItem, Separator, Content, Left, Right, Thumbnail, Body, Button } from "native-base";
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
+import { List, ListItem, Separator, Content, Left, Right, Thumbnail, Body, Button } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 class HomeScreen extends Component
@@ -8,16 +8,13 @@ class HomeScreen extends Component
     render()
     {
         return (
-        <Container>
+          <ScrollView>
           <Grid>
-            <Col style={{ backgroundColor: '#3f51b5', height: 1000 }}>
-            <View>
+            <Col style={{ backgroundColor: '#3f51b5', height: 650 }}>
             <Text style={{ color: 'white', textAlign: 'left', fontSize: 26, marginTop: 10, marginLeft: 20}}>FSA Roadmap</Text>
-            </View>
-
             <Content>
-          <List>
-            <ListItem avatar>
+            <List>
+              <ListItem avatar>
               <Left>
                 <Thumbnail source={require('../assets/Apprentice.png')} />
               </Left>
@@ -61,21 +58,9 @@ class HomeScreen extends Component
         </Content>
             </Col>
             </Grid>
-      </Container>
+            </ScrollView>
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    text: {
-        color: 'white'
-    }
-})
-
 
 export default HomeScreen;

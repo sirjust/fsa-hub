@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import { Button } from "native-base";
 
 class WelcomeScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView>
+        <View style={styles.container}>
         <Text style={{ fontSize: 40, paddingTop: 10, paddingBottom: 10}}>Refresh Your Life</Text>
         <Image source={require('../assets/blueprint.jpg')} rounded />
         <Text style={{ fontSize: 36, fontStyle: 'italic', padding: 15}}>#thehub</Text>
@@ -24,6 +25,8 @@ class WelcomeScreen extends Component {
           style={{ backgroundColor: "#6200EE", height: 80 }}
         ><Text style={{color: 'white', fontSize: 20}}>Register</Text></Button>
       </View>
+      </ScrollView>
+      
     );
   }
 }
