@@ -25,7 +25,7 @@ class SignInScreen extends Component {
       <Container>
         <Content>
           <Form>
-            <Item fixedLabel>
+            <Item floatingLabel>
               <Label>Username</Label>
               <Input
               placeholder=""
@@ -35,7 +35,7 @@ class SignInScreen extends Component {
               autoCapitalize="none"
               />
             </Item>
-            <Item fixedLabel last>
+            <Item floatingLabel last>
               <Label>Password</Label>
               <Input 
               placeholder=""

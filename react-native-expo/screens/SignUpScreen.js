@@ -56,7 +56,7 @@ class SignUpScreen extends Component {
       <Container>
          <Content>
           <Form>
-            <Item fixedLabel>
+            <Item floatingLabel>
               <Label>code</Label>
               <Input
               placeholder="Type Here"
@@ -81,7 +81,7 @@ class SignUpScreen extends Component {
     <Container>
     <Content>
           <Form>
-          <Item fixedLabel>
+          <Item floatingLabel>
               <Label>First Name</Label>
               <Input 
               placeholder=""
@@ -91,7 +91,7 @@ class SignUpScreen extends Component {
               autoCapitalize="none"
               />
             </Item>
-            <Item fixedLabel>
+            <Item floatingLabel>
               <Label>Last Name</Label>
               <Input 
               placeholder=""
@@ -101,7 +101,7 @@ class SignUpScreen extends Component {
               autoCapitalize="none"
               />
             </Item>
-            <Item fixedLabel>
+            <Item floatingLabel>
               <Label>Primary Email</Label>
               <Input
               placeholder=""
@@ -111,7 +111,7 @@ class SignUpScreen extends Component {
               autoCapitalize="none"
               />
             </Item>
-            <Item fixedLabel last>
+            <Item floatingLabel last>
               <Label>Password</Label>
               <Input 
               placeholder=""
