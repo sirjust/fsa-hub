@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import Amplify, { Auth, API } from "aws-amplify";
 import awsmobile from "./aws-exports"
-import config from "./config"
+import config from "./config";
+import { Font, AppLoading } from "expo";
 
 import AppNavigator from './config/navigation'
 
@@ -12,8 +13,12 @@ class App extends Component {
         this.state = {}
     }
     async componentDidMount() {
-        this.configure()
+        await this.configure()
         console.log('Export info: ', awsmobile)
+        await Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+          });
 
     }
 
@@ -41,7 +46,7 @@ class App extends Component {
         //       ]
         //   }
       });
-      console.log('Result: ', result);
+    //   console.log('Result: ', result);
       }
 
     render() {
