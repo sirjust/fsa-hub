@@ -14,17 +14,8 @@ Download on Expo: https://expo.io/@fullstackapprentice/thehub
 #thehub offers a way to access the FSA Knowledge Base & a 60pg ebook called 'The Blueprint' to lay out the journey for somebody looking to become a full-stack developer.
 
 ## Release History
-`
 * 0.1
     * Blueprint Edition Versioned & Released
-
-## Meta
-
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
 
 ## Contributing
 
