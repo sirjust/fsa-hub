@@ -28,7 +28,7 @@ class SignInScreen extends Component {
             <Item fixedLabel>
               <Label>Username</Label>
               <Input
-              placeholder="mikhael@mailinator.com"
+              placeholder=""
               returnKeyType="search"
               value={this.state.username}
               onChangeText={(username) => this.setState({ username })} 
@@ -38,27 +38,27 @@ class SignInScreen extends Component {
             <Item fixedLabel last>
               <Label>Password</Label>
               <Input 
-              placeholder="P@ssw0rd!"
+              placeholder=""
               returnKeyType="search"
               value={this.state.password}
               onChangeText={(password) => this.setState({ password})}
               autoCapitalize="none"
               />
             </Item>
-        <Button full style={{backgroundColor: "#6200EE"}} onPress={() => this.signIn()}><Text style={{color: "white"}}>Sign In</Text></Button>
+            {
+              this.state.username.length > 0 && this.state.password.length > 0 ?
+              (
+                <Button full style={{backgroundColor: "#6200EE"}} onPress={() => this.signIn()}><Text style={{color: "white"}}>Sign In</Text></Button>
+              ) : (
+                <Button full disabled onPress={() => this.signIn()}><Text style={{color: "white"}}>Sign In</Text></Button>
+
+              )
+            }
           </Form>
         </Content>
       </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default SignInScreen;

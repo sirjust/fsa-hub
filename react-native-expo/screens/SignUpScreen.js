@@ -59,13 +59,16 @@ class SignUpScreen extends Component {
             <Item fixedLabel>
               <Label>code</Label>
               <Input
-              placeholder="123456"
+              placeholder="Type Here"
               returnKeyType="search"
               value={this.state.code}
               onChangeText={(code) => this.setState({ code })} 
               autoCapitalize="none"
               />
             </Item>
+            <Text>{'\n'}</Text>
+            <Text style={{textAlign: 'center', fontSize: 14}}>Please check your email for a 6 digit confirmation code.</Text>
+            <Text>{'\n'}</Text>
         <Button block style={{backgroundColor: "#6200EE", color: "white"}} onPress={() => this.confirm()}><Text style={{color: "white"}}>Complete Registration</Text></Button>
           </Form>
         </Content>
@@ -81,7 +84,7 @@ class SignUpScreen extends Component {
           <Item fixedLabel>
               <Label>First Name</Label>
               <Input 
-              placeholder="Elon"
+              placeholder=""
               returnKeyType="search"
               value={this.state.fName}
               onChangeText={(fName) => this.setState({fName})}
@@ -91,7 +94,7 @@ class SignUpScreen extends Component {
             <Item fixedLabel>
               <Label>Last Name</Label>
               <Input 
-              placeholder="Musk"
+              placeholder=""
               returnKeyType="search"
               value={this.state.lName}
               onChangeText={(lName) => this.setState({lName})}
@@ -101,7 +104,7 @@ class SignUpScreen extends Component {
             <Item fixedLabel>
               <Label>Primary Email</Label>
               <Input
-              placeholder="mikhael@mailinator.com"
+              placeholder=""
               returnKeyType="search"
               value={this.state.email}
               onChangeText={(email) => this.setState({ email })} 
@@ -111,14 +114,25 @@ class SignUpScreen extends Component {
             <Item fixedLabel last>
               <Label>Password</Label>
               <Input 
-              placeholder="P@ssw0rd!"
+              placeholder=""
               returnKeyType="search"
               value={this.state.password}
               onChangeText={(password) => this.setState({ password})}
               autoCapitalize="none"
               />
             </Item>
-        <Button full style={{backgroundColor: "#6200EE", color: "white"}} onPress={() => this.register()}><Text style={{color: "white"}}>Register</Text></Button>
+            <Text>{'\n'}</Text>
+            <Text style={{textAlign: 'center', fontSize: 14}}>Password must include at least 1 capital, 1 lowercase letter, 1 number and 1 special character.</Text>
+            <Text>{'\n'}</Text>
+{
+  this.state.email.length > 0 && this.state.password.length > 0 && this.state.fName.length > 0 && this.state.lName.length > 0 ?
+  (
+    <Button full style={{backgroundColor: "#6200EE", color: "white", height: 80}} onPress={() => this.register()}><Text style={{color: "white", fontSize: 20}}>Sign Up</Text></Button>
+    ) : (
+    <Button full disabled><Text style={{color: "white"}}>Sign Up</Text></Button>
+
+  )
+}
           </Form>
         </Content>
     </Container>
