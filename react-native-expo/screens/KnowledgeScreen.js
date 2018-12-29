@@ -38,9 +38,9 @@ class KnowledgeScreen extends Component
                     </Body>
                 </CardItem>
                 </Card>
-            </Content>
-            <Content>
-                <Card style={{flex: 0}}>
+            {/* </Content>
+            <Content> */}
+                <Card>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../assets/fsa.jpeg')} />
