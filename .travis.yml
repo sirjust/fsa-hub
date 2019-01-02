@@ -5,11 +5,6 @@ node_js:
   - '8'
 jobs:
   include:
-    - stage: install
-      name: "Install Web"
-      script: ./scripts/install_web
-    - name: "Install Native"
-      script: ./scripts/install_native
     - stage: test
       name: "Test Web"
       script: ./scripts/test_web
@@ -19,7 +14,6 @@ jobs:
       name: "Deploy"
       script: ./scripts/deploy
 stages:
-  - install
   - test
   - name: deploy
     if: branch = master
