@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+cd react-native-expo && yarn test
