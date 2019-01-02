@@ -2,3 +2,5 @@
 
 cd react-native-expo && yarn install
 echo "Native tests pending"
+
+# Add `yarn test` once test suite + script is set
