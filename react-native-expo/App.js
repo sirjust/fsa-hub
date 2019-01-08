@@ -19,7 +19,6 @@ class App extends Component {
             Roboto: require("native-base/Fonts/Roboto.ttf"),
             Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
           });
-
     }
 
     async configure() {
@@ -36,18 +35,17 @@ class App extends Component {
         //       bucket: config.s3.BUCKET,
         //       identityPoolId: config.cognito.IDENTITY_POOL_ID
         //   },
-        //   API: {
-        //       endpoints: [
-        //           {
-        //               name: "fsa",
-        //               endpoint: config.apiGateway.URL,
-        //               region: config.apiGateway.REGION
-        //           },
-        //       ]
-        //   }
+          API: {
+              endpoints: [
+                  {
+                      name: "eventslambda",
+                      endpoint: config.apiGateway.URL,
+                      region: config.apiGateway.REGION
+                  },
+              ]
+          }
       });
-    //   console.log('Result: ', result);
-      }
+  }
 
     render() {
         return (
