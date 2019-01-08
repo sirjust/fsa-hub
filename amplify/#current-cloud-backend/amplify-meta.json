@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/auth/fsa-cloudformation-template.yml",
 				"logicalId": "authfsa"
 			},
-			"lastPushTimeStamp": "2018-12-25T23:11:31.415Z",
+			"lastPushTimeStamp": "2019-01-07T18:32:13.928Z",
 			"output": {
 				"CreatedSNSRole": "arn:aws:iam::989853312915:role/fsa_sns-role",
 				"AppClientSecret": "1mb4k0l18krbk9ilml3bdbar853k92aa0igjnfus0u382b4si3ki",
@@ -31,6 +31,84 @@
 				"UserPoolName": "fsaed"
 			},
 			"lastPushDirHash": "GJDVEiPyk815CjwlEc8YUavZb70="
+		}
+	},
+	"storage": {
+		"events": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/storage/events-cloudformation-template.json",
+				"logicalId": "storageevents"
+			},
+			"lastPushTimeStamp": "2019-01-07T18:32:13.930Z",
+			"output": {
+				"PartitionKeyName": "organizerId",
+				"SortKeyName": "createdAt",
+				"SortKeyType": "N",
+				"Region": "us-west-2",
+				"Arn": "arn:aws:dynamodb:us-west-2:989853312915:table/events",
+				"PartitionKeyType": "S",
+				"Name": "events"
+			},
+			"lastPushDirHash": "peL9G81m7aYtxU9RhmOXLzAIsO8="
+		}
+	},
+	"function": {
+		"eventslambda": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "events",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-01-07T18:30:15.745Z",
+			"lastPackageTimeStamp": "2019-01-07T18:30:25.631Z",
+			"distZipFilename": "eventslambda-1546885815-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/function/eventslambda-cloudformation-template.json",
+				"logicalId": "functioneventslambda"
+			},
+			"lastPushTimeStamp": "2019-01-07T18:32:13.936Z",
+			"output": {
+				"Region": "us-west-2",
+				"Arn": "arn:aws:lambda:us-west-2:989853312915:function:eventslambda",
+				"Name": "eventslambda"
+			},
+			"lastPushDirHash": "Gkylkvl86wkxn6YGASvUzAdIHxE="
+		}
+	},
+	"api": {
+		"eventscrud": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "eventslambda",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/api/eventscrud-cloudformation-template.json",
+				"logicalId": "apieventscrud"
+			},
+			"lastPushTimeStamp": "2019-01-07T18:32:13.936Z",
+			"output": {
+				"ApiName": "eventscrud",
+				"RootUrl": "https://s3pxbz9b92.execute-api.us-west-2.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "X9tMOCYDi9uT51fwMHV7JrsUaaQ="
 		}
 	}
 }
