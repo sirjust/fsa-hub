@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
 import { Ionicons, Entypo, MaterialIcons } from '@expo/vector-icons';
-
-
 import {
     createSwitchNavigator,
     createStackNavigator,
@@ -19,6 +17,7 @@ import HomeScreen from '../screens/HomeScreen';
 import ChatScreen from '../screens/ChatScreen';
 import KnowledgeScreen from '../screens/KnowledgeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import CreateEventScreen from "../screens/CreateEventScreen"
 import ProfileScreen from '../screens/ProfileScreen';
 import PreviewScreen from "../screens/PreviewScreen";
 import SandboxScreen from '../screens/SandboxScreen';
@@ -145,10 +144,44 @@ const AppStackNavigator = createStackNavigator({
     },
 });
 
+const EventNavigator = createStackNavigator({
+  CreateEventScreen: {
+    screen: CreateEventScreen,
+    navigationOptions: ({ navigation }) => ({
+        title: 'Preview: Create Event',
+        headerLeft: (
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                <View style={{ paddingHorizontal: 10 }}>
+                    <Ionicons name="md-menu" size={32} />
+                </View>
+            </TouchableOpacity>
+        ),
+    }),
+},
+})
+
+const PreviewNavigator = createStackNavigator({
+  PreviewScreen: {
+    screen: PreviewScreen,
+    navigationOptions: ({ navigation }) => ({
+        title: 'Preview: Dashboard',
+        headerLeft: (
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+                <View style={{ paddingHorizontal: 10 }}>
+                    <Ionicons name="md-menu" size={32} />
+                </View>
+            </TouchableOpacity>
+        ),
+    }),
+},
+})
+
 const AppDrawerNavigator = createDrawerNavigator({
     Home: AppStackNavigator,
+    'Create Event': EventNavigator,
     Settings: { screen: SettingsScreen },
-    Messages: ChatStackNavigator,
+    'Preview: Messages': ChatStackNavigator,
+    'Preview: Dashboard': PreviewNavigator
 });
 
 const AppNavigator = createSwitchNavigator({
@@ -156,14 +189,6 @@ const AppNavigator = createSwitchNavigator({
     Auth: AuthStackNavigator,
     App: AppDrawerNavigator,
     Knowledge: KnowledgeStackNavigator,
-});
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
 });
 
 export default createAppContainer(AppNavigator);

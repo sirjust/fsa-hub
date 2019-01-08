@@ -128,6 +128,59 @@
 					"authRoleArn": "arn:aws:iam::989853312915:role/fsahub-20181225150125-authRole"
 				}
 			}
+		},
+		"storageevents": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/storage/events-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "events",
+					"partitionKeyName": "organizerId",
+					"partitionKeyType": "S",
+					"sortKeyName": "createdAt",
+					"sortKeyType": "N"
+				}
+			}
+		},
+		"functioneventslambda": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/function/eventslambda-cloudformation-template.json",
+				"Parameters": {
+					"storageeventsName": {
+						"Fn::GetAtt": [
+							"storageevents",
+							"Outputs.Name"
+						]
+					},
+					"storageeventsArn": {
+						"Fn::GetAtt": [
+							"storageevents",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"apieventscrud": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/api/eventscrud-cloudformation-template.json",
+				"Parameters": {
+					"functioneventslambdaName": {
+						"Fn::GetAtt": [
+							"functioneventslambda",
+							"Outputs.Name"
+						]
+					},
+					"functioneventslambdaArn": {
+						"Fn::GetAtt": [
+							"functioneventslambda",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
 		}
 	},
 	"Outputs": {
