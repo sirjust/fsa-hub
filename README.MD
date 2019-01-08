@@ -20,10 +20,11 @@ Download on Expo: https://expo.io/@fullstackapprentice/thehub
 ## Contributing
 
 1. Fork it (<https://github.com/yourname/yourproject/fork>)
-2. Create your feature branch (`git checkout -b feature/fooBar`)
-3. Commit your changes (`git commit -am 'Add some fooBar'`)
-4. Push to the branch (`git push origin feature/fooBar`)
-5. Create a new Pull Request
+2. Please use yarn for installing and adding dependencies.
+3. Create your feature branch (`git checkout -b feature/fooBar`)
+4. Commit your changes (`git commit -am 'Add some fooBar'`)
+5. Push to the branch (`git push origin feature/fooBar`)
+6. Create a new Pull Request
 
 # Branching
 The default branch is develop, while production releases are merged to master.
