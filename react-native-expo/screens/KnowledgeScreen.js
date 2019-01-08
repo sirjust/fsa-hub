@@ -38,8 +38,6 @@ class KnowledgeScreen extends Component
                     </Body>
                 </CardItem>
                 </Card>
-            {/* </Content>
-            <Content> */}
                 <Card>
                 <CardItem>
                     <Left>
