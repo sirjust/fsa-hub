@@ -5,7 +5,7 @@ import { success, failure } from './libs/response-lib';
 
 
 
-export function main(event, context) {
+export async function main(event, context) {
     const data = JSON.parse(event.body);
 
     const params = {
@@ -22,8 +22,7 @@ export function main(event, context) {
             resourceAuthor: data.resourceAuthor,
             approved: data.approved,
             submittedOn: Date.now()
-        }
-        
+        }   
     };
 
     try {
