@@ -5,7 +5,7 @@ import { success, failure } from './libs/response-lib';
 
 
 
-export function main(event, context, callback) {
+export function main(event, context) {
     const data = JSON.parse(event.body);
 
     const params = {
@@ -27,13 +27,11 @@ export function main(event, context, callback) {
     };
 
     try {
-        await dynamoDbLib.call("put", params);
+        await dynamoDbLib.call("put", params)
         return success(params.Item);
-    } catch (error) {
-        console.log(error);
+      } catch (e) {
         return failure({ status: false });
-    }
-    
+      }
 }
 
 
