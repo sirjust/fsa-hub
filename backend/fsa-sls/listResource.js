@@ -13,7 +13,8 @@ import { success, failure } from './libs/response-lib';
     };
 
     try {
-        const results = await dynamoDbLib.call('query', params)
+        const results = await dynamoDbLib.call('query', params);
+        return success(results.Items)
     } catch (error) {
         console.log(error)
         return failure({ status: false })
