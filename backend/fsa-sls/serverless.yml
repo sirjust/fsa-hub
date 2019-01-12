@@ -54,3 +54,12 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+
+  getResource:
+    handler: getResource.main
+    events:
+      - http:
+          path: resources
+          method: post
+          cors: true
+          authorizer: aws_iam
