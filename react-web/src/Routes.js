@@ -11,6 +11,8 @@ import LinkTabs from "./containers/LinkTabs";
 import LinkComponent from "./components/LinkComponent";
 import ToolsContainer from "./components/ToolsContainer";
 import AccountContainer from "./containers/AccountContainer";
+import NewResource from "./containers/NewResource";
+import ProcessResource from "./containers/ProcessResource";
 
 export default () => (
     <ConnectedRouter history={history}>
@@ -25,6 +27,8 @@ export default () => (
             />
             <AppliedRoute path="/link/:id" component={LinkComponent} />
             <Route path="/tool/:schema" component={ToolsContainer} />
+            <AppliedRoute path='/resource/new' exact component={NewResource} />
+            <AppliedRoute path='/review' exact component={ProcessResource} />
         </Switch>
     </ConnectedRouter>
 );

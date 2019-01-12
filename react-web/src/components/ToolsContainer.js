@@ -4,7 +4,7 @@ import ToolCard from './ToolCard'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import SearchComponent from './SearchComponent';
-
+import Add from '../components/NewResourceButton';
 
 const styles = {
     root: {
@@ -71,6 +71,7 @@ export default class ToolsContainer extends Component {
                 <Grid container className={styles.root} spacing={16}>
                     <ToolCard links={linksToDisplay} />
                 </Grid>
+                <Add />
             </TabContainer>
         );
 
