@@ -66,6 +66,7 @@ functions:
 
   listResource:
     handler: listResource.main
+    events:
       - http:
           path: resources
           method: get

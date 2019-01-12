@@ -2,13 +2,20 @@ import * as dynamoDbLib from './libs/dynamodb-lib';
 import { success, failure } from './libs/response-lib';
 
 
-async export function main (event, context){
+ export async function main (event, context){
     const params = {
         TableName: 'resources', 
 
-        keyConditionExpression: "resourcesId = :resourcesId",
-        expressionAttributesValues: {
-            ":userId": event.requestContext.identity.cognitoIdentityId
+        KeyConditionExpression: "resourceId = :resourceId",
+        ExpressionAttributeValues: {
+            ":resourceId": event.requestContext.identity.cognitoIdentityId
         }
+    };
+
+    try {
+        const results = await dynamoDbLib.call('query', params)
+    } catch (error) {
+        console.log(error)
+        return failure({ status: false })
     }
 }
