@@ -72,3 +72,12 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
+
+  deleteResource:
+    handler: deleteResource.main
+    events:
+      - http:
+          path: reources/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
