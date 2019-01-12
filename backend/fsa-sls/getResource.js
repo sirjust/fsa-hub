@@ -13,7 +13,7 @@ export async function main (event, context) {
     }; 
 
     try {
-        const result = await dynamoDbLib.call(result.Item);
+        const result = await dynamoDbLib.call('get', params);
 
         if (result.Item){
             return success(result.Item)
