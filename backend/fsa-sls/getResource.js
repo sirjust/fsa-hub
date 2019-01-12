@@ -8,7 +8,7 @@ export async function main (event, context) {
 
         Key: {
             resourceId: event.requestContext.identity.cognitoIdentityId,
-            resourceHash: event.pathParmeters.id
+            resourceHash: event.pathParameters.id
         }
     }; 
 
