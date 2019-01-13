@@ -73,6 +73,15 @@ functions:
           cors: true
           authorizer: aws_iam
 
+  updateResource:
+    handler: updateResource.main
+    events:
+      - http: 
+          path: resources/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+
   deleteResource:
     handler: deleteResource.main
     events:

@@ -9,8 +9,8 @@ export async function main (event, context) {
         TableName: 'resources', 
 
         Key: {
-            resourceId: event.requestContext.identity.cognitoIdentity.Id,
-            resourceHash: event.pathParameters.Id
+            resourceId: event.requestContext.identity.cognitoIdentityId,
+            resourceHash: event.pathParameters.id
         },
 
         UpdateExpression: "SET resourceName = :resourceName, directory = :directory, schemaType = :schemaType, resourceUrl = :resourceUrl, resourceAuthor = :resourceAuthor, approved = :approved",
@@ -19,7 +19,8 @@ export async function main (event, context) {
             ":directory": data.directory || null,
             ":schemaType": data.schemaType || null,
             ":resourceUrl": data.resourceUrl || null,
-            "resourceAuthor": data.resourceAuthor || null
+            ":resourceAuthor": data.resourceAuthor || null,
+            ":approved": data.approved || null
         },
 
         ReturnValues: "ALL_NEW"
