@@ -17,7 +17,6 @@ export async function main (event, context) {
         
         return success({status: true})
     } catch (error) {
-        console.log(error)
         return failure ({ status: false})
     }
 }

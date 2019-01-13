@@ -20,7 +20,6 @@ export async function main (event, context) {
         }else
             return failure({status: false, error: "item not found."})
     } catch (error) {
-        console.log(error)
         return failure ({ status: false})
     }
 }

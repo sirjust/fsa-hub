@@ -16,7 +16,6 @@ import { success, failure } from './libs/response-lib';
         const results = await dynamoDbLib.call('query', params);
         return success(results.Items)
     } catch (error) {
-        console.log(error)
         return failure({ status: false })
     }
 }
