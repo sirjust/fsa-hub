@@ -14,7 +14,7 @@ export default class CreatEventScreen extends Component {
             start: "",
             chosenTime: "",
             end: "",
-            organizerId: 'f9f9cfa2-8ecb-4207-99a9-bec998d5b14a',
+            organizerId: 'f6060e36-38ad-452a-a1f8-3bedbddca28d',
             chosenDate: new Date(2019, 1, 10),
             isDateTimePickerVisible: false,
         }
@@ -43,9 +43,8 @@ export default class CreatEventScreen extends Component {
             end: this.state.end,
             createdAt: Date.now()
         }
-
         try {
-            const response = await API.post('eventslambda', '/events', {body})
+            const response = await API.post('eventscrud', '/events', {body})
             console.log('Lambda Response: ', response)
         } catch (e) {
             console.log('ERROR: ', e)

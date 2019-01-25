@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { List, ListItem, Separator, Content, Left, Right, Thumbnail, Body, Button } from "native-base";
+import { Text, ScrollView } from 'react-native';
+import { List, Content } from "native-base";
 import { Col, Row, Grid } from "react-native-easy-grid";
 import { API, Auth } from "aws-amplify";
 import Event from "../components/Event";
@@ -19,8 +19,10 @@ class HomeScreen extends Component
     try {
       const user = await Auth.currentUserInfo()
       const id = user.attributes.sub;
-      // console.log(id)
-      const response = await API.get('eventslambda', `/events/f9f9cfa2-8ecb-4207-99a9-bec998d5b14a`)
+      // console.log('User', user)
+      // console.log('ID: ', id)
+      const response = await API.get('eventscrud', `/events/f6060e36-38ad-452a-a1f8-3bedbddca28d`)
+      // console.log('List of events: ', response)
       const orderedArray = orderBy(response, function(item) {return item.date})
       this.setState({ events: orderedArray })
     } catch(e) {

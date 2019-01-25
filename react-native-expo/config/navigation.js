@@ -102,15 +102,6 @@ const AppTabNavigator = createBottomTabNavigator(
           ),
         },
       },
-      // Preview: {
-      //   screen: PreviewScreen,
-      //   tabBarLable: 'Preview',
-      //   navigationOptions: {
-      //     tabBarIcon: ({ tintColor }) => (
-      //       <Entypo name="magnifying-glass" size={28} color={tintColor} />
-      //     ),
-      //   },
-      // },
       // Profile: {
       //   screen: ProfileScreen,
       //   navigationOptions: {
@@ -185,8 +176,8 @@ const AppDrawerNavigator = createDrawerNavigator({
 });
 
 const AppNavigator = createSwitchNavigator({
-    AuthLoading: AuthLoadingScreen,
-    Auth: AuthStackNavigator,
+    // AuthLoading: AuthLoadingScreen,
+    // Auth: AuthStackNavigator,
     App: AppDrawerNavigator,
     Knowledge: KnowledgeStackNavigator,
 });
