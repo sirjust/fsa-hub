@@ -1,18 +1,19 @@
 import React from "react";
-import Amplify from "aws-amplify";
+import Amplify, { Auth } from "aws-amplify";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { connect } from "react-redux";
 
 import Routes from "./Routes";
-import aws_exports from "./aws-exports";
-import { thunkCurrentAuthenticatedUser } from "./thunks/auth";
+import awsmobile from "./aws-exports";
+import config from './config';
+// import { thunkCurrentAuthenticatedUser } from "./thunks/auth";
 import TopNavbar from "./components/TopNavbar";
 
 import "./App.css";
 require("typeface-quicksand");
 
-Amplify.configure(aws_exports);
+Amplify.configure(awsmobile);
 
 const theme = createMuiTheme({
     typography: {
@@ -30,9 +31,9 @@ const theme = createMuiTheme({
 });
 
 class App extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(thunkCurrentAuthenticatedUser());
-    }
+    // componentDidMount() {
+    //     this.props.dispatch(thunkCurrentAuthenticatedUser());
+    // }
 
     render() {
         return (
