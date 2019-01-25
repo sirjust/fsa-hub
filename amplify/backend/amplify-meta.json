@@ -19,7 +19,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/auth/freetier-cloudformation-template.yml",
 				"logicalId": "authfreetier"
 			},
-			"lastPushTimeStamp": "2019-01-25T20:56:30.305Z",
+			"lastPushTimeStamp": "2019-01-25T23:22:54.845Z",
 			"output": {
 				"CreatedSNSRole": "arn:aws:iam::989853312915:role/freetier_sns-role",
 				"AppClientSecret": "14991dtvuijth04c8m46lm37bef588g71d7jk4vsuos8u71n96je",
@@ -41,7 +41,7 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/storage/events-cloudformation-template.json",
 				"logicalId": "storageevents"
 			},
-			"lastPushTimeStamp": "2019-01-25T20:56:30.301Z",
+			"lastPushTimeStamp": "2019-01-25T23:22:54.849Z",
 			"output": {
 				"PartitionKeyName": "organizerId",
 				"SortKeyName": "createdAt",
@@ -52,6 +52,25 @@
 				"Name": "events"
 			},
 			"lastPushDirHash": "peL9G81m7aYtxU9RhmOXLzAIsO8="
+		},
+		"resources": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/storage/resources-cloudformation-template.json",
+				"logicalId": "storageresources"
+			},
+			"lastPushTimeStamp": "2019-01-25T23:22:54.856Z",
+			"output": {
+				"PartitionKeyName": "directory",
+				"SortKeyName": "timestamp",
+				"SortKeyType": "N",
+				"Region": "us-west-2",
+				"Arn": "arn:aws:dynamodb:us-west-2:989853312915:table/resources",
+				"PartitionKeyType": "S",
+				"Name": "resources"
+			},
+			"lastPushDirHash": "JAr5oBfGA++iSPRllrcUKFH1aGw="
 		}
 	},
 	"function": {
@@ -76,13 +95,42 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/function/eventslambda-cloudformation-template.json",
 				"logicalId": "functioneventslambda"
 			},
-			"lastPushTimeStamp": "2019-01-25T20:56:30.302Z",
+			"lastPushTimeStamp": "2019-01-25T23:22:54.850Z",
 			"output": {
 				"Region": "us-west-2",
 				"Arn": "arn:aws:lambda:us-west-2:989853312915:function:eventslambda",
 				"Name": "eventslambda"
 			},
 			"lastPushDirHash": "Gkylkvl86wkxn6YGASvUzAdIHxE="
+		},
+		"resources": {
+			"service": "Lambda",
+			"providerPlugin": "awscloudformation",
+			"build": true,
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "resources",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"lastBuildTimeStamp": "2019-01-25T23:19:38.078Z",
+			"lastPackageTimeStamp": "2019-01-25T23:19:52.012Z",
+			"distZipFilename": "resources-1548458378-latest-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/function/resources-cloudformation-template.json",
+				"logicalId": "functionresources"
+			},
+			"lastPushTimeStamp": "2019-01-25T23:22:54.856Z",
+			"output": {
+				"Region": "us-west-2",
+				"Arn": "arn:aws:lambda:us-west-2:989853312915:function:resources",
+				"Name": "resources"
+			},
+			"lastPushDirHash": "L5LOS7JlBTgidLO/agMsW3tY0uA="
 		}
 	},
 	"api": {
@@ -103,12 +151,36 @@
 				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/api/eventscrud-cloudformation-template.json",
 				"logicalId": "apieventscrud"
 			},
-			"lastPushTimeStamp": "2019-01-25T20:56:30.303Z",
+			"lastPushTimeStamp": "2019-01-25T23:22:54.852Z",
 			"output": {
 				"ApiName": "eventscrud",
 				"RootUrl": "https://s3pxbz9b92.execute-api.us-west-2.amazonaws.com/Prod"
 			},
 			"lastPushDirHash": "X9tMOCYDi9uT51fwMHV7JrsUaaQ="
+		},
+		"resources": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "resources",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/api/resources-cloudformation-template.json",
+				"logicalId": "apiresources"
+			},
+			"lastPushTimeStamp": "2019-01-25T23:22:54.856Z",
+			"output": {
+				"ApiName": "resources",
+				"RootUrl": "https://brd5q5r2o9.execute-api.us-west-2.amazonaws.com/Prod"
+			},
+			"lastPushDirHash": "v0s+cnU96OXeZ9fvEaKXbhjGx4Y="
 		}
 	}
 }

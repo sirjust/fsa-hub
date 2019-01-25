@@ -142,6 +142,19 @@
 				}
 			}
 		},
+		"storageresources": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/storage/resources-cloudformation-template.json",
+				"Parameters": {
+					"tableName": "resources",
+					"partitionKeyName": "directory",
+					"partitionKeyType": "S",
+					"sortKeyName": "timestamp",
+					"sortKeyType": "N"
+				}
+			}
+		},
 		"functioneventslambda": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -162,6 +175,26 @@
 				}
 			}
 		},
+		"functionresources": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/function/resources-cloudformation-template.json",
+				"Parameters": {
+					"storageresourcesName": {
+						"Fn::GetAtt": [
+							"storageresources",
+							"Outputs.Name"
+						]
+					},
+					"storageresourcesArn": {
+						"Fn::GetAtt": [
+							"storageresources",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
 		"apieventscrud": {
 			"Type": "AWS::CloudFormation::Stack",
 			"Properties": {
@@ -176,6 +209,26 @@
 					"functioneventslambdaArn": {
 						"Fn::GetAtt": [
 							"functioneventslambda",
+							"Outputs.Arn"
+						]
+					}
+				}
+			}
+		},
+		"apiresources": {
+			"Type": "AWS::CloudFormation::Stack",
+			"Properties": {
+				"TemplateURL": "https://s3.amazonaws.com/fsahub-20181225150125-deployment/amplify-cfn-templates/api/resources-cloudformation-template.json",
+				"Parameters": {
+					"functionresourcesName": {
+						"Fn::GetAtt": [
+							"functionresources",
+							"Outputs.Name"
+						]
+					},
+					"functionresourcesArn": {
+						"Fn::GetAtt": [
+							"functionresources",
 							"Outputs.Arn"
 						]
 					}
