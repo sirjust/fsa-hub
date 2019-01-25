@@ -11,12 +11,21 @@ const awsmobile =  {
         {
             "tableName": "events",
             "region": "us-west-2"
+        },
+        {
+            "tableName": "resources",
+            "region": "us-west-2"
         }
     ],
     "aws_cloud_logic_custom": [
         {
             "name": "eventscrud",
             "endpoint": "https://s3pxbz9b92.execute-api.us-west-2.amazonaws.com/Prod",
+            "region": "us-west-2"
+        },
+        {
+            "name": "resources",
+            "endpoint": "https://brd5q5r2o9.execute-api.us-west-2.amazonaws.com/Prod",
             "region": "us-west-2"
         }
     ]
