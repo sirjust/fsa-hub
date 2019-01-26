@@ -8,9 +8,8 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
-import Done from '@material-ui/icons/Done';
-import Delete from '@material-ui/icons/Delete';
 import sanity from '../lib/sanity'
+import { API } from 'aws-amplify';
 
 const styles = {
   card: {
@@ -59,12 +58,14 @@ class ProcessResource extends React.Component {
   }
 
   async componentDidMount() {
-    // not positive how sanity works, just needs to display the list of new resources ready to be processed
-    const query = `*[_type == '${this.props.match.params.schema}']{type, _type, text, title, priority, url, _id}`
-    const links = await sanity.fetch(query);
-
     // just using fake list for testing purposes
-    this.setState({ links: links.concat(fakeListOfNewResources)})
+
+    const response = await API.get('resources', `/resources/cityGuide`)
+    console.log(response);
+    
+    this.setState({
+      links: response
+    })
   }
 
   handleProcessResource(item, index) {
@@ -81,7 +82,7 @@ class ProcessResource extends React.Component {
           <Card style={styles.card} onClick={() => this.handleProcessResource(item, index)}>
             <CardContent>
                 <Typography style={styles.title}>
-                  {item.name}
+                  {item.resourceName}
                 </Typography>
             </CardContent>
             <CardContent>
@@ -97,10 +98,6 @@ class ProcessResource extends React.Component {
                 View/Edit
               </Button>
             </CardActions>
-            <div style={styles.icons}> 
-              <Done />
-              <Delete />
-            </div>
           </Card>
         </Grid>
       
