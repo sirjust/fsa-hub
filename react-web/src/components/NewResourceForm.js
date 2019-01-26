@@ -18,7 +18,7 @@ export default class NewResourceForm extends React.Component {
       author: '',
       name: '',
       url: '',
-      schema: '',
+      schema: 'Get Started',
       description: '',
       rank: ''
     };
@@ -59,10 +59,10 @@ export default class NewResourceForm extends React.Component {
     const body = {
       resourceId: uuidv4(),
       directory: this.state.directory,
-      resourceAuthor: this.state.author,
-      resourceName: this.state.name,
-      resourceUrl: this.state.url,
-      schemaType: this.state.schema,
+      author: this.state.author,
+      name: this.state.name,
+      url: this.state.url,
+      schema: this.state.schema,
       timestamp: Date.now(),
       description: this.state.description,
       rank: this.state.rank,
@@ -93,6 +93,7 @@ export default class NewResourceForm extends React.Component {
     this.setState({
       [event.target.id]: event.target.value
     })
+    // console.log(event.target.id, event.target.value)
   }
 
   render() {
@@ -107,7 +108,7 @@ export default class NewResourceForm extends React.Component {
               type="text"
               id="name"
               required
-              onChange={(name) => this.setState({ name: name})}
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -128,7 +129,7 @@ export default class NewResourceForm extends React.Component {
         <div className='formElement'>
           <label>Schema Type</label>
           <br />
-          <select required>
+          <select required onChange={this.handleChange} id='schema'>
             {schemas}
           </select>
         </div>
@@ -141,7 +142,7 @@ export default class NewResourceForm extends React.Component {
               type="text"
               id="description"
               required
-              onChange={(description) => this.setState({ description })}
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -153,7 +154,7 @@ export default class NewResourceForm extends React.Component {
               type="url"
               id="url"
               required
-              onChange={(url) => this.setState({ resourceUrl: url })}
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -165,7 +166,7 @@ export default class NewResourceForm extends React.Component {
           <input
               type="text"
               id="author"
-              onChange={(author) => this.setState({ author })}
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -179,7 +180,7 @@ export default class NewResourceForm extends React.Component {
               min="1"
               max="100"
               required
-              onChange={(rank) => this.setState({ rank })}
+              onChange={this.handleChange}
           />
           <p className='small'>
             Give the content a rank between 1 and 100
