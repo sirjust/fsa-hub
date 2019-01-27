@@ -1,14 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import ProcessResourceForm from '../components/ProcessResourceForm';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardHeader from '@material-ui/core/CardHeader';
+// import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid'
-import sanity from '../lib/sanity'
 import { API } from 'aws-amplify';
 
 const styles = {
@@ -82,7 +80,7 @@ class ProcessResource extends React.Component {
           <Card style={styles.card} onClick={() => this.handleProcessResource(item, index)}>
             <CardContent>
                 <Typography style={styles.title}>
-                  {item.resourceName}
+                  {item.name}
                 </Typography>
             </CardContent>
             <CardContent>
@@ -123,60 +121,3 @@ class ProcessResource extends React.Component {
 }
 
 export default ProcessResource;
-
-const fakeListOfNewResources = [
-  {
-    name: 'Valhalla Coffee Co.2',
-    directory: 'City Guide',
-    schema: 'Tacoma',
-    description: 'nice place for meetups',
-    url: 'https://www.google.com/search?tbm=lcl&ei=gOg0XNPiDtW-0PEPwJGhoAM&q=valhalla+coffee+co.2&oq=valhalla+coffee+co.2&gs_l=psy-ab.3..38.14530.15580.0.16493.5.5.0.0.0.0.853.1232.0j3j6-1.4.0....0...1c.1.64.psy-ab..1.4.1230...0j0i67k1j0i22i30k1.0.CbYdY3fkWpw#rlfi=hd:;si:2414417899135471933;mv:!1m2!1d47.255117899999995!2d-122.438844!2m2!1d47.2420786!2d-122.4901013',
-    author: 'Vincent',
-    rank: 80,
-    status: false,
-  },
-
-  {
-    name: 'Valhalla Coffee Co.2',
-    directory: 'City Guide',
-    schema: 'Tacoma',
-    description: 'nice place for meetups',
-    url: 'https://www.google.com/search?tbm=lcl&ei=gOg0XNPiDtW-0PEPwJGhoAM&q=valhalla+coffee+co.2&oq=valhalla+coffee+co.2&gs_l=psy-ab.3..38.14530.15580.0.16493.5.5.0.0.0.0.853.1232.0j3j6-1.4.0....0...1c.1.64.psy-ab..1.4.1230...0j0i67k1j0i22i30k1.0.CbYdY3fkWpw#rlfi=hd:;si:2414417899135471933;mv:!1m2!1d47.255117899999995!2d-122.438844!2m2!1d47.2420786!2d-122.4901013',
-    author: 'Vincent',
-    rank: 80,
-    status: false,
-  },
-
-  {
-    name: 'Valhalla Coffee Co.2',
-    directory: 'City Guide',
-    schema: 'Tacoma',
-    description: 'nice place for meetups',
-    url: 'https://www.google.com/search?tbm=lcl&ei=gOg0XNPiDtW-0PEPwJGhoAM&q=valhalla+coffee+co.2&oq=valhalla+coffee+co.2&gs_l=psy-ab.3..38.14530.15580.0.16493.5.5.0.0.0.0.853.1232.0j3j6-1.4.0....0...1c.1.64.psy-ab..1.4.1230...0j0i67k1j0i22i30k1.0.CbYdY3fkWpw#rlfi=hd:;si:2414417899135471933;mv:!1m2!1d47.255117899999995!2d-122.438844!2m2!1d47.2420786!2d-122.4901013',
-    author: 'Vincent',
-    rank: 80,
-    status: false,
-  },
-
-  {
-    name: 'Valhalla Coffee Co.2',
-    directory: 'City Guide',
-    schema: 'Tacoma',
-    description: 'nice place for meetups',
-    url: 'https://www.google.com/search?tbm=lcl&ei=gOg0XNPiDtW-0PEPwJGhoAM&q=valhalla+coffee+co.2&oq=valhalla+coffee+co.2&gs_l=psy-ab.3..38.14530.15580.0.16493.5.5.0.0.0.0.853.1232.0j3j6-1.4.0....0...1c.1.64.psy-ab..1.4.1230...0j0i67k1j0i22i30k1.0.CbYdY3fkWpw#rlfi=hd:;si:2414417899135471933;mv:!1m2!1d47.255117899999995!2d-122.438844!2m2!1d47.2420786!2d-122.4901013',
-    author: 'Vincent',
-    rank: 80,
-    status: false,
-  },
-
-  {
-    name: 'Valhalla Coffee Co.2',
-    directory: 'FSA',
-    schema: 'Getting Started',
-    description: 'nice place for meetups',
-    url: 'https://www.google.com/search?tbm=lcl&ei=gOg0XNPiDtW-0PEPwJGhoAM&q=valhalla+coffee+co.2&oq=valhalla+coffee+co.2&gs_l=psy-ab.3..38.14530.15580.0.16493.5.5.0.0.0.0.853.1232.0j3j6-1.4.0....0...1c.1.64.psy-ab..1.4.1230...0j0i67k1j0i22i30k1.0.CbYdY3fkWpw#rlfi=hd:;si:2414417899135471933;mv:!1m2!1d47.255117899999995!2d-122.438844!2m2!1d47.2420786!2d-122.4901013',
-    author: 'Vincent',
-    rank: 80,
-    status: false,
-  }
-]

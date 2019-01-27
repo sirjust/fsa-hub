@@ -1,12 +1,12 @@
 import React from "react";
-import Amplify, { Auth } from "aws-amplify";
+import Amplify from "aws-amplify";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
 
 import Routes from "./Routes";
 import awsmobile from "./aws-exports";
-import config from './config';
 // import { thunkCurrentAuthenticatedUser } from "./thunks/auth";
 import TopNavbar from "./components/TopNavbar";
 
@@ -35,6 +35,11 @@ class App extends React.Component {
     //     this.props.dispatch(thunkCurrentAuthenticatedUser());
     // }
 
+    componentDidMount() {
+        // const { history } = this.props;
+        // console.log('history', history);
+    }
+
     render() {
         return (
             <MuiThemeProvider theme={theme}>
@@ -52,3 +57,4 @@ class App extends React.Component {
 const mapStateToProps = state => ({});
 
 export default connect(mapStateToProps)(App);
+// export default withRouter(App);

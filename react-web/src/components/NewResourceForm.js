@@ -6,9 +6,12 @@ import {
   } from '../directories';
 import { API } from 'aws-amplify';
 import { Button } from '@material-ui/core';
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { bindActionCreators } from "redux";
 import uuidv4 from "uuid";
 
-export default class NewResourceForm extends React.Component {
+class NewResourceForm extends React.Component {
   constructor() {
     super();
 
@@ -26,8 +29,8 @@ export default class NewResourceForm extends React.Component {
 
   componentDidMount() {
     this.updateSchemas();
-    const { history } = this.props;
-    console.log(history)
+    // const { history } = this.props;
+    // console.log('history', history)
   }
 
   changeDirectory = async e => {
@@ -75,18 +78,6 @@ export default class NewResourceForm extends React.Component {
     } catch(e) {
       console.log('ERROR', e)
     }
-
-    // this.setState({
-    //   directory: '',
-    //   resourceAuthor: '',
-    //   resourceName: '',
-    //   resourceUrl: '',
-    //   schemaType: '',
-    //   description: '',
-    //   rank: ''
-    // })
-
-    // this.props.history.push('/');
   }
 
   handleChange = event => {
@@ -188,8 +179,21 @@ export default class NewResourceForm extends React.Component {
         </div>
         <br />
 
-        <Button onClick={this.handleSubmit}>Request</Button>
+        <div onClick={() => this.props.routeHome()}>
+          <Button onClick={this.handleSubmit}>Request</Button>
+       </div>
 
       </form>
     )
   }}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      routeHome: () => push("/"),
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(NewResourceForm)
