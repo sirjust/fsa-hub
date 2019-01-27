@@ -65,13 +65,13 @@ class TopNavbar extends React.Component {
                             //   >
                             //       Knowledge
                             //   </Button>,
-                            //   <Button
-                            //       key={1}
-                            //       color="inherit"
-                            //       onClick={() => routeSignup()}
-                            //   >
-                            //       Register
-                            //   </Button>,
+                               <Button
+                                   key={1}
+                                   color="inherit"
+                                   onClick={() => routeSignup()}
+                               >
+                                   Register/Login
+                               </Button>,
                             //   <Button
                             //       key={2}
                             //       color="inherit"
@@ -101,7 +101,7 @@ const mapDispatchToProps = dispatch => {
     return bindActionCreators(
         {
             routeHome: () => push("/"),
-            routeSignup: () => push("/signup"),
+            routeSignup: () => push("/authsignup"),
             routeLogin: () => push("/login"),
             routeknowledge: () => push("/knowledge"),
             handleSignOut: () => thunkSignOut(),

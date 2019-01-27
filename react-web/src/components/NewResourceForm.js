@@ -4,19 +4,31 @@ import {
   cityByCity,
   findingWork
   } from '../directories';
+import { API } from 'aws-amplify';
+import { Button } from '@material-ui/core';
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { bindActionCreators } from "redux";
+import uuidv4 from "uuid";
 
-export default class NewResourceForm extends React.Component {
+class NewResourceForm extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      directory: 'FSA',
-      schemas: []
+      directory: 'fsa',
+      schemas: [],
+      author: '',
+      name: '',
+      url: '',
+      schema: 'Get Started',
+      description: '',
+      rank: ''
     };
   }
 
   componentDidMount() {
-    this.updateSchemas()
+    this.updateSchemas();
   }
 
   changeDirectory = async e => {
@@ -28,18 +40,57 @@ export default class NewResourceForm extends React.Component {
 
   updateSchemas() {
     switch (this.state.directory) {
-      case 'FSA':
-        this.setState({ schemas: fullStackApprenticeship})
+      case 'fsa':
+        this.setState({ 
+          schemas: fullStackApprenticeship,
+          schema: 'Get Started'
+        })
         break;
-      case 'City Guide':
-        this.setState({ schemas: cityByCity})
+      case 'cityGuide':
+        this.setState({ 
+          schemas: cityByCity,
+          schema: 'Seattle'
+        })
         break;
-      case 'Getting Paid':
-        this.setState({ schemas: findingWork})
+      case 'findingWork':
+        this.setState({ 
+          schemas: findingWork,
+          schema: 'Community'
+        })
         break;
       default:
         break;
     }
+  }
+
+  handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    const body = {
+      resourceId: uuidv4(),
+      directory: this.state.directory,
+      author: this.state.author,
+      name: this.state.name,
+      url: this.state.url,
+      schema: this.state.schema,
+      timestamp: Date.now(),
+      description: this.state.description,
+      rank: this.state.rank,
+      approved: undefined
+    }
+
+    try {
+      const response = await API.post('resources', '/resources', {body})
+      console.log('fsa-sls Response', response)
+    } catch(e) {
+      console.log('ERROR', e)
+    }
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
   }
 
   render() {
@@ -52,8 +103,9 @@ export default class NewResourceForm extends React.Component {
           <br />
           <input
               type="text"
-              id="resourceName"
+              id="name"
               required
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -64,7 +116,7 @@ export default class NewResourceForm extends React.Component {
           <select onChange={this.changeDirectory} required>
             <option value='fsa'>FSA</option>
             <option value='cityGuide'>City Guide</option>
-            <option value='gettingPaid'>Getting Paid</option>
+            <option value='findingWork'>Finding Work</option>
           </select>
           <br />
 
@@ -74,7 +126,7 @@ export default class NewResourceForm extends React.Component {
         <div className='formElement'>
           <label>Schema Type</label>
           <br />
-          <select required>
+          <select required onChange={this.handleChange} id='schema'>
             {schemas}
           </select>
         </div>
@@ -85,8 +137,9 @@ export default class NewResourceForm extends React.Component {
           <br />
           <input
               type="text"
-              id="resourceDescription"
+              id="description"
               required
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -96,8 +149,9 @@ export default class NewResourceForm extends React.Component {
           <br />
           <input
               type="url"
-              id="resourceUrl"
+              id="url"
               required
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -108,7 +162,8 @@ export default class NewResourceForm extends React.Component {
           <br />
           <input
               type="text"
-              id="resourceAuthor"
+              id="author"
+              onChange={this.handleChange}
           />
         </div>
         <br />
@@ -118,10 +173,11 @@ export default class NewResourceForm extends React.Component {
           <br />
           <input
               type="number"
-              id="resourceRank"
+              id="rank"
               min="1"
               max="100"
               required
+              onChange={this.handleChange}
           />
           <p className='small'>
             Give the content a rank between 1 and 100
@@ -129,8 +185,21 @@ export default class NewResourceForm extends React.Component {
         </div>
         <br />
 
-        <input type='submit' value='Request' />
+        <div onClick={() => this.props.routeHome()}>
+          <Button onClick={this.handleSubmit}>Request</Button>
+       </div>
 
       </form>
     )
   }}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      routeHome: () => push("/"),
+    },
+    dispatch
+  );
+};
+
+export default connect(null, mapDispatchToProps)(NewResourceForm)

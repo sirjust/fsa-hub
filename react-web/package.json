@@ -8,6 +8,7 @@
     "@sanity/block-content-to-react": "^2.0.5",
     "@sanity/client": "^0.135.3",
     "aws-amplify": "^1.1.7",
+    "aws-amplify-react": "^2.3.0",
     "classnames": "^2.2.6",
     "connected-react-router": "^5.0.1",
     "history": "^4.7.2",

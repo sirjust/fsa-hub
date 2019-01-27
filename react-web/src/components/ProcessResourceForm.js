@@ -6,13 +6,12 @@ import {
   } from '../directories';
 import Button from '@material-ui/core/Button';
 
-
 export default class NewResourceForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      directory: props.formInfo.directory,
+      directory: this.props.formInfo.directory,
       schemas: [],
       schema: this.props.formInfo.schema
     };
@@ -25,13 +24,13 @@ export default class NewResourceForm extends React.Component {
   updateSchemas() {
     this.setState({ schema: '' })
     switch (this.state.directory) {
-      case 'FSA':
+      case 'fsa':
         this.setState({ schemas: fullStackApprenticeship})
         break;
-      case 'City Guide':
+      case 'cityGuide':
         this.setState({ schemas: cityByCity})
         break;
-      case 'Getting Paid':
+      case 'findingWork':
         this.setState({ schemas: findingWork})
         break;
       default:
@@ -68,9 +67,9 @@ export default class NewResourceForm extends React.Component {
           <label>Directory</label>
           <br />
           <select value={this.state.directory || formInfo.directory} onChange={(e) => this.changeDirectory(e)} required>
-            <option value='FSA'>FSA</option>
-            <option value='City Guide'>City Guide</option>
-            <option value='Finding Work'>Getting Paid</option>
+            <option value='fsa'>FSA</option>
+            <option value='cityGuide'>City Guide</option>
+            <option value='findingWork'>Finding Work</option>
           </select>
           <br />
 
@@ -108,7 +107,7 @@ export default class NewResourceForm extends React.Component {
               required
           />
           <br />
-          <Button href={formInfo.url}>Visit Url</Button>
+          <a href={formInfo.url} target='_blank'>Visit Url</a>
         </div>
         <br />
 
