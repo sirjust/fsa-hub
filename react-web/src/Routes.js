@@ -5,12 +5,9 @@ import { history } from "./store/configureStore";
 
 import AppliedRoute from "./components/AppliedRoute";
 import Home from "./containers/Home";
-import Signup from "./containers/Signup";
-import Login from "./containers/Login";
 import LinkTabs from "./containers/LinkTabs";
 import LinkComponent from "./components/LinkComponent";
 import ToolsContainer from "./components/ToolsContainer";
-import AccountContainer from "./containers/AccountContainer";
 import NewResource from "./containers/NewResource";
 import ProcessResource from "./containers/ProcessResource";
 
@@ -18,16 +15,9 @@ export default () => (
     <ConnectedRouter history={history}>
         <Switch>
             <AppliedRoute path="/" exact component={LinkTabs} />
-            <AppliedRoute path="/signup" exact component={Signup} />
-            <AppliedRoute path="/login" exact component={Login} />
-            <AppliedRoute
-                path="/fancyLogin"
-                exact
-                component={AccountContainer}
-            />
             <AppliedRoute path="/link/:id" component={LinkComponent} />
-            <Route path="/tool/:schema" component={ToolsContainer} />
-            <AppliedRoute path='/resource/new' exact component={NewResource} />
+            <AppliedRoute path="/tool/:schema" component={ToolsContainer} />
+            <AppliedRoute path='/resource/new' exact component={NewResource} props={history} />
             <AppliedRoute path='/review' exact component={ProcessResource} />
         </Switch>
     </ConnectedRouter>
