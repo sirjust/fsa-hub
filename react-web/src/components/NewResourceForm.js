@@ -29,8 +29,6 @@ class NewResourceForm extends React.Component {
 
   componentDidMount() {
     this.updateSchemas();
-    // const { history } = this.props;
-    // console.log('history', history)
   }
 
   changeDirectory = async e => {
@@ -43,13 +41,22 @@ class NewResourceForm extends React.Component {
   updateSchemas() {
     switch (this.state.directory) {
       case 'fsa':
-        this.setState({ schemas: fullStackApprenticeship})
+        this.setState({ 
+          schemas: fullStackApprenticeship,
+          schema: 'Get Started'
+        })
         break;
       case 'cityGuide':
-        this.setState({ schemas: cityByCity})
+        this.setState({ 
+          schemas: cityByCity,
+          schema: 'Seattle'
+        })
         break;
       case 'findingWork':
-        this.setState({ schemas: findingWork})
+        this.setState({ 
+          schemas: findingWork,
+          schema: 'Community'
+        })
         break;
       default:
         break;
@@ -84,7 +91,6 @@ class NewResourceForm extends React.Component {
     this.setState({
       [event.target.id]: event.target.value
     })
-    // console.log(event.target.id, event.target.value)
   }
 
   render() {
