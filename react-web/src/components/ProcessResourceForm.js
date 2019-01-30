@@ -4,10 +4,13 @@ import {
   cityByCity,
   findingWork
   } from '../directories';
-  import { Button, Input, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
-  import { API } from 'aws-amplify';
+import { Button, Input, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
+import { API } from 'aws-amplify';
+import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { bindActionCreators } from "redux";
 
-export default class NewResourceForm extends React.Component {
+class ProcessResourceForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -207,13 +210,26 @@ export default class NewResourceForm extends React.Component {
 
         {/* Button need to either approve request and add to schemas 
         in proper directory, or delete request */}
-        <Button onClick={this.handleFormApproval}>
-          Approve Resource
-        </Button>
-        <Button onClick={this.handleFormDenial}>
-          Deny Resource
-        </Button>
+        <div onClick={() => this.props.routeHome()}>
+          <Button onClick={this.handleFormApproval}>
+            Approve Resource
+          </Button>
+          <Button onClick={this.handleFormDenial}>
+            Deny Resource
+          </Button>
+        </div>
 
       </form>
     )
   }}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      routeHome: () => push("/"),
+    },
+    dispatch
+  );
+};
+  
+export default connect(null, mapDispatchToProps)(ProcessResourceForm)
