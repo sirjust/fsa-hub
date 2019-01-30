@@ -5,7 +5,7 @@ import {
   findingWork
   } from '../directories';
 import { API } from 'aws-amplify';
-import { Button } from '@material-ui/core';
+import { Button, Input, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { bindActionCreators } from "redux";
@@ -93,74 +93,79 @@ class NewResourceForm extends React.Component {
     })
   }
 
+  changeSchema = e => {
+    this.setState({ schema: e.target.value })
+  }
+
   render() {
     let schemas = this.state.schemas.map((item, i) => 
-      <option key={i}>{item.name}</option>)
+      <MenuItem key={i} value={item.name}>{item.name}</MenuItem>)
     return (
       <form className='newResourceForm'>
-        <div className="formElement">
-          <label>Resource Name</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Resource Name</InputLabel>
+          <Input
               type="text"
               id="name"
               required
               onChange={this.handleChange}
           />
-        </div>
+        </FormControl>
         <br />
 
-        <div className="formElement">
-          <label>Directory</label>
-          <br />
-          <select onChange={this.changeDirectory} required>
-            <option value='fsa'>FSA</option>
-            <option value='cityGuide'>City Guide</option>
-            <option value='findingWork'>Finding Work</option>
-          </select>
+        <FormControl className="formElement">
+          <InputLabel>Directory</InputLabel>
+          <Select value={this.state.directory} 
+                  onChange={this.changeDirectory} 
+                  required 
+                  >
+            <MenuItem value='fsa'>FSA</MenuItem>
+            <MenuItem value='cityGuide'>City Guide</MenuItem>
+            <MenuItem value='findingWork'>Finding Work</MenuItem>
+          </Select>
           <br />
 
-        </div>
+        </FormControl>
         <br />
 
-        <div className='formElement'>
-          <label>Schema Type</label>
-          <br />
-          <select required onChange={this.handleChange} id='schema'>
+        <FormControl className='formElement'>
+          <InputLabel>Schema Type</InputLabel>
+          <Select value={this.state.schema}
+                  required 
+                  onChange={this.changeSchema}
+                  id="schema"
+                  >
             {schemas}
-          </select>
-        </div>
+          </Select>
+        </FormControl>
         <br />
         
-        <div className="formElement">
-          <label>Description</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Description</InputLabel>
+          <Input
               type="text"
               id="description"
               required
               onChange={this.handleChange}
           />
-        </div>
+        </FormControl>
         <br />
         
-        <div className="formElement">
-          <label>URL</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>URL</InputLabel>
+          <Input
               type="url"
               id="url"
               required
               onChange={this.handleChange}
           />
-        </div>
+        </FormControl>
         <br />
 
         {/* Maybe this is automatic depending on who submitted resource? */}
         <div className="formElement">
-          <label>Resource Author</label>
-          <br />
-          <input
+          <InputLabel>Resource Author</InputLabel>
+          <Input
               type="text"
               id="author"
               onChange={this.handleChange}
@@ -168,10 +173,9 @@ class NewResourceForm extends React.Component {
         </div>
         <br />
 
-        <div className="formElement">
-          <label>Rank</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Rank</InputLabel>
+          <Input
               type="number"
               id="rank"
               min="1"
@@ -182,7 +186,7 @@ class NewResourceForm extends React.Component {
           <p className='small'>
             Give the content a rank between 1 and 100
           </p>
-        </div>
+        </FormControl>
         <br />
 
         <div onClick={() => this.props.routeHome()}>

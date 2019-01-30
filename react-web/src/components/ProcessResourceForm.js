@@ -4,34 +4,39 @@ import {
   cityByCity,
   findingWork
   } from '../directories';
-import Button from '@material-ui/core/Button';
+  import { Button, Input, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
+  import { API } from 'aws-amplify';
 
 export default class NewResourceForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      directory: this.props.formInfo.directory,
+      directory: props.formInfo.directory,
       schemas: [],
-      schema: this.props.formInfo.schema
+      schema: props.formInfo.schema,
+      name: props.formInfo.name,
+      description: props.formInfo.description,
+      url: props.formInfo.url,
+      author: props.formInfo.author,
+      rank: props.formInfo.rank
     };
   }
 
-  async componentDidMount() {
-    await this.updateSchemas();
+  componentDidMount() {
+    this.updateSchemas();
   }
 
   updateSchemas() {
-    this.setState({ schema: '' })
     switch (this.state.directory) {
       case 'fsa':
-        this.setState({ schemas: fullStackApprenticeship})
+        this.setState({ schemas: fullStackApprenticeship })
         break;
       case 'cityGuide':
-        this.setState({ schemas: cityByCity})
+        this.setState({ schemas: cityByCity })
         break;
       case 'findingWork':
-        this.setState({ schemas: findingWork})
+        this.setState({ schemas: findingWork })
         break;
       default:
         break;
@@ -45,107 +50,167 @@ export default class NewResourceForm extends React.Component {
     await this.updateSchemas();
   }
 
+  handleFormApproval = async event => {
+    event.preventDefault();
+
+    const body = {
+      resourceId: this.props.formInfo.resourceId,
+      timestamp: this.props.formInfo.timestamp,
+      directory: this.state.directory,
+      schema: this.state.schema,
+      name: this.state.name,
+      description: this.state.description,
+      author: this.state.url,
+      url: this.state.url,
+      rank: this.state.rank,
+      approved: true      
+    }
+
+    try {
+      const response = await API.put('resources', '/resources', {body})
+      console.log('approved response', response)
+    } catch(e) {
+      console.log("ERROR not approved", e)
+    }
+  }
+
+  handleFormDenial = async event => {
+    event.preventDefault();
+
+    const body = {
+      resourceId: this.props.formInfo.resourceId,
+      timestamp: this.props.formInfo.timestamp,
+      directory: this.state.directory,
+      schema: this.state.schema,
+      name: this.state.name,
+      description: this.state.description,
+      author: this.state.url,
+      url: this.state.url,
+      rank: this.state.rank,
+      approved: false      
+    }
+
+    try {
+      const response = await API.put('resources', '/resources', {body})
+      console.log('denied response', response)
+    } catch(e) {
+      console.log("ERROR not denied", e)
+    }
+  }
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
+
+  changeSchema = e => {
+    this.setState({ schema: e.target.value })
+  }
+
   render() {
-    let { formInfo } = this.props
     let schemas = this.state.schemas.map((item, i) => 
-      <option key={i} value={item.name}>{item.name}</option>)
+      <MenuItem key={i} value={item.name}>{item.name}</MenuItem>)
+      console.log(this.state.schema)
     return (
       <form className='newResourceForm'>
-        <div className="formElement">
-          <label>Resource Name</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Resource Name</InputLabel>
+          <Input
               type="text"
-              id="resourceName"
-              value={formInfo.name}
+              value={this.state.name}
+              id="name"
+              onChange={this.handleChange}
               required
           />
-        </div>
+        </FormControl>
         <br />
 
-        <div className="formElement">
-          <label>Directory</label>
-          <br />
-          <select value={this.state.directory || formInfo.directory} onChange={(e) => this.changeDirectory(e)} required>
-            <option value='fsa'>FSA</option>
-            <option value='cityGuide'>City Guide</option>
-            <option value='findingWork'>Finding Work</option>
-          </select>
-          <br />
-
-        </div>
+        <FormControl className="formElement">
+          <InputLabel>Directory</InputLabel>
+          <Select value={this.state.directory} 
+                  onChange={this.changeDirectory} 
+                  required
+                  >
+            <MenuItem value='fsa'>FSA</MenuItem>
+            <MenuItem value='cityGuide'>City Guide</MenuItem>
+            <MenuItem value='findingWork'>Finding Work</MenuItem>
+          </Select>
+        </FormControl>
         <br />
 
-        <div className='formElement'>
-          <label>Schema Type</label>
-          <br />
-          <select onChange={this.updateSchemas} required>
-            {this.state.schema ? <option>{this.state.schema}</option> : schemas }
-          </select>
-        </div>
+        <FormControl className='formElement'>
+          <InputLabel>Schema Type</InputLabel>
+          <Select value={this.state.schema}
+                  required 
+                  id="schema"
+                  onChange={this.changeSchema}
+                  >
+            {schemas}
+          </Select>
+        </FormControl>
         <br />
         
-        <div className="formElement">
-          <label>Description</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Description</InputLabel>
+          <Input
               type="text"
-              id="resourceDescription"
-              value={formInfo.description}
+              id="description"
+              value={this.state.description}
+              onChange={this.handleChange}
               required
           />
-        </div>
+        </FormControl>
         <br />
         
-        <div className="formElement">
-          <label>URL</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>URL</InputLabel>
+          <Input
               type="url"
-              id="resourceUrl"
-              value={formInfo.url}
+              id="url"
+              value={this.state.url}
+              onChange={this.handleChange}
               required
           />
-          <br />
-          <a href={formInfo.url} target='_blank'>Visit Url</a>
-        </div>
+          <a href={this.props.formInfo.url} target='_blank' rel="noopener noreferrer">Visit Url</a>
+        </FormControl>
         <br />
 
-        <div className="formElement">
-          <label>Resource Author</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Resource Author</InputLabel>
+          <Input
               type="text"
-              id="resourceAuthor"
-              value={formInfo.author}
+              id="author"
+              value={this.state.author}
+              onChange={this.handleChange}
               required
           />
-        </div>
+        </FormControl>
         <br />
 
-        <div className="formElement">
-          <label>Rank</label>
-          <br />
-          <input
+        <FormControl className="formElement">
+          <InputLabel>Rank</InputLabel>
+          <Input
               type="number"
-              id="resourceRank"
+              id="rank"
               min="1"
               max="100"
-              placeholder={formInfo.rank}
+              value={this.state.rank}
+              onChange={this.handleChange}
               required
           />
           <p className='small'>
             Give the content a rank between 1 and 100
           </p>
-        </div>
+        </FormControl>
         <br />
 
         {/* Button need to either approve request and add to schemas 
         in proper directory, or delete request */}
-        <Button>
+        <Button onClick={this.handleFormApproval}>
           Approve Resource
         </Button>
-        <Button>
+        <Button onClick={this.handleFormDenial}>
           Deny Resource
         </Button>
 

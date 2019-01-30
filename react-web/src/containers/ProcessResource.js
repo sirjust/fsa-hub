@@ -1,33 +1,17 @@
 import React from 'react';
 import ProcessResourceForm from '../components/ProcessResourceForm';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-// import CardHeader from '@material-ui/core/CardHeader';
-import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid'
+import { Card, CardContent, CardActions, Button, Typography, Grid } from '@material-ui/core/';
+import { Select, MenuItem } from '@material-ui/core/';
 import { API } from 'aws-amplify';
 
 const styles = {
-  card: {
-    minWidth: 100,
-    margin: 10,
-    flex: '1 0 100'
-  },
   title: {
     fontSize: 24,
     textAlign: 'center'
   },
-  icons: {
-    color: '#3700B3',
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '0 20px 5px 20px'
-  },
   button: {
     display: 'flex',
-    alignItems: 'center'
+    justifyContent: 'center'
   },
   form: {
     display: 'flex',
@@ -51,37 +35,53 @@ class ProcessResource extends React.Component {
       links: [],
       processing: false,
       processingForm: null,
+      searchingFor: 'fsa'
     }
 
   }
 
   async componentDidMount() {
-    // just using fake list for testing purposes
-
-    const response = await API.get('resources', `/resources/cityGuide`)
+    const response = await API.get('resources', `/resources/${this.state.searchingFor}`)
     console.log(response);
     
     this.setState({
       links: response
     })
+
+    // just used fake list for testing on a larger array
+    // this.setState({
+    //   links: fakeList
+    // })
   }
 
-  handleProcessResource(item, index) {
+  handleProcessResource (item, index) {
     this.setState({ 
       processing: true,
       processingForm: item
     });
   }
 
+  changeDirectorySearch = async event => {
+    await this.setState({
+      searchingFor: event.target.value
+    })
+   const response = await API.get('resources', `/resources/${this.state.searchingFor}`);
+   console.log(response)
+
+   this.setState({
+     links: response
+   })
+  }
+
   render() {
     let toProcess = this.state.links.map((item, index) => {
       return (
-        <Grid key={index} item xs={6} sm={3}>
-          <Card style={styles.card} onClick={() => this.handleProcessResource(item, index)}>
+        <Grid key={index} item xs={6} sm={6} md={4} lg={3} xl={2}>
+          <Card style={{ margin: 15}}>
             <CardContent>
                 <Typography style={styles.title}>
-                  {item.name}
-                </Typography>
+                { item.name}
+                </Typography>                
             </CardContent>
             <CardContent>
               <Typography>
@@ -89,10 +89,7 @@ class ProcessResource extends React.Component {
               </Typography>
             </CardContent>
             <CardActions style={styles.button}>
-
-            {/* not sure about what url will be, needs to take you to page of new resource */}
-              {/* <Button component={Link} to={`/resource/new/${item.directory}${item.schema}`}> */}
-              <Button>
+              <Button onClick={() => this.handleProcessResource(item, index)}>
                 View/Edit
               </Button>
             </CardActions>
@@ -104,6 +101,18 @@ class ProcessResource extends React.Component {
     return !this.state.processing ?
       <div className='App-intro' style={styles.review}>
         <h1 style={{ textAlign: 'center' }}>Resource Approval</h1>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+        <h4>Select Which Resource Directory to take a look at: </h4>
+          <Select  value={this.state.searchingFor}
+                   onChange={this.changeDirectorySearch} 
+                   style={{ marginLeft: 15 }}
+                   autoWidth
+                   >
+            <MenuItem value='fsa'>FSA</MenuItem>
+            <MenuItem value='cityGuide'>City Guide</MenuItem>
+            <MenuItem value='findingWork'>Finding Work</MenuItem>
+          </Select>
+        </div>
         <div style={styles.list}>
           {toProcess}
         </div>
@@ -121,3 +130,78 @@ class ProcessResource extends React.Component {
 }
 
 export default ProcessResource;
+
+// const fakeList = [
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   },
+//   {
+//     name: 'test1',
+//     description: 'test1'
+//   }
+// ]
