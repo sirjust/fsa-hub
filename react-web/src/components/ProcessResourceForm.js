@@ -6,11 +6,8 @@ import {
   } from '../directories';
 import { Button, Input, InputLabel, Select, MenuItem, FormControl } from '@material-ui/core';
 import { API } from 'aws-amplify';
-import { connect } from "react-redux";
-import { push } from "connected-react-router";
-import { bindActionCreators } from "redux";
 
-class ProcessResourceForm extends React.Component {
+export default class ProcessResourceForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -114,7 +111,6 @@ class ProcessResourceForm extends React.Component {
   render() {
     let schemas = this.state.schemas.map((item, i) => 
       <MenuItem key={i} value={item.name}>{item.name}</MenuItem>)
-      console.log(this.state.schema)
     return (
       <form className='newResourceForm'>
         <FormControl className="formElement">
@@ -210,7 +206,7 @@ class ProcessResourceForm extends React.Component {
 
         {/* Button need to either approve request and add to schemas 
         in proper directory, or delete request */}
-        <div onClick={() => this.props.routeHome()}>
+        <div onClick={this.props.revert}>
           <Button onClick={this.handleFormApproval}>
             Approve Resource
           </Button>
@@ -222,14 +218,3 @@ class ProcessResourceForm extends React.Component {
       </form>
     )
   }}
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    {
-      routeHome: () => push("/"),
-    },
-    dispatch
-  );
-};
-  
-export default connect(null, mapDispatchToProps)(ProcessResourceForm)
