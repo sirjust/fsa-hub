@@ -44,9 +44,12 @@ class ProcessResource extends React.Component {
     const response = await API.get('resources', `/resources/${this.state.searchingFor}`)
     // console.log(response);
 
+    // this.setState({ links: response })
+
     let notReviewed = response.filter(resource => resource.approved === undefined)
 
     this.setState({ links: notReviewed })
+
     // just used fake list for testing on a larger array
     // this.setState({
     //   links: fakeList
@@ -69,6 +72,10 @@ class ProcessResource extends React.Component {
    let notReviewed = response.filter(resource => resource.approved === undefined)
 
    this.setState({ links: notReviewed })
+  }
+  
+  revert = () => {
+    this.setState({ processing: false })
   }
 
   render() {
@@ -122,7 +129,7 @@ class ProcessResource extends React.Component {
           Check over the resource for spelling / punctuation <br />
           errors and give it your approval or the boot
         </p>
-        <ProcessResourceForm formInfo={this.state.processingForm} />
+        <ProcessResourceForm formInfo={this.state.processingForm} revert={this.revert}/>
       </div>     
   }
 }
