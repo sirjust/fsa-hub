@@ -4,7 +4,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Add from '../components/NewResourceButton';
-import View from '../components/ProcessResourceButton';
 import FolderContainers from "../components/FolderContainers";
 import {
     fullStackApprenticeship,
@@ -28,7 +27,8 @@ class LinkTabs extends Component {
             value: 0,
             fsaFolders: [],
             cityFolders: [],
-            workFolders: []
+            workFolders: [],
+            authState : ''
         };
     }
 
@@ -42,9 +42,14 @@ class LinkTabs extends Component {
             []
         );
 
+    changeAuthState = nextAuthState => {
+        this.setState({ authState: nextAuthState })
+    }
+
     render() {
         const { classes } = this.props;
-        const { value } = this.state;
+        const { value, authState } = this.state;
+        // console.log('state', authState)
         return (
             <div className={classes.root}>
                 <AppBar position="static">
@@ -54,7 +59,7 @@ class LinkTabs extends Component {
                         <Tab label="Getting Paid" />
                     </Tabs>
                 </AppBar>
-                <AuthSignup />
+                <AuthSignup changeAuthState={this.changeAuthState} />
                 {value === 0 && (
                     <FolderContainers
                         folders={fullStackApprenticeship.reduce(
@@ -91,8 +96,8 @@ class LinkTabs extends Component {
                         )}
                     />
                 )}
-                <Add />
-            </div>
+                { authState === 'signedIn' ? <Add /> : null }
+\            </div>
         );
     }
 }

@@ -4,13 +4,15 @@ import awsmobile from "../aws-exports";
 
 
 export default class AuthSignup extends Component {
-
-  
   render() {
-    const { user } = this.props
+    const { user, changeAuthState } = this.props
     return (
       <React.Fragment>
-        { !user && <Authenticator amplifyConfig={awsmobile} />}
+        { !user && <Authenticator amplifyConfig={awsmobile} 
+        autState="signIn"
+        onStateChange={(authState) => changeAuthState(authState)} 
+     />}
+
         { user && <h3>You are signed in as {user.username}</h3>}
       </React.Fragment>
     )
