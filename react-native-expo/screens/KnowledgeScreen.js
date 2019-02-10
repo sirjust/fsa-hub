@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { TouchableOpacity } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Right, Body } from 'native-base'; 
+import { Ionicons } from "@expo/vector-icons"
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Title, Right, Body } from 'native-base'; 
 import NavButton from "../components/NavButton";
 
 class KnowledgeScreen extends Component
