@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'; 
+import { TouchableOpacity } from 'react-native';
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Right, Body } from 'native-base'; 
 import NavButton from "../components/NavButton";
 
 class KnowledgeScreen extends Component
@@ -13,6 +13,21 @@ class KnowledgeScreen extends Component
     {
         return (
         <Container>
+            <Header>
+          <Left>
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+              <Ionicons name="md-menu" size={32} />
+            </TouchableOpacity>
+          </Left>
+          <Body>
+            <Title>FSA Feed</Title>
+          </Body>
+          <Right>
+            <Button hasText transparent>
+              <Text></Text>
+            </Button>
+          </Right>
+        </Header>
             <Content>
                 <Card>
                 <CardItem>

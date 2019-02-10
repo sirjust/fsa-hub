@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, WebView } from 'react-native';
-import { Constants } from 'expo';
 
 export default class BluePrintScreen extends React.Component {
   render() {
@@ -18,7 +17,6 @@ export default class BluePrintScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // paddingTop: Constants.statusBarHeight,
     backgroundColor: '#ecf0f1',
   },
 });
