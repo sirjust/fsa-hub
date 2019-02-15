@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'; 
-import TechStandardScreen from './TechStandardScreen';
+import NavButton from "../components/NavButton"
+import CreateEventScreen from "../screens/CreateEventScreen";
 
 class SandboxScreen extends Component
 {
@@ -10,7 +11,8 @@ class SandboxScreen extends Component
         return (
         <Container>
             <Content>
-                <TechStandardScreen/>
+                {/* <NavButton route="Subcategories" /> */}
+                <CreateEventScreen navigation={this.props.navigation} />
             </Content>
         </Container>
         );

@@ -1,25 +1,31 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import Amplify, { Auth, API } from "aws-amplify";
+import awsmobile from "./aws-exports"
+import { Font, AppLoading } from "expo";
+import { withAuthenticator } from "aws-amplify-react-native"
 
 import AppNavigator from './config/navigation'
 
-class App extends Component
-{
-    render()
-    {
+Amplify.configure(awsmobile)
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {}
+    }
+    async componentDidMount() {
+        await Font.loadAsync({
+            Roboto: require("native-base/Fonts/Roboto.ttf"),
+            Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf")
+          });
+    }
+
+    render() {
         return (
-          <AppNavigator/>
+          <AppNavigator screenProps={{...this.props}}/>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
-
-
-export default App;
+export default withAuthenticator(App);

@@ -4,7 +4,9 @@ import ToolCard from './ToolCard'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import SearchComponent from './SearchComponent';
-
+import Add from '../components/NewResourceButton';
+import LinkTabs from "../containers/LinkTabs";
+import { fullStackApprenticeship } from "../directories.js"
 
 const styles = {
     root: {
@@ -41,12 +43,13 @@ export default class ToolsContainer extends Component {
         super()
         this.state = {
             links: [],
-            filteredLinks : []
+            filteredLinks : [], 
+            schema: {}
         }
     }
 
     async componentDidMount() {
-        const query = `*[_type == '${this.props.match.params.schema}']{type, _type, text, title, url, _id}`
+        const query = `*[_type == '${this.props.match.params.schema}']{type, _type, text, title, priority, url, _id}`
         const links = await sanity.fetch(query);
         this.setState({ links })
     }
@@ -65,12 +68,17 @@ export default class ToolsContainer extends Component {
     render() {
         let linksToDisplay;
         this.state.filteredLinks.length < 1 ? linksToDisplay = this.state.links : linksToDisplay = this.state.filteredLinks;
+        const schema = window.location.pathname.split('/')[2];
+        const description = fullStackApprenticeship.find(o => o.type === schema);
         return (
             <TabContainer>
+                {/* <LinkTabs /> */}
                 <SearchComponent handleSearch={this.handleSearch} />
+                <h3>{description.description}</h3>
                 <Grid container className={styles.root} spacing={16}>
                     <ToolCard links={linksToDisplay} />
                 </Grid>
+                <Add />
             </TabContainer>
         );
 

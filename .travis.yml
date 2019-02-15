@@ -1,0 +1,19 @@
+dist: xenial
+sudo: required
+language: node_js
+node_js:
+  - '8'
+jobs:
+  include:
+    - stage: test
+      name: "Test Web"
+      script: ./scripts/test_web
+    - name: "Test Native"
+      script: ./scripts/test_native
+    - stage: deploy
+      name: "Deploy"
+      script: ./scripts/deploy
+stages:
+  - test
+  - name: deploy
+    if: branch = master

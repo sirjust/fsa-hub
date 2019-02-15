@@ -1,15 +1,36 @@
 import React, {Component} from 'react';
-import { View, StyleSheet, Image } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Right, Body } from 'native-base'; 
+import { TouchableOpacity } from 'react-native';
+import { Ionicons } from "@expo/vector-icons"
+import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Left, Title, Right, Body } from 'native-base'; 
+import NavButton from "../components/NavButton";
 
 class KnowledgeScreen extends Component
 {
+    static navigationOptions = {
+        header: null,
+      };
+
     render()
     {
         return (
         <Container>
+            <Header>
+          <Left>
+            <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+              <Ionicons name="md-menu" size={32} />
+            </TouchableOpacity>
+          </Left>
+          <Body>
+            <Title>FSA Feed</Title>
+          </Body>
+          <Right>
+            <Button hasText transparent>
+              <Text></Text>
+            </Button>
+          </Right>
+        </Header>
             <Content>
-                <Card style={{flex: 0}}>
+                <Card>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../assets/knowledge.png')} />
@@ -21,21 +42,19 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        {/* <Image source={require('../assets/fsa.jpeg')} style={{height:100, width: 200, flex: 1}} /> */}
                         <Text>The Full-Stack Apprenticeship Technical Standard is our toolkit for building modern, scalable applications. They are chosen for their production readiness, available documentation, open-source libraries & tutorials available for the learning process.</Text>
                     </Body>
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <Button block textStyle={{color: `#87838B`}}>
+                        <NavButton route="Subcategories" schema="fullStackApprenticeship" block textStyle={{color: "#6200EE"}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        >
                             <Text>View Resources</Text>
-                        </Button>                      
+                        </NavButton>                      
                     </Body>
                 </CardItem>
                 </Card>
-            </Content>
-            <Content>
-                <Card style={{flex: 0}}>
+                <Card>
                 <CardItem>
                     <Left>
                         <Thumbnail source={require('../assets/fsa.jpeg')} />
@@ -47,15 +66,15 @@ class KnowledgeScreen extends Component
                 </CardItem>
                 <CardItem>
                     <Body>
-                        {/* <Image source={{uri: 'somewhere'}} style={{height:100, width: 200, flex: 1}} /> */}
                         <Text>Our official directory for resources relating to finding freelance work, full-time roles, interviewing, start-up related inquiries & everything in between. </Text>
                     </Body>
                 </CardItem>
                 <CardItem>
                     <Body>
-                        <Button block textStyle={{color: `#87838B`}}>
+                        <NavButton route="Subcategories" schema="findingWork" block textStyle={{color: "#6200EE"}} onPress={() => this.props.navigation.navigate('Subcategories')}
+                        >
                             <Text>View Resources</Text>
-                        </Button>
+                        </NavButton>
                         </Body>
                 </CardItem>
                 </Card>
@@ -64,14 +83,5 @@ class KnowledgeScreen extends Component
         );
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
-
 
 export default KnowledgeScreen;
